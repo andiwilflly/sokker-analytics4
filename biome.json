@@ -1,0 +1,23 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.6.3/schema.json",
+	"organizeImports": {
+		"enabled": true
+	},
+	"linter": {
+		"enabled": false,
+		"rules": {
+			"recommended": true
+		}
+	},
+	"formatter": {
+		"lineWidth": 140,
+		"indentWidth": 4
+	},
+	"javascript": {
+		"globals": [],
+		"formatter": {
+			"arrowParentheses": "asNeeded",
+			"bracketSameLine": true
+		}
+	}
+}

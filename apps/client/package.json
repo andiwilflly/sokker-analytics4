@@ -1,5 +1,5 @@
 {
-	"name": "sokker-db-analytics3",
+	"name": "@client",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
@@ -25,6 +25,7 @@
 		"lucide-react": "^0.511.0",
 		"mobx": "^6.13.7",
 		"mobx-react": "^9.2.0",
+		"mobx-react-lite": "^4.1.0",
 		"mobx-state-tree": "^7.0.2",
 		"rc-slider": "^11.1.8",
 		"react": "^19.1.0",

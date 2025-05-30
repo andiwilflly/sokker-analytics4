@@ -1,4 +1,9 @@
 {
+	"extends": "../../tsconfig.base.json",
+	"include": ["src"],
+	"references": [
+		{ "path": "../../packages/shared" }
+	],
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
@@ -26,13 +31,13 @@
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"useDefineForClassFields": false,
-		"moduleResolution": "bundler",
 		"jsx": "react-jsx",
-		"module": "ESNext",
-		"target": "ES2023",
-		"lib": ["ES2023", "DOM", "DOM.Iterable"]
+		"lib": ["ES2023", "DOM", "DOM.Iterable"],
+
+		"moduleResolution": "node16",
+		"module": "esnext",
+		"target": "esnext"
 	},
-	"include": ["src"],
 	"ts-node": {
 		"esm": true
 	}
