@@ -1,8 +1,8 @@
 import path from "path";
 import { node } from "@elysiajs/node";
+import logger from "apps/server/src/logger";
 import { Elysia } from "elysia";
 import { glob } from "glob";
-import logger from "./logger";
 
 const ROUTES_DIR = path.resolve(__dirname, "api"); // 'dist/api'
 const app = new Elysia({ adapter: node() });
