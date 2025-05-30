@@ -8,6 +8,7 @@ const ROUTES_DIR = path.resolve(__dirname, "api"); // 'dist/api'
 const app = new Elysia({ adapter: node() });
 
 // Find all compiled JS route files
+// Change this line since you're using .ts files in glob
 const files = glob.sync(`${ROUTES_DIR}/**/*.ts`);
 
 for (const file of files) {
@@ -29,4 +30,5 @@ for (const file of files) {
 	if (routeModule.default) routeModule.default(app, routePath);
 }
 
-app.listen(3000, () => logger.fatal("SERVER | Running on http://localhost:3000"));
+const port = process.env.PORT || 3000;
+app.listen(port, () => logger.fatal(`SERVER | Running on ${port}`));

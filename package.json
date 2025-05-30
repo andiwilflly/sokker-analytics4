@@ -1,22 +1,22 @@
 {
-  "name": "sokker-db-analytics4",
-  "version": "1.0.0",
-  "private": true,
-  "packageManager": "pnpm@10.11.0",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "scripts": {
-    "build": "pnpm -r run build",
-    "client": "pnpm --filter @client dev",
-    "server": "pnpm --filter @server dev"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@types/node": "^22.15.27",
-    "tsx": "^4.19.4",
-    "typescript": "~5.8.3",
-    "vite-tsconfig-paths": "^5.1.4"
-  }
+	"name": "sokker-db-analytics4",
+	"version": "1.0.0",
+	"private": true,
+	"packageManager": "pnpm@10.11.0",
+	"workspaces": ["apps/*", "packages/*"],
+	"scripts": {
+		"build": "pnpm -r run build",
+		"client": "pnpm --filter @client dev",
+		"server": "pnpm --filter @server dev",
+
+		"server:build": "pnpm --filter @server build",
+		"server:start": "pnpm --filter @server start"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/node": "^22.15.27",
+		"tsx": "^4.19.4",
+		"typescript": "~5.8.3",
+		"vite-tsconfig-paths": "^5.1.4"
+	}
 }
