@@ -1,17 +1,32 @@
+import path from "path";
 import { node } from "@elysiajs/node";
-import { UserSchema } from "@shared/schema";
 import { Elysia } from "elysia";
+import { glob } from "glob";
+import logger from "./logger";
 
-const app = new Elysia({ adapter: node() })
-	.get("/", () => "Hello Elysia")
-	.get("/user", () => {
-		return UserSchema.parse({ id: "1", name: "Alice" });
-	})
-	.listen(3000, ({ hostname, port }) => {
-		console.log(`🦊 Elysia is running at ${hostname}:${port}`);
-	});
+const ROUTES_DIR = path.resolve(__dirname, "api"); // 'dist/api'
+const app = new Elysia({ adapter: node() });
 
-console.log("🦊 Server running on http://localhost:3000");
+// Find all compiled JS route files
+const files = glob.sync(`${ROUTES_DIR}/**/*.ts`);
 
-// For serverless/edge deployment
-export default app;
+for (const file of files) {
+	// Compute route path from file path
+	let routePath = file
+		.replace(ROUTES_DIR, "")
+		.replace(/\.ts$/, "")
+		.replace(/\/index$/, "")
+		.replace(/\[([^\]]+)]/g, ":$1");
+
+	if (!routePath) routePath = "/";
+
+	// Import the route module
+	const routeModule = require(file);
+
+	logger.info(`SERVER | Found new route: ${routePath}`);
+
+	// Assume default export is a function (app, baseRoute)
+	if (routeModule.default) routeModule.default(app, routePath);
+}
+
+app.listen(3000, () => logger.fatal("SERVER | Running on http://localhost:3000"));
