@@ -1,0 +1,4 @@
+.\:bordered {
+	border: 1px solid var(--purple);
+	border-radius: 10px;
+}

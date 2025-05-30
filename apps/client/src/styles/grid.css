@@ -1,0 +1,35 @@
+.\:grid {
+	/*background: var(--purple);*/
+	/*border-radius: 5px;*/
+	/*padding: 1px;*/
+}
+.\:grid-title {
+	padding: 5px 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	margin: 0 -10px 10px -10px;
+	background: var(--purple);
+	color: white;
+	cursor: move;
+	border-top-left-radius: 9px;
+	border-top-right-radius: 9px;
+	text-indent: 10px;
+	user-select: none;
+}
+
+.\:grid-item {
+	background: whitesmoke;
+	padding: 0 10px 10px;
+	z-index: 100;
+}
+
+.react-grid-item:hover {
+	z-index: 1;
+}
+
+.react-grid-placeholder {
+	background: rgba(0, 0, 0, 0.7) !important;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.95);
+	transition: all 0.2s ease;
+}
