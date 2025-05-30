@@ -3,19 +3,22 @@
 	"version": "1.0.0",
 	"private": true,
 	"packageManager": "pnpm@10.11.0",
-	"workspaces": ["apps/*", "packages/*"],
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
 	"scripts": {
 		"build": "pnpm -r run build",
 		"client:dev": "pnpm --filter @client dev",
 		"client:build": "pnpm --filter @client build",
 		"client:deploy": "pnpm --filter @client deploy",
-
 		"server:dev": "pnpm --filter @server dev",
 		"server:build": "pnpm --filter @server build",
 		"server:start": "pnpm --filter @server start"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
+		"@types/better-sqlite3": "^7.6.13",
 		"@types/node": "^22.15.27",
 		"tsx": "^4.19.4",
 		"typescript": "~5.8.3",

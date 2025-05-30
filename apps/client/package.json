@@ -9,7 +9,7 @@
 		"deploy": "npm run build && firebase deploy",
 		"preview": "vite preview",
 		"update:latest": "npx npm-check-updates -u --interactive",
-		"db:optimize": "sqlite3 src/DB/transfers.db < scripts/db:optimize.sql",
+		"db:optimize": "sqlite3 ../server/src/DB/transfers.db < scripts/db:optimize.sql",
 		"db:json": "node scripts/db:json.js",
 		"db": "npm run db:optimize && npm run db:json",
 		"db:fletbuffer": "flatc --ts -o scripts/flatbuffer scripts/flatbuffer/transfer.fbs && npx tsx ./scripts/flatbuffer/db:flatbuffer.js",

@@ -1,3 +1,14 @@
 packages:
-  - 'apps/*'
-  - 'packages/*'
+  - apps/*
+  - packages/*
+ignoredBuiltDependencies:
+  - '@biomejs/biome'
+  - '@firebase/util'
+  - '@swc/core'
+  - '@tailwindcss/oxide'
+  - esbuild
+  - protobufjs
+  - rxdb
+  - sqlite3
+onlyBuiltDependencies:
+  - better-sqlite3
