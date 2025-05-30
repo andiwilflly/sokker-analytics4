@@ -1,20 +1,28 @@
-# Use Bun's official image
+# Use Bun's official image (Debian based)
 FROM oven/bun:latest
 
-# Set working directory
+# Install build tools required to build native modules
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    python3 \
+    pkg-config \
+    libsqlite3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-# Copy all files (including monorepo structure)
 COPY . .
 
-# Install pnpm (Bun doesn’t come with it)
+# Install pnpm globally
 RUN bun add -g pnpm
 
-# Install all dependencies using pnpm
+# Install dependencies
 RUN pnpm install
 
-# Build only the server
+# Rebuild native bindings for better-sqlite3 explicitly
+RUN pnpm exec npm rebuild better-sqlite3 --update-binary
+
+# Build server only
 RUN pnpm run server:build
 
-# Set default command to run the server
 CMD ["pnpm", "--filter", "@server", "start"]
