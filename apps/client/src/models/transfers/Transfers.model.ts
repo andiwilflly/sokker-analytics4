@@ -6,7 +6,7 @@ import * as Comlink from "comlink";
 import { types } from "mobx-state-tree";
 
 // A generic frozen block of stats (useful if structure is dynamic or nested)
-const TransferStatBlockValues = types.map(types.number);
+const TransferStatBlockValues = types.frozen({});
 
 const TransferStatBlock = types.model("TransferStatBlock", {
 	labels: types.array(types.union(types.string, types.number)),
@@ -29,12 +29,7 @@ const TransfersModel = types.compose(
 
 		fromMs: types.optional(types.number, 0),
 		toMs: types.optional(types.number, 0),
-		data: types.optional(TransfersPrepare, () => ({
-			country: { labels: [], values: {} },
-			height: { labels: [], values: {} },
-			weekday: { labels: [], values: {} },
-			count: 0,
-		})),
+		data: TransfersPrepare,
 	}),
 );
 

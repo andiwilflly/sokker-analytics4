@@ -36,7 +36,7 @@
 
 		"moduleResolution": "node16",
 		"module": "esnext",
-		"target": "esnext"
+		"target": "esnext",
 	},
 	"ts-node": {
 		"esm": true

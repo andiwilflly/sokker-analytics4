@@ -4,7 +4,12 @@ const store = RootModel.create({
 	transfers: {
 		grid: {},
 		filters: {},
-		data: {},
+		data: {
+			country: { labels: [], values: {} },
+			height: { labels: [], values: {} },
+			weekday: { labels: [], values: {} },
+			count: 0,
+		},
 	},
 });
 
