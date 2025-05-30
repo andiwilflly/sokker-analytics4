@@ -1,5 +1,8 @@
 import path from "node:path";
+import { IFilters } from "@shared/schema/filters.schema";
+import { ITransfersShortNames } from "@shared/schema/transfers.schema";
 import earliestTransferQuery from "apps/server/src/DB/query/earliestTransfer.query";
+import transfersQuery from "apps/server/src/DB/query/transfersQuery";
 import logger from "apps/server/src/logger";
 import BetterSqlite3 from "better-sqlite3";
 
@@ -13,8 +16,22 @@ class DB {
 
 	query = () => {
 		return {
-			earliestTransfer: () => {
-				return this.db.prepare(earliestTransferQuery()).get();
+			earliestTransfer: (): number => {
+				return this.db.prepare(earliestTransferQuery()).get() as number;
+			},
+
+			// TODO: Indexes!!
+			transfers: ({
+				filters,
+				fields,
+				limit,
+			}: { filters: IFilters; fields: Array<keyof ITransfersShortNames>; limit?: number }): ITransfersShortNames[] => {
+				const { query, params } = transfersQuery({
+					filters,
+					fields: fields,
+					limit,
+				});
+				return this.db.prepare(query).all(...params) as ITransfersShortNames[];
 			},
 		};
 	};
