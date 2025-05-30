@@ -20,7 +20,7 @@ RUN bun add -g pnpm
 RUN pnpm install
 
 # Rebuild native bindings for better-sqlite3 explicitly
-RUN pnpm rebuild better-sqlite3 --update-binary
+RUN pnpm rebuild better-sqlite3
 
 # Build server only
 RUN pnpm run server:build
