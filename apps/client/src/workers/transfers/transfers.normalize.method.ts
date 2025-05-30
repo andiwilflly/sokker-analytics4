@@ -1,4 +1,4 @@
-import transferNamesMapping from "@/DB/transferNamesMapping";
+import transferNamesMapping from "@/DB/transferNamesMapping.ts";
 
 export default function transfersNormalize(transfers: ITransferShortNames[]): ITransfer[] {
 	const transferShortNames = Object.keys(transferNamesMapping) as (keyof ITransferShortNames)[];
