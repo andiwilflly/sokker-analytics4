@@ -1,6 +1,7 @@
-import transfersPrepareByCountry from "@/workers/transfers/prepare/transfers.prepare.byCountry.ts";
-import transfersPrepareByHeight from "@/workers/transfers/prepare/transfers.prepare.byHeight.ts";
-import transfersPrepareByWeekday from "@/workers/transfers/prepare/transfers.prepare.byWeekday.ts";
+import transfersPrepareByCountry from "@shared/methods/transfers/prepare/transfers.prepare.byCountry";
+import transfersPrepareByHeight from "@shared/methods/transfers/prepare/transfers.prepare.byHeight";
+import transfersPrepareByWeekday from "@shared/methods/transfers/prepare/transfers.prepare.byWeekday";
+import { ITransfer } from "@shared/schema/transfers.schema";
 
 export default function transfersPrepare(transfers: ITransfer[]): ITransfersPrepare {
 	return {

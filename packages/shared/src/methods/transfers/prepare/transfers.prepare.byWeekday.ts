@@ -1,3 +1,5 @@
+import { ITransfer } from "@shared/schema/transfers.schema";
+
 const weekdays: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export default function transfersPrepareByWeekday(transfers: ITransfer[]): ITransferStatBlock {

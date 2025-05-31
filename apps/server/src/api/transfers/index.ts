@@ -1,6 +1,6 @@
 import FiltersSchema, { IFilters } from "@shared/schema/filters.schema";
 import { IResponse } from "@shared/schema/response.schema";
-import { ITransfersShortNames } from "@shared/schema/transfers.schema";
+import { ITransferShortNames } from "@shared/schema/transfers.schema";
 import db from "apps/server/src/DB/DB";
 import { Elysia } from "elysia";
 
@@ -12,7 +12,7 @@ export default (app: Elysia, route: string) => {
 		}: { query: IFilters }): IResponse<{
 			durationMs: number;
 			filters: IFilters;
-			transfers: ITransfersShortNames[];
+			transfers: ITransferShortNames[];
 		}> => {
 			try {
 				const startMs = Date.now();

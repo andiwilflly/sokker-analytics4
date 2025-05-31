@@ -1,6 +1,7 @@
 import CoreModel from "@/models/Core.model.ts";
 import TransfersModel from "@/models/transfers/Transfers.model.ts";
 import i18n from "@/translations/i18n.ts";
+import { TLang } from "@shared/schema/basic.schema.js";
 import { reaction, toJS } from "mobx";
 import { type Instance, addDisposer, types } from "mobx-state-tree";
 

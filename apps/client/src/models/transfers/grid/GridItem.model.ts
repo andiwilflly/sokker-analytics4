@@ -2,6 +2,7 @@ import { GRID_ITEM_MIN_HEIGHT, GRID_ITEM_MIN_WIDTH } from "@/CONSTANTS.ts";
 import CoreModel from "@/models/Core.model.ts";
 import GridModel from "@/models/transfers/grid/Grid.model.ts";
 import store from "@/store.ts";
+import type { IFilters } from "@shared/schema/filters.schema.js";
 import { type Instance, getParentOfType, getSnapshot, isAlive, types } from "mobx-state-tree";
 
 const GridItemModel = types.compose(

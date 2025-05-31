@@ -1,7 +1,9 @@
-import filterTransfers from "@/workers/transfers/transfers.filter.method.ts";
-import transfersNormalize from "@/workers/transfers/transfers.normalize.method.ts";
-import transfersPrepare from "@/workers/transfers/transfers.prepare.method.ts"; // Import the generated FlatBuffer code
-import transfersTimeRange from "@/workers/transfers/transfers.timerange.method.ts";
+import filterTransfers from "@shared/methods/transfers/transfers.filter.method.ts";
+import transfersNormalize from "@shared/methods/transfers/transfers.normalize.method.ts";
+import transfersPrepare from "@shared/methods/transfers/transfers.prepare.method.ts"; // Import the generated FlatBuffer code
+import transfersTimeRange from "@shared/methods/transfers/transfers.timerange.method.ts";
+import type { IFilters } from "@shared/schema/filters.schema.js";
+import type { IResponse } from "@shared/schema/response.schema.ts";
 import axios, { type AxiosProgressEvent, type AxiosRequestConfig, type AxiosResponse } from "axios";
 import * as Comlink from "comlink";
 import { ByteBuffer } from "flatbuffers";
@@ -15,7 +17,7 @@ class TransfersDB {
 	transfersDBVersion!: number;
 	transfersList!: Transfers.TransferList;
 
-	async init(): Promise<IWorkerResponse<IWorkerAPIInitResponse>> {
+	async init(): Promise<IResponse<IWorkerAPIInitResponse>> {
 		try {
 			await this.fetchDBVersion();
 			await this.fetchTransfers();
@@ -81,13 +83,13 @@ class TransfersDB {
 const transfersDB = new TransfersDB();
 
 class TransfersAPI {
-	public async init(): Promise<IWorkerResponse<IWorkerAPIInitResponse>> {
+	public async init(): Promise<IResponse<IWorkerAPIInitResponse>> {
 		const { data, error } = await transfersDB.init();
 		if (error) return { error };
 		return { data: data! };
 	}
 
-	public async filter(filters: IFilters): Promise<IWorkerResponse<ITransfersPrepare>> {
+	public async filter(filters: IFilters): Promise<IResponse<ITransfersPrepare>> {
 		try {
 			console.time("✅ transfersDB | filterTransfers");
 			const filteredTransfers = filterTransfers(transfersDB.transfersList, transfersDB.transfersCount, filters);

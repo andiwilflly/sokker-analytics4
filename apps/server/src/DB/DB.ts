@@ -1,6 +1,6 @@
 import path from "node:path";
 import { IFilters } from "@shared/schema/filters.schema";
-import { ITransfersShortNames } from "@shared/schema/transfers.schema";
+import { ITransferShortNames } from "@shared/schema/transfers.schema";
 import earliestTransferQuery from "apps/server/src/DB/query/earliestTransfer.query";
 import transfersQuery from "apps/server/src/DB/query/transfersQuery";
 import logger from "apps/server/src/logger";
@@ -25,13 +25,13 @@ class DB {
 				filters,
 				fields,
 				limit,
-			}: { filters: IFilters; fields: Array<keyof ITransfersShortNames>; limit?: number }): ITransfersShortNames[] => {
+			}: { filters: IFilters; fields: Array<keyof ITransferShortNames>; limit?: number }): ITransferShortNames[] => {
 				const { query, params } = transfersQuery({
 					filters,
 					fields: fields,
 					limit,
 				});
-				return this.db.prepare(query).all(...params) as ITransfersShortNames[];
+				return this.db.prepare(query).all(...params) as ITransferShortNames[];
 			},
 		};
 	};

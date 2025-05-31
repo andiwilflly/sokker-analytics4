@@ -1,3 +1,5 @@
+import { ITransfer } from "@shared/schema/transfers.schema";
+
 export default function transfersPrepareByHeight(transfers: ITransfer[]): ITransferStatBlock {
 	const heightMap = new Map<
 		number,

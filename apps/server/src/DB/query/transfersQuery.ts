@@ -1,11 +1,11 @@
 import { IFilters } from "@shared/schema/filters.schema";
-import { ITransfersShortNames } from "@shared/schema/transfers.schema";
+import { ITransferShortNames } from "@shared/schema/transfers.schema";
 
 export default function transfersQuery({
 	filters,
 	fields,
 	limit,
-}: { filters: IFilters; fields: Array<keyof ITransfersShortNames>; limit?: number }) {
+}: { filters: IFilters; fields: Array<keyof ITransferShortNames>; limit?: number }) {
 	const { minPrice, maxPrice, minSS, maxSS, fromMs, toMs, selectedAges, selectedCountries } = filters;
 
 	const selectedFields = Array.isArray(fields) && fields.length > 0 ? fields.map(field => `t.${field}`).join(", ") : "t.*";
