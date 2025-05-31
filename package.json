@@ -3,12 +3,9 @@
 	"version": "1.0.0",
 	"private": true,
 	"packageManager": "pnpm@10.11.0",
-	"workspaces": [
-		"apps/*",
-		"packages/*"
-	],
+	"workspaces": ["apps/*", "packages/*"],
 	"scripts": {
-		"build": "pnpm -r run build",
+		"build": "pnpm --filter @shared... run build && pnpm --filter @server run build",
 		"client:dev": "pnpm --filter @client dev",
 		"client:build": "pnpm --filter @client build",
 		"client:deploy": "pnpm --filter @client deploy",
