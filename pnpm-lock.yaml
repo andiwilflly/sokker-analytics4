@@ -197,11 +197,7 @@ importers:
         specifier: ^3.25.42
         version: 3.25.42
 
-  packages/shared:
-    dependencies:
-      zod:
-        specifier: ^3.25.42
-        version: 3.25.42
+  packages/shared: {}
 
 packages:
 
