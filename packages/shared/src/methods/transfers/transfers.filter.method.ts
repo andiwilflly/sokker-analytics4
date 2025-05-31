@@ -1,6 +1,6 @@
 import { IFilters } from "@shared/schema/filters.schema";
 import type { ITransferShortNames } from "@shared/schema/transfers.schema.js";
-import { Transfers } from "scripts/flatbuffer/transfer.ts";
+import { Transfers } from "@shared/scripts/flatbuffer/transfer";
 
 export default function filterTransfers(
 	transfersList: Transfers.TransferList,
