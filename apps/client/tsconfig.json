@@ -35,7 +35,8 @@
 
 		"moduleResolution": "node16",
 		"module": "Node16",
-		"target": "esnext"
+		"target": "esnext",
+		"preserveSymlinks": true
 	},
 	"ts-node": {
 		"esm": true

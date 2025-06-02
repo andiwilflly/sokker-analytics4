@@ -2,6 +2,7 @@ import CoreModel from "@/models/Core.model.ts";
 import TransfersModel from "@/models/transfers/Transfers.model.ts";
 import i18n from "@/translations/i18n.ts";
 import { type TLang } from "@shared/schema/basic.schema.ts";
+import countries from "@shared/utils/countries.util.js";
 import { reaction, toJS } from "mobx";
 import { type Instance, addDisposer, types } from "mobx-state-tree";
 
@@ -11,7 +12,13 @@ const RootModel = types.compose(
 	types.model({
 		IS_APP_READY: types.optional(types.boolean, false),
 		isLoading: types.optional(types.boolean, false),
-		lang: types.optional(types.union(types.literal("en"), types.literal("uk")), "en"),
+		lang: types.optional(
+			types.enumeration(
+				"Lang",
+				countries.map(({ countryCode }) => countryCode),
+			),
+			"en",
+		),
 		transfers: TransfersModel,
 	}),
 );

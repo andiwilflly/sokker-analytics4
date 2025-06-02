@@ -9,12 +9,12 @@
 		"deploy": "pnpm run build && firebase deploy",
 		"preview": "vite preview",
 		"update:latest": "pnpm update --interactive",
-		"db:optimize": "sqlite3 ../server/src/DB/transfers.db < scripts/db:optimize.sql",
-		"db:json": "node scripts/db:json.js",
+		"db:optimize": "sqlite3 ../server/src/DB/transfers.db < src/scripts/db:optimize.sql",
+		"db:json": "node src/scripts/db:json.js",
 		"db": "npm run db:optimize && npm run db:json",
-		"db:fletbuffer": "flatc --ts -o scripts/flatbuffer scripts/flatbuffer/transfer.fbs && npx tsx ./scripts/flatbuffer/db:flatbuffer.js",
-		"translate:extract": "node scripts/translations:extract.js",
-		"translate:uk": "npm run translate:extract && node scripts/translations:translate.js uk"
+		"db:fletbuffer": "flatc --ts -o src/scripts/flatbuffer scripts/flatbuffer/transfer.fbs && npx tsx ./scripts/flatbuffer/db:flatbuffer.js",
+		"translate:extract": "node src/scripts/translations:extract.js",
+		"translate:uk": "npm run translate:extract && node src/scripts/translations:translate.js uk"
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.1.8",

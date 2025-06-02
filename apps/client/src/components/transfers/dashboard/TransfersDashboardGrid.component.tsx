@@ -1,9 +1,9 @@
 import GridLayout, { type Layout, WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
-import { GRID_ITEM_MIN_HEIGHT, GRID_ITEM_MIN_WIDTH } from "@/CONSTANTS.ts";
+import { GRID_ITEM_MIN_HEIGHT } from "@/CONSTANTS.ts";
 import T from "@/components/T.component.tsx";
-import TransfersDashboardItem from "@/components/transfers/dashboard/TransfersDashboardItem.component";
+import TransfersDashboardItem from "@/components/transfers/dashboard/TransfersDashboardItem.component.tsx";
 import store from "@/store.ts";
 import { observer } from "mobx-react";
 import React from "react";

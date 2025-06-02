@@ -19,6 +19,7 @@ if (fs.existsSync(outPath)) {
 }
 
 const versionRow = db.prepare("SELECT ts FROM version LIMIT 1").get();
+// @ts-ignore
 const version = versionRow?.ts ?? Date.now();
 fs.writeFileSync(versionPath, JSON.stringify({ version }, null, 2), "utf8");
 console.log(`✅ Save SQLite database version '${version}' ...`);
@@ -29,7 +30,7 @@ const rows = db.prepare("SELECT * FROM transfers").all(); // we need `.all()` to
 const total = rows.length;
 const builder = new flatbuffers.Builder(1024);
 
-const transferOffsets = rows.map((row, i) => {
+const transferOffsets = rows.map((row: any, i) => {
 	const idOffset = builder.createString(row.id);
 	const nameOffset = builder.createString(row.n);
 

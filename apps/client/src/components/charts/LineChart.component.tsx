@@ -1,5 +1,5 @@
 "use client";
-import echarts from "@/lib/echarts";
+import echarts from "@/lib/echarts.ts";
 import React from "react";
 
 interface IProps {
@@ -16,7 +16,7 @@ export default class LineChart extends React.Component<IProps> {
 	};
 
 	$chart = React.createRef<HTMLDivElement>();
-	chartInstance: echarts.EChartsType | null = null;
+	chartInstance: any = null;
 
 	componentDidMount() {
 		if (this.$chart.current) {

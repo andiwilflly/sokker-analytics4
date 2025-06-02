@@ -1,6 +1,6 @@
 import en from "@/translations/lang/en.json";
 import uk from "@/translations/lang/uk.json";
-// i18n.ts
+import type { TLang } from "@shared/schema/basic.schema.ts";
 import rosetta from "rosetta";
 
 const i18n = rosetta({ en });

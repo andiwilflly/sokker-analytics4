@@ -1,4 +1,4 @@
-import { Transfers } from "scripts/flatbuffer/transfer.ts";
+import { Transfers } from "@shared/scripts/flatbuffer/transfer";
 
 export default function transfersTimeRange(
 	transfersList: Transfers.TransferList,

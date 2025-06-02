@@ -21,6 +21,7 @@ class Slider extends React.Component<IProps> {
 
 		return (
 			<>
+				{/* @ts-ignore */}
 				<RcSlider
 					range
 					min={min}
