@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc -b && vite build",
-		"deploy": "pnpm run build && firebase deploy",
+		"deploy": "pnpm run build && firebase deploy --project sokker-db",
 		"preview": "vite preview",
 		"update:latest": "pnpm update --interactive",
 		"db:optimize": "sqlite3 ../server/src/DB/transfers.db < src/scripts/db:optimize.sql",

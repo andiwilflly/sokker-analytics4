@@ -23,14 +23,14 @@ const loadLanguage = async (lang: string) => {
 	try {
 		const messages = await import(`@/translations/lang/${lang}.json`);
 		i18n.set(lang, messages.default);
-		console.log("load translation for lang:", lang);
+		console.log("✅ i18n | Load translation for lang:", lang);
 	} catch (err) {
 		// console.error(`Missing translation for language: ${lang}`, err);
 	}
 };
 
 for (let country of countries) {
-	await loadLanguage(country.countryCode);
+	loadLanguage(country.countryCode);
 }
 
 i18n.locale("en");

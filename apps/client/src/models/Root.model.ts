@@ -12,13 +12,7 @@ const RootModel = types.compose(
 	types.model({
 		IS_APP_READY: types.optional(types.boolean, false),
 		isLoading: types.optional(types.boolean, false),
-		lang: types.optional(
-			types.enumeration(
-				"Lang",
-				countries.map(({ countryCode }) => countryCode),
-			),
-			"en",
-		),
+		lang: types.optional(types.enumeration(countries.map(({ countryCode }) => countryCode)), "en"),
 		transfers: TransfersModel,
 	}),
 );
@@ -34,6 +28,9 @@ const actions = (self: Instance<typeof RootModel>) => {
 			self.transfers.update({ fromMs: data!.fromMs, toMs: data!.toMs });
 			await this.prepareTransfers(); // Use this inside other actions to call sibling actions.
 
+			const lang = window.localStorage.getItem("app:lang") || "en";
+			this.setLang(lang as TLang);
+
 			self.update({ IS_APP_READY: true });
 			console.timeEnd("✅ APP | init");
 		},
@@ -41,6 +38,7 @@ const actions = (self: Instance<typeof RootModel>) => {
 		setLang(lang: TLang) {
 			i18n.locale(lang);
 			self.update({ lang });
+			window.localStorage.setItem("app:lang", lang);
 		},
 
 		async prepareTransfers() {
