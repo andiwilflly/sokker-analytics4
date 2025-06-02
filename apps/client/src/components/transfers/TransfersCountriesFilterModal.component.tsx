@@ -1,6 +1,6 @@
 import T from "@/components/T.component.tsx";
 import store from "@/store.ts";
-import countriesUtil from "@/utils/countries.util.ts";
+import countriesUtil from "@shared/utils/countries.util.ts";
 import { observer } from "mobx-react";
 import React from "react";
 

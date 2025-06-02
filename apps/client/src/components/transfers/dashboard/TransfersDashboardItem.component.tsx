@@ -2,14 +2,14 @@ import PreLoader from "@/components/PreLoader.component.tsx";
 import T from "@/components/T.component.tsx";
 import TransfersDashboardItemModal from "@/components/transfers/dashboard/TransfersDashboardItemModal.component.tsx";
 import store from "@/store.ts";
-import { formatPriceUAH } from "@/utils/formatPrice.utils.ts";
+import { formatPriceUAH } from "@shared/utils/formatPrice.utils.ts";
 import { CircleX, Settings } from "lucide-react";
 import { makeObservable, observable, runInAction } from "mobx";
 import { observer } from "mobx-react";
 import React from "react";
 import ReactDOM from "react-dom";
 
-const LazyLineChart = React.lazy(() => import("@/components/charts/LineChart.component"));
+const LazyLineChart = React.lazy(() => import("@/components/charts/LineChart.component.tsx"));
 
 interface IProps {
 	i: string;

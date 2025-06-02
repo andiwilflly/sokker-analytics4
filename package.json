@@ -12,17 +12,18 @@
 		"client:deploy": "pnpm --filter @client deploy",
 		"server:dev": "pnpm --filter @server dev",
 		"server:build": "pnpm --filter @server build",
-		"server:start": "pnpm --filter @server start"
+		"server:start": "pnpm --filter @server start",
+		"update:latest": "pnpm update --interactive && pnpm --filter @client run update:latest"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"@types/better-sqlite3": "^7.6.13",
-		"@types/node": "^22.15.27",
+		"@types/node": "^22.15.29",
 		"tsx": "^4.19.4",
 		"typescript": "~5.8.3",
 		"vite-tsconfig-paths": "^5.1.4"
 	},
 	"dependencies": {
-		"zod": "^3.25.42"
+		"zod": "^3.25.48"
 	}
 }

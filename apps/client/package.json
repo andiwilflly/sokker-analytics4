@@ -8,7 +8,7 @@
 		"build": "tsc -b && vite build",
 		"deploy": "pnpm run build && firebase deploy",
 		"preview": "vite preview",
-		"update:latest": "npx npm-check-updates -u --interactive",
+		"update:latest": "pnpm update --interactive",
 		"db:optimize": "sqlite3 ../server/src/DB/transfers.db < scripts/db:optimize.sql",
 		"db:json": "node scripts/db:json.js",
 		"db": "npm run db:optimize && npm run db:json",

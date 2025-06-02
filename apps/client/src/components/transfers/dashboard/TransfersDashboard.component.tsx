@@ -1,11 +1,10 @@
-import PreLoader from "@/components/PreLoader.component.tsx";
 import store from "@/store.ts";
-import { formatPriceUAH } from "@/utils/formatPrice.utils.ts";
+import { formatPriceUAH } from "@shared/utils/formatPrice.utils.ts";
 import { action, makeObservable, observable, runInAction } from "mobx";
 import { observer } from "mobx-react";
 import React from "react";
 
-const TransfersDashboardGrid = React.lazy(() => import("@/components/transfers/dashboard/TransfersDashboardGrid.component"));
+const TransfersDashboardGrid = React.lazy(() => import("@/components/transfers/dashboard/TransfersDashboardGrid.component.tsx"));
 
 interface IProps {}
 

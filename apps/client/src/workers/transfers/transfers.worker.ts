@@ -2,13 +2,14 @@ import filterTransfers from "@shared/methods/transfers/transfers.filter.method.t
 import transfersNormalize from "@shared/methods/transfers/transfers.normalize.method.ts";
 import transfersPrepare from "@shared/methods/transfers/transfers.prepare.method.ts"; // Import the generated FlatBuffer code
 import transfersTimeRange from "@shared/methods/transfers/transfers.timerange.method.ts";
-import type { IFilters } from "@shared/schema/filters.schema.js";
+import type { IFilters } from "@shared/schema/filters.schema.ts";
 import type { IResponse } from "@shared/schema/response.schema.ts";
+import type { IWorkerAPIInitResponse } from "@shared/schema/worker.schema.ts";
+import { Transfers } from "@shared/scripts/flatbuffer/transfer.ts";
 import axios, { type AxiosProgressEvent, type AxiosRequestConfig, type AxiosResponse } from "axios";
 import * as Comlink from "comlink";
 import { ByteBuffer } from "flatbuffers";
 import pako from "pako";
-import { Transfers } from "scripts/flatbuffer/transfer.ts";
 
 class TransfersDB {
 	transfersCount: number = 0;

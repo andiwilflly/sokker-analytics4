@@ -2,12 +2,12 @@ import T from "@/components/T.component.tsx";
 import Select from "@/components/elements/Select.component.tsx";
 import type GridItemModel from "@/models/transfers/grid/GridItem.model.ts";
 import store from "@/store.ts";
-import { formatPriceUAH } from "@/utils/formatPrice.utils.ts";
+import { formatPriceUAH } from "@shared/utils/formatPrice.utils.ts";
 import { observer } from "mobx-react";
 import type { Instance } from "mobx-state-tree";
 import React from "react";
 
-const LazyLineChart = React.lazy(() => import("@/components/charts/LineChart.component"));
+const LazyLineChart = React.lazy(() => import("@/components/charts/LineChart.component.tsx"));
 
 interface IProps {
 	i: string;
