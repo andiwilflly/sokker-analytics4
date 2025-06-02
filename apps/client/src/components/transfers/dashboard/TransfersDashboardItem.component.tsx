@@ -35,30 +35,8 @@ class TransfersDashboardItem extends React.Component<IProps> {
 		return store.transfers.grid.all.get(this.props.i)!;
 	}
 
-	get chartData(): ILineChartData {
-		const transferStatBlock = store.transfers.data[this.item.selectedX] as ITransferStatBlock;
-		return {
-			series: this.item.selectedY.map(selectedDataType => ({
-				name: `Transfers ${selectedDataType} for ${this.item.selectedX}`,
-				type: "line",
-				smooth: false,
-				data: transferStatBlock.values[selectedDataType],
-				symbol: "none",
-				dataType: selectedDataType,
-			})),
-			xAxisData: transferStatBlock.labels,
-			minY: 0,
-			maxY: Math.round(
-				this.item.selectedY.reduce((res, selectedDataType) => {
-					const max = Math.max(...transferStatBlock.values[selectedDataType]);
-					return Math.max(res, max);
-				}, 0),
-			),
-		};
-	}
-
 	formatY = (value: number, seriesIndex: number) => {
-		const dataType = this.chartData.series[seriesIndex].dataType;
+		const dataType = this.item.chartData.series[seriesIndex].dataType;
 		switch (dataType) {
 			case "price_avg":
 			case "price_min":
@@ -102,7 +80,7 @@ class TransfersDashboardItem extends React.Component<IProps> {
 				<LazyLineChart
 					width={this.props.width - this.padding * 2}
 					height={this.props.height - (this.titleHeight + this.padding * 2)}
-					chartData={this.chartData}
+					chartData={this.item.chartData}
 					reactionString={store.isLoading + this.item.selectedY.join() + this.item.selectedX}
 					formatY={this.formatY}
 				/>

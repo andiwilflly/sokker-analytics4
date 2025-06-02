@@ -1,5 +1,6 @@
 import { GRID_ITEM_MIN_HEIGHT, GRID_ITEM_MIN_WIDTH } from "@/CONSTANTS.ts";
 import CoreModel from "@/models/Core.model.ts";
+import { TransferStatBlockModel } from "@/models/transfers/Transfers.model.ts";
 import GridModel from "@/models/transfers/grid/Grid.model.ts";
 import store from "@/store.ts";
 import type { IFilters } from "@shared/schema/filters.schema.js";
@@ -43,20 +44,24 @@ const actions = (self: Instance<typeof GridItemModel>) => {
 const views = (self: Instance<typeof GridItemModel>) => {
 	return {
 		get chartData(): ILineChartData {
-			const transferStatBlock = store.transfers.data[self.selectedX] as ITransferStatBlock;
+			const transferStatBlock = store.transfers.data[self.selectedX] as Instance<typeof TransferStatBlockModel>;
 			return {
-				series: self.selectedY.map(selectedDataType => ({
-					name: `Transfers ${selectedDataType} for ${self.selectedX}`,
-					type: "line",
-					smooth: false,
-					data: transferStatBlock.values[selectedDataType],
-					symbol: "none",
-					dataType: selectedDataType,
-				})),
+				series: self.selectedY.map(selectedDataType => {
+					return {
+						name: `Transfers ${selectedDataType} for ${self.selectedX}`,
+						type: "line",
+						smooth: false,
+						// @ts-ignore
+						data: transferStatBlock.values[selectedDataType] as any,
+						symbol: "none",
+						dataType: selectedDataType,
+					};
+				}),
 				xAxisData: transferStatBlock.labels,
 				minY: 0,
 				maxY: Math.round(
 					self.selectedY.reduce((res, selectedDataType) => {
+						// @ts-ignore
 						const max = Math.max(...transferStatBlock.values[selectedDataType]);
 						return Math.max(res, max);
 					}, 0),
@@ -71,7 +76,7 @@ const views = (self: Instance<typeof GridItemModel>) => {
 		},
 
 		get yLabelsTypes(): (keyof ITransferStatBlockValues)[] {
-			const transferStatBlock = store.transfers.data[self.selectedX] as ITransferStatBlock;
+			const transferStatBlock = store.transfers.data[self.selectedX] as Instance<typeof TransferStatBlockModel>;
 			return Object.keys(transferStatBlock?.values || {}) as (keyof ITransferStatBlockValues)[];
 		},
 	};
