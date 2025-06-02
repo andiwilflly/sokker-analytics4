@@ -1,17 +1,40 @@
-import en from "@/translations/lang/en.json";
-import uk from "@/translations/lang/uk.json";
 import type { TLang } from "@shared/schema/basic.schema.ts";
-import rosetta from "rosetta";
+import countries from "@shared/utils/countries.util.ts";
+import rosetta, { type Rosetta } from "rosetta";
 
-const i18n = rosetta({ en });
-i18n.set("en", en);
-// @ts-ignore
-i18n.set("uk", uk);
-
-i18n.locale("en"); // reactively update language
-
-export const t = (key: string, params?: Record<string, any>, lang?: TLang) => {
-	return i18n.t(key, params, lang);
+type I18nWithLangs = Rosetta<TLang> & {
+	_langs: Set<TLang>;
+	langs: () => TLang[];
 };
+
+const i18n = rosetta() as I18nWithLangs;
+
+i18n._langs = new Set<TLang>();
+i18n.langs = () => Array.from(i18n._langs);
+
+// Wrap i18n.set to automatically track langs
+const originalSet = i18n.set.bind(i18n);
+i18n.set = (lang: TLang, table) => {
+	i18n._langs.add(lang);
+	return originalSet(lang, table);
+};
+
+const loadLanguage = async (lang: string) => {
+	try {
+		const messages = await import(`@/translations/lang/${lang}.json`);
+		i18n.set(lang, messages.default);
+		console.log("load translation for lang:", lang);
+	} catch (err) {
+		// console.error(`Missing translation for language: ${lang}`, err);
+	}
+};
+
+for (let country of countries) {
+	await loadLanguage(country.countryCode);
+}
+
+i18n.locale("en");
+
+export const t = (key: string, params?: Record<string, any>, lang?: string) => i18n.t(key, params, lang);
 
 export default i18n;

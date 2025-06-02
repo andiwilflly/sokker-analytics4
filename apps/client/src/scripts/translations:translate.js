@@ -15,8 +15,12 @@ if (!targetLanguage) {
 }
 
 // File paths
-const inputFilePath = path.resolve(__dirname, "../src/translations/lang/en.json");
-const outputFilePath = path.resolve(__dirname, `../src/translations/lang/${targetLanguage}.json`);
+// const inputFilePath = path.resolve(__dirname, "../src/translations/lang/en.json");
+// const outputFilePath = path.resolve(__dirname, `../src/translations/lang/${targetLanguage}.json`);
+
+// process.cwd() points to where the Node process was started — usually the root of your project.
+const inputFilePath = path.resolve(process.cwd(), "src/translations/lang/en.json");
+const outputFilePath = path.resolve(process.cwd(), `src/translations/lang/${targetLanguage}.json`);
 
 // Read the JSON files
 const enTranslations = JSON.parse(fs.readFileSync(inputFilePath, "utf-8"));

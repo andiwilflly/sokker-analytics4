@@ -1,5 +1,6 @@
 import Select from "@/components/elements/Select.component.js";
 import store from "@/store.js";
+import i18n from "@/translations/i18n.js";
 import countries from "@shared/utils/countries.util.js";
 import { observer } from "mobx-react";
 import React from "react";
@@ -17,10 +18,13 @@ class LangSelector extends React.Component<IProps> {
 					onChange={(e: any) => {
 						store.setLang(e.target.value);
 					}}
-					options={countries.map(({ name, countryCode, icon }) => ({
-						value: countryCode,
-						label: `${icon} ${name}`,
-					}))}
+					options={i18n.langs().map(lang => {
+						const country = countries.find(({ countryCode }) => lang === countryCode);
+						return {
+							value: lang,
+							label: `${country?.icon} ${country?.name}`,
+						};
+					})}
 				/>
 			</>
 		);
