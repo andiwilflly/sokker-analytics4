@@ -48,15 +48,17 @@ class TransfersDB {
 		try {
 			const url = `/transfers.bin.gz?v=${this.transfersDBVersion}`;
 
+			const headRes = await axios.head(url);
+			const compressRatio = import.meta.env.MODE === "development" ? 2.4721612205247574 : 1; // DEV: bin.gz > to bin
+			const totalLength = parseInt(headRes.headers["content-length"] || "0", 10) * compressRatio;
+
 			console.time("✅ transfersDB | Fetch transfers success");
 			const axiosConfig: AxiosRequestConfig = {
 				// Always use arraybuffer for binary data
 				responseType: "arraybuffer",
 				onDownloadProgress: (event: AxiosProgressEvent) => {
-					if (event.lengthComputable && event.total) {
-						const progress = Math.floor((event.loaded / event.total) * 100);
-						console.log(`📥 Progress: ${progress}%`);
-					}
+					const progress = Math.floor((event.loaded / totalLength) * 100);
+					console.log(`📥 Progress: ${progress}%`, event.loaded / totalLength);
 				},
 			};
 
