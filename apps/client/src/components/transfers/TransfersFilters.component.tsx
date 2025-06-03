@@ -14,7 +14,7 @@ interface IProps {}
 class TransfersFilters extends React.Component<IProps> {
 	form: IFilters = {
 		fromMs: 0,
-		toMs: Date.now(),
+		toMs: 0,
 		minSS: 0,
 		maxSS: 100,
 		minPrice: 0,

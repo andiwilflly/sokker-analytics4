@@ -26,6 +26,11 @@ const actions = (self: Instance<typeof RootModel>) => {
 			const { data, error } = await self.transfers.worker.init();
 			if (error) console.log("❌ APP | init error: ", error);
 
+			// Filters
+			if (self.transfers.filters.fromMs === 0) self.transfers.filters.update({ fromMs: data!.fromMs });
+			if (self.transfers.filters.toMs === 0) self.transfers.filters.update({ toMs: data!.toMs });
+
+			// Transfers
 			self.transfers.update({ fromMs: data!.fromMs, toMs: data!.toMs });
 			await this.prepareTransfers(); // Use this inside other actions to call sibling actions.
 

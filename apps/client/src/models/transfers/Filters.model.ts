@@ -7,7 +7,7 @@ const FiltersModel = types.compose(
 	CoreModel,
 	types.model({
 		fromMs: types.optional(types.number, 0),
-		toMs: types.optional(types.number, () => Date.now()),
+		toMs: types.optional(types.number, () => 0),
 
 		minSS: types.optional(types.number, 0),
 		maxSS: types.optional(types.number, 100),
