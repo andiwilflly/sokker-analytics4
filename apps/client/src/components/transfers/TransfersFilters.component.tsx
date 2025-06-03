@@ -67,6 +67,10 @@ class TransfersFilters extends React.Component<IProps> {
 		return (
 			<div className="filters p-2">
 				<div className=":bordered sticky p-3 top-[54px]">
+					<div className="text-gray-500 text-xs mb-2">
+						<T>Transfers found</T>:&nbsp;<span className="text-red-600">{store.transfers.data.count.toLocaleString()}</span>
+					</div>
+
 					<div className="text-nowrap mb-1">
 						<T>Select transfer period</T>
 					</div>

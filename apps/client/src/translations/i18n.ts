@@ -33,8 +33,6 @@ for (let country of countries) {
 	loadLanguage(country.countryCode);
 }
 
-i18n.locale("en");
-
 export const t = (key: string, params?: Record<string, any>, lang?: string) => i18n.t(key, params, lang);
 
 export default i18n;

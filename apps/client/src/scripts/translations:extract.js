@@ -35,8 +35,10 @@ const findTextNodes = directory => {
 
 // Main function
 const main = () => {
-	const directory = path.join(__dirname, "../src");
-	const translationsPath = path.resolve(__dirname, "../src/translations/lang");
+	// const directory = path.join(__dirname, "../src");
+	const directory = path.join(process.cwd(), "src");
+	// const translationsPath = path.resolve(__dirname, "../src/translations/lang");
+	const translationsPath = path.resolve(process.cwd(), "src/translations/lang");
 	const parsedTexts = findTextNodes(directory);
 
 	// Find all JSON translation files (e.g., en.json, ua.json, etc.)

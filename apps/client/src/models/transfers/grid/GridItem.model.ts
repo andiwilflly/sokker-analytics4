@@ -4,6 +4,7 @@ import { TransferStatBlockModel } from "@/models/transfers/Transfers.model.ts";
 import GridModel from "@/models/transfers/grid/Grid.model.ts";
 import store from "@/store.ts";
 import type { IFilters } from "@shared/schema/filters.schema.js";
+import { currencyMapping } from "@shared/utils/countries.util.js";
 import { type Instance, getParentOfType, getSnapshot, isAlive, types } from "mobx-state-tree";
 
 const GridItemModel = types.compose(
@@ -80,22 +81,24 @@ const views = (self: Instance<typeof GridItemModel>) => {
 			return Object.keys(transferStatBlock?.values || {}) as (keyof ITransferStatBlockValues)[];
 		},
 
-		formatY(value: number, seriesIndex: number) {
+		formatY(value: number, seriesIndex: number): string {
 			const dataType = this.chartData.series[seriesIndex].dataType;
 			switch (dataType) {
 				case "price_avg":
 				case "price_min":
 				case "price_max":
-					return Intl.NumberFormat("uk-UA", {
+					const currencyCountry = store.currencyCountry;
+					const { locale, currency } = currencyMapping[currencyCountry.countryCode];
+					return Intl.NumberFormat(locale, {
 						style: "currency",
-						currency: "UAH",
+						currency,
 						minimumFractionDigits: 0,
 						maximumFractionDigits: 0,
-					}).format(value * 6.4);
+					}).format(value / currencyCountry.rate);
 				case "percent":
 					return `${value}%`;
 				default:
-					return value;
+					return `${value}`;
 			}
 		},
 	};

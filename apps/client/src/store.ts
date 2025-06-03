@@ -1,6 +1,7 @@
 import RootModel from "@/models/Root.model.ts";
+import type { Instance } from "mobx-state-tree";
 
-const store = RootModel.create({
+const store: Instance<typeof RootModel> = RootModel.create({
 	transfers: {
 		grid: {},
 		filters: {},
