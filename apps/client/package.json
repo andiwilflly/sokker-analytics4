@@ -13,7 +13,7 @@
 		"db:json": "node src/scripts/db:json.js",
 		"db": "npm run db:optimize && npm run db:json",
 		"db:fletbuffer": "flatc --ts -o src/scripts/flatbuffer scripts/flatbuffer/transfer.fbs && npx tsx ./scripts/flatbuffer/db:flatbuffer.js",
-		"translate:extract": "node src/scripts/translations:extract.js",
+		"translate:extract": "node src/scripts/translations:extract.js && node src/scripts/translations:translate-all.js",
 		"translate:uk": "npm run translate:extract && node src/scripts/translations:translate.js uk"
 	},
 	"dependencies": {
