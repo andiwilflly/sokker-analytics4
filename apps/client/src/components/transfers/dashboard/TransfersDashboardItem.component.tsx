@@ -2,7 +2,6 @@ import PreLoader from "@/components/PreLoader.component.tsx";
 import T from "@/components/T.component.tsx";
 import TransfersDashboardItemModal from "@/components/transfers/dashboard/TransfersDashboardItemModal.component.tsx";
 import store from "@/store.ts";
-import { formatPriceUAH } from "@shared/utils/formatPrice.utils.ts";
 import { CircleX, Settings } from "lucide-react";
 import { makeObservable, observable, runInAction } from "mobx";
 import { observer } from "mobx-react";
@@ -34,20 +33,6 @@ class TransfersDashboardItem extends React.Component<IProps> {
 	get item() {
 		return store.transfers.grid.all.get(this.props.i)!;
 	}
-
-	formatY = (value: number, seriesIndex: number) => {
-		const dataType = this.item.chartData.series[seriesIndex].dataType;
-		switch (dataType) {
-			case "price_avg":
-			case "price_min":
-			case "price_max":
-				return formatPriceUAH(value);
-			case "percent":
-				return `${value}%`;
-			default:
-				return value;
-		}
-	};
 
 	render() {
 		if (!this.item) return "[no such widget]";
@@ -82,7 +67,7 @@ class TransfersDashboardItem extends React.Component<IProps> {
 					height={this.props.height - (this.titleHeight + this.padding * 2)}
 					chartData={this.item.chartData}
 					reactionString={store.isLoading + this.item.selectedY.join() + this.item.selectedX}
-					formatY={this.formatY}
+					formatY={this.item.formatY}
 				/>
 
 				{store.isLoading ? (

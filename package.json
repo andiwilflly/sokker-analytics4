@@ -3,7 +3,10 @@
 	"version": "1.0.0",
 	"private": true,
 	"packageManager": "pnpm@10.11.0",
-	"workspaces": ["apps/*", "packages/*"],
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
 	"scripts": {
 		"heroku-build": "pnpm --filter @shared run build && pnpm --filter @server run build",
 		"build": "pnpm -r run build",
@@ -24,6 +27,6 @@
 		"vite-tsconfig-paths": "^5.1.4"
 	},
 	"dependencies": {
-		"zod": "^3.25.48"
+		"zod": "^3.25.49"
 	}
 }

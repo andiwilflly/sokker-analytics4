@@ -79,6 +79,25 @@ const views = (self: Instance<typeof GridItemModel>) => {
 			const transferStatBlock = store.transfers.data[self.selectedX] as Instance<typeof TransferStatBlockModel>;
 			return Object.keys(transferStatBlock?.values || {}) as (keyof ITransferStatBlockValues)[];
 		},
+
+		formatY(value: number, seriesIndex: number) {
+			const dataType = this.chartData.series[seriesIndex].dataType;
+			switch (dataType) {
+				case "price_avg":
+				case "price_min":
+				case "price_max":
+					return Intl.NumberFormat("uk-UA", {
+						style: "currency",
+						currency: "UAH",
+						minimumFractionDigits: 0,
+						maximumFractionDigits: 0,
+					}).format(value * 6.4);
+				case "percent":
+					return `${value}%`;
+				default:
+					return value;
+			}
+		},
 	};
 };
 

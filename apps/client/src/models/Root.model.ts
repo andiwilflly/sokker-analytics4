@@ -75,8 +75,12 @@ const actions = (self: Instance<typeof RootModel>) => {
 	};
 };
 
-const views = () => {
-	return {};
+const views = (self: Instance<typeof RootModel>) => {
+	return {
+		get country() {
+			return countries.find(({ countryCode }) => countryCode === self.lang)!;
+		},
+	};
 };
 
 const volatile = () => {
