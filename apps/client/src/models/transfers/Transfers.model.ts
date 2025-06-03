@@ -3,7 +3,7 @@ import FiltersModel from "@/models/transfers/Filters.model.ts";
 import GridModel from "@/models/transfers/grid/Grid.model.ts";
 import TransfersWorker from "@/workers/transfers/transfers.worker.ts?worker";
 import type { IWorkerAPI } from "@shared/schema/worker.schema.ts";
-import * as Comlink from "comlink";
+import type { Remote } from "comlink";
 import { types } from "mobx-state-tree";
 
 // A generic frozen block of stats (useful if structure is dynamic or nested)
@@ -44,7 +44,8 @@ const views = () => {
 
 const volatile = () => {
 	return {
-		worker: Comlink.wrap<IWorkerAPI>(new TransfersWorker()),
+		rawWorker: new TransfersWorker(),
+		worker: null as unknown as Remote<IWorkerAPI>,
 	};
 };
 

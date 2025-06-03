@@ -4,7 +4,7 @@ import transfersPrepare from "@shared/methods/transfers/transfers.prepare.method
 import transfersTimeRange from "@shared/methods/transfers/transfers.timerange.method.ts";
 import type { IFilters } from "@shared/schema/filters.schema.ts";
 import type { IResponse } from "@shared/schema/response.schema.ts";
-import type { IWorkerAPIInitResponse } from "@shared/schema/worker.schema.ts";
+import { type IWorkerAPIInitResponse, type TWorkerProgress } from "@shared/schema/worker.schema.ts";
 import { Transfers } from "@shared/scripts/flatbuffer/transfer.ts";
 import axios, { type AxiosProgressEvent, type AxiosRequestConfig, type AxiosResponse } from "axios";
 import * as Comlink from "comlink";
@@ -23,11 +23,9 @@ class TransfersDB {
 			await this.fetchDBVersion();
 			await this.fetchTransfers();
 
-			console.time("✅ transfersDB | Get transfers time Range");
-			const { fromMs, toMs } = transfersTimeRange(this.transfersList, this.transfersCount); // Precompute fromMs, toMs once
+			const { fromMs, toMs } = transfersTimeRange(this.transfersList, this.transfersCount);
 			this.transfersFromMs = fromMs;
 			this.transfersToMs = toMs;
-			console.timeEnd("✅ transfersDB | Get transfers time Range");
 
 			return { data: { fromMs: this.transfersFromMs, toMs: this.transfersToMs } };
 		} catch (e: any) {
@@ -49,16 +47,21 @@ class TransfersDB {
 			const url = `/transfers.bin.gz?v=${this.transfersDBVersion}`;
 
 			const headRes = await axios.head(url);
-			const compressRatio = import.meta.env.MODE === "development" ? 2.4721612205247574 : 1; // DEV: bin.gz > to bin
+			const compressRatio = import.meta.env.MODE === "development" ? 2.4721612205247574 : 1;
 			const totalLength = parseInt(headRes.headers["content-length"] || "0", 10) * compressRatio;
 
-			console.time("✅ transfersDB | Fetch transfers success");
 			const axiosConfig: AxiosRequestConfig = {
-				// Always use arraybuffer for binary data
 				responseType: "arraybuffer",
 				onDownloadProgress: (event: AxiosProgressEvent) => {
 					const progress = Math.floor((event.loaded / totalLength) * 100);
-					console.log(`📥 Progress: ${progress}%`, event.loaded / totalLength);
+					self.postMessage({
+						type: "transfers:progress",
+						payload: {
+							total: totalLength,
+							loaded: event.loaded,
+							progress,
+						} as TWorkerProgress,
+					});
 				},
 			};
 

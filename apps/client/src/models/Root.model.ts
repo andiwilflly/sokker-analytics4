@@ -2,7 +2,9 @@ import CoreModel from "@/models/Core.model.ts";
 import TransfersModel from "@/models/transfers/Transfers.model.ts";
 import i18n from "@/translations/i18n.ts";
 import { type TCurrency, type TLang } from "@shared/schema/basic.schema.ts";
+import { type IWorkerAPI, type TWorkerProgress } from "@shared/schema/worker.schema.js";
 import countries, { currencyMapping } from "@shared/utils/countries.util.js";
+import * as Comlink from "comlink";
 import { reaction, toJS } from "mobx";
 import { type Instance, addDisposer, types } from "mobx-state-tree";
 
@@ -22,6 +24,19 @@ const actions = (self: Instance<typeof RootModel>) => {
 	return {
 		async setup() {
 			console.time("✅ APP | init");
+
+			// Listen to rawWorker's messages
+			self.transfers.rawWorker.addEventListener("message", event => {
+				if (event.data?.type === "transfers:progress") {
+					const { total, loaded, progress } = event.data.payload as TWorkerProgress;
+					console.log(`📥 Progress: ${progress}% (${loaded} / ${total})`);
+				}
+			});
+
+			// Create comlink worker
+			self.transfers.update({
+				worker: Comlink.wrap<IWorkerAPI>(self.transfers.rawWorker),
+			});
 
 			const { data, error } = await self.transfers.worker.init();
 			if (error) console.log("❌ APP | init error: ", error);
