@@ -4,7 +4,6 @@ import TransfersAgesFilter from "@/components/transfers/TransfersAgesFilter.comp
 import TransfersCountriesFilter from "@/components/transfers/TransfersCountriesFilter.component.tsx";
 import store from "@/store.ts";
 import type { IFilters } from "@shared/schema/filters.schema.ts";
-import { formatPriceUAH } from "@shared/utils/formatPrice.utils.ts";
 import { action, makeObservable, observable, runInAction } from "mobx";
 import { observer } from "mobx-react";
 import React from "react";
@@ -92,7 +91,7 @@ class TransfersFilters extends React.Component<IProps> {
 						<T>Transfers price</T>
 					</div>
 					<div className="text-nowrap text-green-600 mb-1" style={{ fontSize: "10px" }}>
-						({formatPriceUAH(this.form.minPrice)} - {formatPriceUAH(this.form.maxPrice)})
+						({store.formatPrice(this.form.minPrice)} - {store.formatPrice(this.form.maxPrice)})
 					</div>
 
 					<Slider

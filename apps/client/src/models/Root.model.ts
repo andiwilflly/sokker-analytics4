@@ -4,6 +4,7 @@ import i18n from "@/translations/i18n.ts";
 import { type TCurrency, type TLang } from "@shared/schema/basic.schema.ts";
 import { type IWorkerAPI, type TWorkerProgress } from "@shared/schema/worker.schema.js";
 import countries, { currencyMapping } from "@shared/utils/countries.util.js";
+import { formatPriceUAH } from "@shared/utils/formatPrice.utils.js";
 import * as Comlink from "comlink";
 import { reaction, toJS } from "mobx";
 import { type Instance, addDisposer, types } from "mobx-state-tree";
@@ -30,6 +31,13 @@ const actions = (self: Instance<typeof RootModel>) => {
 				if (event.data?.type === "transfers:progress") {
 					const { total, loaded, progress } = event.data.payload as TWorkerProgress;
 					console.log(`📥 Progress: ${progress}% (${loaded} / ${total})`);
+					self.update({
+						loading: {
+							total,
+							loaded,
+							progress,
+						},
+					});
 				}
 			});
 
@@ -50,10 +58,10 @@ const actions = (self: Instance<typeof RootModel>) => {
 			await this.prepareTransfers(); // Use this inside other actions to call sibling actions.
 
 			// Set lang/currency
-			const lang = window.localStorage.getItem("app:lang");
-			const currency = window.localStorage.getItem("app:currency");
-			if (lang) this.setLang(lang as TLang);
-			if (currency) this.setCurrency(currency as TCurrency);
+			const lang = window.localStorage.getItem("app:lang") || self.lang;
+			const currency = window.localStorage.getItem("app:currency") || self.currency;
+			this.setLang(lang as TLang);
+			this.setCurrency(currency as TCurrency);
 
 			self.update({ IS_APP_READY: true });
 			console.timeEnd("✅ APP | init");
@@ -69,6 +77,17 @@ const actions = (self: Instance<typeof RootModel>) => {
 
 		setCurrency(currency: TCurrency) {
 			self.update({ currency });
+
+			// CACHE [currencyCountry]
+			const countryCode = Object.keys(currencyMapping).find(countryCode => {
+				const countryCodeTyped = countryCode as keyof typeof currencyMapping;
+				const { currency } = currencyMapping[countryCodeTyped];
+				return currency === self.currency;
+			}) as keyof typeof currencyMapping;
+			const currencyCountry = countries.find(country => country.countryCode === countryCode)!;
+
+			self.update({ currencyCountry });
+
 			window.localStorage.setItem("app:currency", currency);
 		},
 
@@ -111,19 +130,27 @@ const views = (self: Instance<typeof RootModel>) => {
 		get country() {
 			return countries.find(({ countryCode }) => countryCode === self.lang)!;
 		},
-		get currencyCountry() {
-			const countryCode = Object.keys(currencyMapping).find(countryCode => {
-				const countryCodeTyped = countryCode as keyof typeof currencyMapping;
-				const { currency } = currencyMapping[countryCodeTyped];
-				return currency === self.currency;
-			}) as keyof typeof currencyMapping;
-			return countries.find(country => country.countryCode === countryCode)!;
-		},
 	};
 };
 
 const volatile = () => {
-	return {};
+	return {
+		loading: {
+			progress: 0,
+			total: 0,
+			loaded: 0,
+		} as TWorkerProgress,
+		currencyCountry: {} as (typeof countries)[number],
+
+		formatPrice(value: number) {
+			return new Intl.NumberFormat(currencyMapping[this.currencyCountry.countryCode].locale, {
+				style: "currency",
+				currency: currencyMapping[this.currencyCountry.countryCode].currency,
+				minimumFractionDigits: 0,
+				maximumFractionDigits: 0,
+			}).format(value / this.currencyCountry.rate);
+		},
+	};
 };
 
 // @ts-ignore

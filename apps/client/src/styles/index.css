@@ -26,7 +26,7 @@ html {
 }
 
 header {
-	background: var(--purple);
+	background: var(--purple-dark);
 	color: whitesmoke;
 	position: fixed;
 	top: 0;
