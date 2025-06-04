@@ -1,6 +1,6 @@
 import PreLoader from "@/components/PreLoader.component.tsx";
 import T from "@/components/T.component.tsx";
-import ChartTypeRenderer from "@/components/charts/ChartTypeRenderer.component.js";
+import ChartTypeRenderer from "@/components/charts/ChartTypeRenderer.component";
 import TransfersDashboardItemModal from "@/components/transfers/dashboard/TransfersDashboardItemModal.component.tsx";
 import store from "@/store.ts";
 import { CircleX, Settings } from "lucide-react";

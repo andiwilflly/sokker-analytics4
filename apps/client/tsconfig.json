@@ -33,10 +33,10 @@
 		"jsx": "react-jsx",
 		"lib": ["ES2023", "DOM", "DOM.Iterable"],
 
-		"moduleResolution": "node16",
 		"module": "Node16",
 		"target": "esnext",
-		"preserveSymlinks": true
+		"preserveSymlinks": true,
+		"moduleResolution": "Node"
 	},
 	"ts-node": {
 		"esm": true

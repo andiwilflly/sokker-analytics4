@@ -1,6 +1,6 @@
-import Select from "@/components/elements/Select.component.js";
-import store from "@/store.js";
-import i18n from "@/translations/i18n.js";
+import Select from "@/components/elements/Select.component";
+import store from "@/store";
+import i18n from "@/translations/i18n";
 import countries, { currencyMapping } from "@shared/utils/countries.util.js";
 import { observer } from "mobx-react";
 import React from "react";

@@ -1,5 +1,5 @@
-import type GridItemModel from "@/models/transfers/grid/GridItem.model.js";
-import store from "@/store.js";
+import type GridItemModel from "@/models/transfers/grid/GridItem.model";
+import store from "@/store";
 import { observer } from "mobx-react";
 import type { Instance } from "mobx-state-tree";
 import React from "react";
