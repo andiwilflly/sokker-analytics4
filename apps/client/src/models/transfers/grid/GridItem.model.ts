@@ -1,11 +1,11 @@
 import { GRID_ITEM_MIN_HEIGHT, GRID_ITEM_MIN_WIDTH } from "@/CONSTANTS.ts";
 import CoreModel from "@/models/Core.model.ts";
-import { TransferStatBlockModel } from "@/models/transfers/Transfers.model.ts";
-import GridModel from "@/models/transfers/grid/Grid.model.ts";
-import store from "@/store.ts";
-import { chartTypes } from "@shared/schema/charts.schema.js";
-import type { IFilters } from "@shared/schema/filters.schema.js";
-import { currencyMapping } from "@shared/utils/countries.util.js";
+import { TransferStatBlockModel } from "@/models/transfers/Transfers.model";
+import GridModel from "@/models/transfers/grid/Grid.model";
+import store from "@/store";
+import { chartTypes } from "@shared/schema/charts.schema";
+import type { IFilters } from "@shared/schema/filters.schema";
+import { currencyMapping } from "@shared/utils/countries.util";
 import { type Instance, getParentOfType, getSnapshot, isAlive, types } from "mobx-state-tree";
 
 const GridItemModel = types.compose(
@@ -47,11 +47,16 @@ const actions = (self: Instance<typeof GridItemModel>) => {
 
 const views = (self: Instance<typeof GridItemModel>) => {
 	return {
-		get chartData(): ILineChartData | undefined {
+		getChartData<T>(): T {
+			const transferStatBlock = store.transfers.data[self.selectedX] as Instance<typeof TransferStatBlockModel>;
 			switch (self.chartType) {
+				case "pie":
+					return transferStatBlock.labels.map((name, i) => ({
+						name,
+						value: transferStatBlock.values.count[i],
+					})) as T;
 				case "line":
 				case "bar":
-					const transferStatBlock = store.transfers.data[self.selectedX] as Instance<typeof TransferStatBlockModel>;
 					return {
 						series: self.selectedY.map(selectedDataType => {
 							return {
@@ -73,7 +78,7 @@ const views = (self: Instance<typeof GridItemModel>) => {
 								return Math.max(res, max);
 							}, 0),
 						),
-					} as ILineChartData;
+					} as T;
 			}
 		},
 
@@ -89,7 +94,7 @@ const views = (self: Instance<typeof GridItemModel>) => {
 		},
 
 		formatY(value: number, seriesIndex: number): string {
-			const dataType = this.chartData!.series[seriesIndex].dataType;
+			const dataType = this.getChartData<ILineChartData>()!.series[seriesIndex].dataType;
 			switch (dataType) {
 				case "price_avg":
 				case "price_min":
