@@ -1,5 +1,6 @@
 import CoreModel from "@/models/Core.model.ts";
 import GridItemModel from "@/models/transfers/grid/GridItem.model.ts";
+import { chartTypes } from "@shared/schema/charts.schema.js";
 import { type Instance, type SnapshotIn, applySnapshot, getSnapshot, types } from "mobx-state-tree";
 import type { Layout } from "react-grid-layout";
 
@@ -30,6 +31,7 @@ const actions = (self: Instance<typeof GridModel>) => {
 					x: item.x,
 					w: item.w,
 					h: item.h,
+					chartType: itemModel?.chartType || chartTypes[0],
 					selectedX: itemModel?.selectedX || "country",
 					selectedY: (itemModel?.selectedY ? itemModel.selectedY.slice() : ["count"]) as Array<keyof ITransferStatBlockValues>,
 				};

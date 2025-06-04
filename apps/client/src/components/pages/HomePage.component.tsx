@@ -4,11 +4,6 @@ import React from "react";
 
 interface IProps {}
 
-// TODO: React grid layout
-// TODO: Translations for all langs
-// TODO: Filters
-// TODO: echarts line chart
-
 class HomePage extends React.Component<IProps> {
 	static defaultProps = {};
 

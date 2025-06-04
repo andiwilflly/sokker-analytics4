@@ -1,13 +1,12 @@
 import T from "@/components/T.component.tsx";
+import ChartTypeRenderer from "@/components/charts/ChartTypeRenderer.component.tsx";
 import Select from "@/components/elements/Select.component.tsx";
 import type GridItemModel from "@/models/transfers/grid/GridItem.model.ts";
 import store from "@/store.ts";
-import { formatPriceUAH } from "@shared/utils/formatPrice.utils.ts";
+import { type TChartType, chartTypes } from "@shared/schema/charts.schema.ts";
 import { observer } from "mobx-react";
 import type { Instance } from "mobx-state-tree";
 import React from "react";
-
-const LazyLineChart = React.lazy(() => import("@/components/charts/LineChart.component.tsx"));
 
 interface IProps {
 	i: string;
@@ -19,25 +18,11 @@ class TransfersDashboardItemModal extends React.Component<IProps> {
 		return store.transfers.grid.all.get(this.props.i)!;
 	}
 
-	formatY = (value: number, seriesIndex: number) => {
-		const dataType = this.item.chartData.series[seriesIndex].dataType;
-		switch (dataType) {
-			case "price_avg":
-			case "price_min":
-			case "price_max":
-				return formatPriceUAH(value);
-			case "percent":
-				return `${value}%`;
-			default:
-				return value;
-		}
-	};
-
 	render() {
 		return (
 			<div className="z-1000 fixed inset-0 flex items-center justify-center">
 				{/* Backdrop */}
-				<div className="fixed inset-0 bg-black bg-opacity-40" onClick={this.props.onClose} />
+				<div className="fixed inset-0 bg-black opacity-70" onClick={this.props.onClose} />
 
 				{/* Modal container */}
 				<div
@@ -50,15 +35,19 @@ class TransfersDashboardItemModal extends React.Component<IProps> {
 					{/* Modal content */}
 					<div className="flex flex-wrap content-start gap-2 overflow-y-auto h-[calc(90vh-9rem)]">
 						<div className=":bordered p-2 mb-2">
-							<LazyLineChart
-								width={400}
-								height={200}
-								chartData={this.item.chartData}
-								reactionString={store.isLoading + this.item.selectedY.join() + this.item.selectedX}
-								formatY={this.formatY}
-							/>
+							<ChartTypeRenderer i={this.props.i} width={400} height={200} />
 						</div>
 						<div>
+							<Select
+								label={<T>Choose chart type</T>}
+								value={this.item.chartType as TChartType}
+								onChange={(e: any) => this.item.update({ chartType: e.target.value })}
+								options={chartTypes.map(chartType => ({
+									value: chartType,
+									label: chartType,
+								}))}
+							/>
+
 							<Select
 								label={<T>Choose X axis value</T>}
 								value={this.item.selectedX as string}

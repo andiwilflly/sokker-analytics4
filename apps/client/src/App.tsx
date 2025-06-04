@@ -6,10 +6,6 @@ import Sidebar from "@/components/Sidebar.component.tsx";
 import store from "@/store.ts";
 import { observer } from "mobx-react";
 
-// TODO: firebase hosting give us different file types for json.gz
-// TODO: i18n.t
-// TODO: WORKERS share indexed DB
-
 function App() {
 	return (
 		<>

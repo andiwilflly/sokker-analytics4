@@ -10,7 +10,6 @@
 	margin: 0 -10px 10px -10px;
 	background: var(--purple);
 	color: white;
-	cursor: move;
 	border-top-left-radius: 9px;
 	border-top-right-radius: 9px;
 	text-indent: 10px;
@@ -32,4 +31,9 @@
 	border-radius: 8px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.95);
 	transition: all 0.2s ease;
+}
+
+.\:grid-draggable-handler {
+	cursor: move;
+	width: 100%;
 }

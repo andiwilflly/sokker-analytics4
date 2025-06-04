@@ -31,7 +31,6 @@
 // 		try {
 // 			await this.createDatabase().catch(e => console.log(e));
 //
-// 			// TODO: Testing
 // 			// await this.db!.DBVersion.find().remove();
 //
 // 			const remoteDBVersion = await this.fetchDBVersion();

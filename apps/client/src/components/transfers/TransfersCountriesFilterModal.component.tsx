@@ -38,7 +38,6 @@ class TransfersCountriesFilterModal extends React.Component<IProps> {
 						<h2 className="text-lg font-semibold mb-4">
 							<T>Select Countries</T>
 							<br />
-							// TODO: Search
 						</h2>
 
 						{/* Modal content */}

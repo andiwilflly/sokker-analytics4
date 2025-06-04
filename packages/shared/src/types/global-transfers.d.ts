@@ -26,6 +26,7 @@ declare global {
 		x: number;
 		w: number;
 		h: number;
+		chartType: TChartType;
 		selectedX: keyof ITransfersPrepare;
 		selectedY: Array<keyof ITransferStatBlockValues>;
 	}

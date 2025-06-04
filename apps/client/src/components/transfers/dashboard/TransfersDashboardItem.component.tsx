@@ -1,5 +1,6 @@
 import PreLoader from "@/components/PreLoader.component.tsx";
 import T from "@/components/T.component.tsx";
+import ChartTypeRenderer from "@/components/charts/ChartTypeRenderer.component.js";
 import TransfersDashboardItemModal from "@/components/transfers/dashboard/TransfersDashboardItemModal.component.tsx";
 import store from "@/store.ts";
 import { CircleX, Settings } from "lucide-react";
@@ -7,8 +8,6 @@ import { makeObservable, observable, runInAction } from "mobx";
 import { observer } from "mobx-react";
 import React from "react";
 import ReactDOM from "react-dom";
-
-const LazyLineChart = React.lazy(() => import("@/components/charts/LineChart.component.tsx"));
 
 interface IProps {
 	i: string;
@@ -62,12 +61,10 @@ class TransfersDashboardItem extends React.Component<IProps> {
 					</div>
 				</div>
 
-				<LazyLineChart
+				<ChartTypeRenderer
+					i={this.props.i}
 					width={this.props.width - this.padding * 2}
 					height={this.props.height - (this.titleHeight + this.padding * 2)}
-					chartData={this.item.chartData}
-					reactionString={store.isLoading + this.item.selectedY.join() + this.item.selectedX}
-					formatY={this.item.formatY}
 				/>
 
 				{store.isLoading ? (

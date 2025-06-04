@@ -101,7 +101,6 @@ class TransfersAPI {
 			const filteredTransfers = filterTransfers(transfersDB.transfersList, transfersDB.transfersCount, filters);
 			console.timeEnd("✅ transfersDB | filterTransfers");
 
-			// TODO: We can normalize transfers once
 			console.time("✅ transfersDB | transfersNormalize");
 			const normalizedTransfers = transfersNormalize(filteredTransfers);
 			console.timeEnd("✅ transfersDB | transfersNormalize");
