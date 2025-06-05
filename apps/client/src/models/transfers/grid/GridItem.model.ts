@@ -83,10 +83,9 @@ const views = (self: Instance<typeof GridItemModel>) => {
 			}
 		},
 
-		get xLabelsTypes(): (keyof ITransfersPrepare)[] {
-			// @ts-ignore
-			const [count, ...xLabelsTypes] = Object.keys(store.transfers.data);
-			return xLabelsTypes as (keyof ITransfersPrepare)[];
+		get xLabelsTypes() {
+			const transfersPrepare = Object.keys(store.transfers.data) as (keyof ITransfersPrepare)[];
+			return transfersPrepare.filter(xLabelsType => xLabelsType !== "count");
 		},
 
 		get yLabelsTypes(): (keyof ITransferStatBlockValues)[] {
