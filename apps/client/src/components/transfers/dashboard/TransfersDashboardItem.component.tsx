@@ -40,10 +40,10 @@ class TransfersDashboardItem extends React.Component<IProps> {
 			<div className=":grid-item text-xs :bordered" style={{ width: this.props.width, height: this.props.height }}>
 				<div className=":grid-title flex justify-between">
 					<div className=":grid-draggable-handler overflow-hidden text-ellipsis whitespace-nowrap">
-						<T>Transfers per</T>
-						&nbsp;<span className="text-green-400">{this.item.selectedX}</span>
-						&nbsp;<T>for</T>
+						<T>Transfers</T>
 						&nbsp;<span className="text-blue-300">{this.item.selectedY.join(", ")}</span>
+						&nbsp;<T>per</T>
+						&nbsp;<span className="text-green-400">{this.item.selectedX}</span>
 					</div>
 
 					<div className="flex mr-1">

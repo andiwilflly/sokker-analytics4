@@ -19,7 +19,7 @@ const GridItemModel = types.compose(
 		chartType: types.optional(types.enumeration(chartTypes), "bar"),
 
 		// selectedX is one of keys in TransfersPrepare
-		selectedX: types.enumeration(["country", "height", "weekday", "week", "count"]),
+		selectedX: types.enumeration(["country", "height", "weekday", "week", "hour", "age", "count"]),
 
 		// selectedY is an array of keys of TransferStatBlockValues
 		selectedY: types.array(types.enumeration(["count", "percent", "price_max", "price_avg", "price_min"])),
@@ -84,8 +84,6 @@ const views = (self: Instance<typeof GridItemModel>) => {
 
 		get xLabelsTypes() {
 			const transfersPrepare = Object.keys(store.transfers.data) as (keyof ITransfersPrepare)[];
-
-			console.log(1111, store.transfers.data, { transfersPrepare });
 			return transfersPrepare.filter(xLabelsType => xLabelsType !== "count");
 		},
 

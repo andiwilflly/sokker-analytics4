@@ -1,5 +1,7 @@
+import transfersPrepareByAge from "@shared/methods/transfers/prepare/transfers.prepare.byAge";
 import transfersPrepareByCountry from "@shared/methods/transfers/prepare/transfers.prepare.byCountry";
 import transfersPrepareByHeight from "@shared/methods/transfers/prepare/transfers.prepare.byHeight";
+import transfersPrepareByHour from "@shared/methods/transfers/prepare/transfers.prepare.byHour";
 import transfersPrepareByWeek from "@shared/methods/transfers/prepare/transfers.prepare.byWeek";
 import transfersPrepareByWeekday from "@shared/methods/transfers/prepare/transfers.prepare.byWeekday";
 import { ITransfer } from "@shared/schema/transfers.schema";
@@ -11,6 +13,8 @@ export default function transfersPrepare(transfers: ITransfer[]): ITransfersPrep
 		height: transfersPrepareByHeight(transfers),
 		weekday: transfersPrepareByWeekday(transfers),
 		week: transfersPrepareByWeek(transfers),
+		hour: transfersPrepareByHour(transfers),
+		age: transfersPrepareByAge(transfers),
 	};
 }
 

@@ -11,12 +11,12 @@
     "Choose X axis value": "Válassza ki az X tengely értékét",
     "Choose Y axis values": "Válassza ki az Y tengely értékeit",
     "Add new widget": "Új widget hozzáadása",
-    "Transfers per": "Átvitelek (per)",
-    "for": "ért",
     "Settings": "Beállítások",
     "Transfers found": "Átvitelek megtalálva",
     "Add new widget to analyze transfers data": "Új widget hozzáadása az átvitel adatainak elemzéséhez",
     "Search countries": "Keresési országok",
     "Choose chart type": "Válassza a CAST TYPE lehetőséget",
-    "Extended filters": "Extended filters"
+    "Extended filters": "Extended filters",
+    "Transfers": "Transfers",
+    "per": "per"
 }

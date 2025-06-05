@@ -11,12 +11,12 @@
     "Choose X axis value": "Виберіть значення осі X",
     "Choose Y axis values": "Виберіть значення осі Y",
     "Add new widget": "Додати новий віджет",
-    "Transfers per": "Трансфери за",
-    "for": "для",
     "Settings": "Налаштування",
     "Transfers found": "Transfers found",
     "Add new widget to analyze transfers data": "Add new widget to analyze transfers data",
     "Search countries": "Пошук країн",
     "Choose chart type": "Виберіть тип діаграми",
-    "Extended filters": "Extended filters"
+    "Extended filters": "Extended filters",
+    "Transfers": "Transfers",
+    "per": "per"
 }

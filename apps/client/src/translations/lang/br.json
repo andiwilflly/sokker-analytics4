@@ -11,12 +11,12 @@
     "Choose X axis value": "Dibab ar werzh evit an ahel X",
     "Choose Y axis values": "Dibab gwerzhioù evit an ahel Y",
     "Add new widget": "Ouzhpennañ un ivinell nevez",
-    "Transfers per": "Treuzkas dre",
-    "for": "evit",
     "Settings": "Arventennoù",
     "Transfers found": "Treuzkas kavet",
     "Add new widget to analyze transfers data": "Ouzhpennañ un ivinell nevez evit analyseiñ roadennoù ar treuzkas",
     "Search countries": "Broioù klask",
     "Choose chart type": "Dibab ar seurt grafik",
-    "Extended filters": "Extended filters"
+    "Extended filters": "Extended filters",
+    "Transfers": "Transfers",
+    "per": "per"
 }

@@ -7,3 +7,4 @@
 - TODO: global styles for button.css, table.css, input.css
 - TODO: Get latest .db
 - TODO: Reduce index.js build file size
+- TODO: Filter by season

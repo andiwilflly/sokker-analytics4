@@ -11,12 +11,12 @@
     "Choose X axis value": "Scegli il valore dell'asse X",
     "Choose Y axis values": "Scegli i valori dell'asse Y",
     "Add new widget": "Aggiungi un nuovo widget",
-    "Transfers per": "Trasferimenti per",
-    "for": "per",
     "Settings": "Impostazioni",
     "Transfers found": "Trasferimenti trovati",
     "Add new widget to analyze transfers data": "Aggiungi un nuovo widget per analizzare i dati dei trasferimenti",
     "Search countries": "Cerca paesi",
     "Choose chart type": "Scegli il tipo di grafico",
-    "Extended filters": "Extended filters"
+    "Extended filters": "Extended filters",
+    "Transfers": "Transfers",
+    "per": "per"
 }

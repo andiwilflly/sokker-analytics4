@@ -19,6 +19,8 @@ declare global {
 		height: ITransferStatBlock;
 		weekday: ITransferStatBlock;
 		week: ITransferStatBlock;
+		hour: ITransferStatBlock;
+		age: ITransferStatBlock;
 		count: number;
 	}
 

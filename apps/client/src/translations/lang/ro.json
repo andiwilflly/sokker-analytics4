@@ -11,12 +11,12 @@
     "Choose X axis value": "Alege valoarea axei X",
     "Choose Y axis values": "Alege valorile axei Y",
     "Add new widget": "Adaugă widget nou",
-    "Transfers per": "Transferuri pe",
-    "for": "pentru",
     "Settings": "Setări",
     "Transfers found": "Transferuri găsite",
     "Add new widget to analyze transfers data": "Adaugă un widget nou pentru analizarea datelor despre transferuri",
     "Search countries": "Țări de căutare",
     "Choose chart type": "Alegeți tipul de diagramă",
-    "Extended filters": "Extended filters"
+    "Extended filters": "Extended filters",
+    "Transfers": "Transfers",
+    "per": "per"
 }
