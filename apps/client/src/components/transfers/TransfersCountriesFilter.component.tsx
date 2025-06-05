@@ -1,6 +1,6 @@
 import T from "@/components/T.component.tsx";
 import TransfersCountriesFilterModal from "@/components/transfers/TransfersCountriesFilterModal.component.tsx";
-import store from "@/store.ts";
+import store from "@/store";
 import { action, makeObservable, observable } from "mobx";
 import { observer } from "mobx-react";
 import React from "react";

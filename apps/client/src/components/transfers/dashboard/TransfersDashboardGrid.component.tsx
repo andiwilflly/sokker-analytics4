@@ -4,7 +4,7 @@ import "react-resizable/css/styles.css";
 import { GRID_ITEM_MIN_HEIGHT } from "@/CONSTANTS.ts";
 import T from "@/components/T.component.tsx";
 import TransfersDashboardItem from "@/components/transfers/dashboard/TransfersDashboardItem.component.tsx";
-import store from "@/store.ts";
+import store from "@/store";
 import { observer } from "mobx-react";
 import React from "react";
 import AutoSizer from "react-virtualized-auto-sizer";

@@ -2,7 +2,7 @@ import T from "@/components/T.component.tsx";
 import ChartTypeRenderer from "@/components/charts/ChartTypeRenderer.component.tsx";
 import Select from "@/components/elements/Select.component.tsx";
 import type GridItemModel from "@/models/transfers/grid/GridItem.model.ts";
-import store from "@/store.ts";
+import store from "@/store";
 import { type TChartType, chartTypes } from "@shared/schema/charts.schema.ts";
 import { observer } from "mobx-react";
 import type { Instance } from "mobx-state-tree";

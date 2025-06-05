@@ -2,7 +2,7 @@ import PreLoader from "@/components/PreLoader.component.tsx";
 import T from "@/components/T.component.tsx";
 import ChartTypeRenderer from "@/components/charts/ChartTypeRenderer.component";
 import TransfersDashboardItemModal from "@/components/transfers/dashboard/TransfersDashboardItemModal.component.tsx";
-import store from "@/store.ts";
+import store from "@/store";
 import { CircleX, Settings } from "lucide-react";
 import { makeObservable, observable, runInAction } from "mobx";
 import { observer } from "mobx-react";

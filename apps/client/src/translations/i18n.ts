@@ -1,5 +1,5 @@
 import type { TLang } from "@shared/schema/basic.schema.ts";
-import countries from "@shared/utils/countries.util.ts";
+import countries from "@shared/utils/countries.util";
 import rosetta, { type Rosetta } from "rosetta";
 
 type I18nWithLangs = Rosetta<TLang> & {

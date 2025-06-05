@@ -6,3 +6,5 @@
 - TODO: Initial load screen is not done
 - TODO: TransfersPrepareModel convert to volatile as TYPE
 - TODO: get rid of 'reactionString'
+- TODO: global styles for button.css, table.css, input.css
+- TODO: Get latest .db

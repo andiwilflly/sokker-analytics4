@@ -1,6 +1,9 @@
-import T from "@/components/T.component.tsx";
-import store from "@/store.ts";
-import countriesUtil from "@shared/utils/countries.util.ts";
+import T, { _t } from "@/components/T.component.tsx";
+import store from "@/store";
+import { type TCountry } from "@shared/schema/basic.schema.ts";
+import countries from "@shared/utils/countries.util";
+import Fuse from "fuse.js";
+import { action, makeObservable, observable } from "mobx";
 import { observer } from "mobx-react";
 import React from "react";
 
@@ -10,6 +13,26 @@ interface IProps {
 }
 
 class TransfersCountriesFilterModal extends React.Component<IProps> {
+	query = "";
+	fuse!: Fuse<TCountry>;
+
+	constructor(props: IProps) {
+		super(props);
+		makeObservable(this, {
+			query: observable,
+			setQuery: action,
+		});
+	}
+
+	get countriesFiltered(): TCountry[] {
+		return this.query.length > 2 ? this.fuse.search(this.query).map(({ item }) => item) : countries.slice();
+	}
+
+	setQuery = (e: any) => {
+		this.query = e.target.value;
+		this.fuse = new Fuse(countries, { threshold: 0.3, keys: ["name"], ignoreLocation: true });
+	};
+
 	onSelectCountry = (countryCode: number) => () => {
 		const selectedCountries = store.transfers.filters.all.selectedCountries;
 		let newCountries: number[] = [];
@@ -40,6 +63,14 @@ class TransfersCountriesFilterModal extends React.Component<IProps> {
 							<br />
 						</h2>
 
+						<input
+							type="search"
+							placeholder={_t("Search countries")}
+							value={this.query}
+							className="mb-3"
+							onChange={this.setQuery}
+						/>
+
 						{/* Modal content */}
 						<div className="flex flex-wrap content-start gap-2 overflow-y-auto h-[calc(90vh-9rem)]">
 							<div
@@ -55,7 +86,7 @@ class TransfersCountriesFilterModal extends React.Component<IProps> {
 								🌐&nbsp;<T>Select all</T>
 							</div>
 
-							{countriesUtil.map(country => (
+							{this.countriesFiltered.map(country => (
 								<div
 									key={country.code}
 									onClick={this.onSelectCountry(country.code)}

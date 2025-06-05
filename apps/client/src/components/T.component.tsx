@@ -1,4 +1,4 @@
-import store from "@/store.ts";
+import store from "@/store";
 import { t } from "@/translations/i18n.ts";
 import { observer } from "mobx-react-lite";
 

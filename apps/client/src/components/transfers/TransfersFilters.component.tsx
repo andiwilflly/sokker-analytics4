@@ -2,7 +2,7 @@ import T from "@/components/T.component.tsx";
 import Slider from "@/components/elements/Slider.component.tsx";
 import TransfersAgesFilter from "@/components/transfers/TransfersAgesFilter.component.tsx";
 import TransfersCountriesFilter from "@/components/transfers/TransfersCountriesFilter.component.tsx";
-import store from "@/store.ts";
+import store from "@/store";
 import type { IFilters } from "@shared/schema/filters.schema.ts";
 import { action, makeObservable, observable, runInAction } from "mobx";
 import { observer } from "mobx-react";

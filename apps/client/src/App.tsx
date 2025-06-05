@@ -3,7 +3,7 @@ import Footer from "@/components/Footer.component.tsx";
 import Header from "@/components/Header.component.tsx";
 import SetupApp from "@/components/SetupApp.component.tsx";
 import Sidebar from "@/components/Sidebar.component.tsx";
-import store from "@/store.ts";
+import store from "@/store";
 import { observer } from "mobx-react";
 import React from "react";
 

@@ -3,6 +3,7 @@
 @import "./filters.css";
 @import "./grid.css";
 @import "./button.css";
+@import "./input.css";
 
 :root {
 	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

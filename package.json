@@ -10,6 +10,7 @@
 		"client:dev": "pnpm --filter @client dev",
 		"client:build": "pnpm --filter @client build",
 		"client:deploy": "pnpm --filter @client run deploy",
+		"client:translate:extract": "pnpm --filter @client run translate:extract",
 		"server:dev": "pnpm --filter @server dev",
 		"server:build": "pnpm --filter @server build",
 		"server:start": "pnpm --filter @server start",
