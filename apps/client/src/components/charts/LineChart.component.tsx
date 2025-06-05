@@ -21,6 +21,11 @@ export default class LineChart extends React.Component<IProps> {
 	componentDidMount() {
 		if (this.$chart.current) {
 			this.chartInstance = echarts.init(this.$chart.current);
+
+			// Sync cursor lines
+			this.chartInstance.group = this.props.chartData.xAxisData.join("");
+			echarts.connect(this.props.chartData.xAxisData.join(""));
+
 			this.update();
 			window.addEventListener("resize", this.onResize);
 		}

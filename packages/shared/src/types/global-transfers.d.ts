@@ -18,6 +18,7 @@ declare global {
 		country: ITransferStatBlock;
 		height: ITransferStatBlock;
 		weekday: ITransferStatBlock;
+		week: ITransferStatBlock;
 		count: number;
 	}
 

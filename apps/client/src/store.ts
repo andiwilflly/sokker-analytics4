@@ -5,12 +5,6 @@ const store: Instance<typeof RootModel> = RootModel.create({
 	transfers: {
 		grid: {},
 		filters: {},
-		data: {
-			country: { labels: [], values: {} },
-			height: { labels: [], values: {} },
-			weekday: { labels: [], values: {} },
-			count: 0,
-		},
 	},
 });
 

@@ -1,5 +1,6 @@
 import transfersPrepareByCountry from "@shared/methods/transfers/prepare/transfers.prepare.byCountry";
 import transfersPrepareByHeight from "@shared/methods/transfers/prepare/transfers.prepare.byHeight";
+import transfersPrepareByWeek from "@shared/methods/transfers/prepare/transfers.prepare.byWeek";
 import transfersPrepareByWeekday from "@shared/methods/transfers/prepare/transfers.prepare.byWeekday";
 import { ITransfer } from "@shared/schema/transfers.schema";
 
@@ -9,6 +10,7 @@ export default function transfersPrepare(transfers: ITransfer[]): ITransfersPrep
 		country: transfersPrepareByCountry(transfers),
 		height: transfersPrepareByHeight(transfers),
 		weekday: transfersPrepareByWeekday(transfers),
+		week: transfersPrepareByWeek(transfers),
 	};
 }
 
@@ -40,6 +42,9 @@ export default function transfersPrepare(transfers: ITransfer[]): ITransfersPrep
 		    {
 				weekday ...
 		    },
+		    {
+		        week : 0 - 12
+		    }
 		    {
 		        ss: {
 		            labels: [0 - 7*18],

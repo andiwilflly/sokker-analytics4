@@ -6,21 +6,6 @@ import type { IWorkerAPI } from "@shared/schema/worker.schema.ts";
 import type { Remote } from "comlink";
 import { types } from "mobx-state-tree";
 
-// A generic frozen block of stats (useful if structure is dynamic or nested)
-export const TransferStatBlockValuesModel = types.frozen({});
-
-export const TransferStatBlockModel = types.model("TransferStatBlockModel", {
-	labels: types.array(types.union(types.string, types.number)),
-	values: TransferStatBlockValuesModel,
-});
-
-export const TransfersPrepareModel = types.model("TransfersPrepareModel", {
-	country: TransferStatBlockModel,
-	height: TransferStatBlockModel,
-	weekday: TransferStatBlockModel,
-	count: types.number,
-});
-
 const TransfersModel = types.compose(
 	"TransfersModel",
 	CoreModel,
@@ -30,7 +15,6 @@ const TransfersModel = types.compose(
 
 		fromMs: types.optional(types.number, 0),
 		toMs: types.optional(types.number, 0),
-		data: TransfersPrepareModel,
 	}),
 );
 
@@ -46,6 +30,7 @@ const volatile = () => {
 	return {
 		rawWorker: new TransfersWorker(),
 		worker: null as unknown as Remote<IWorkerAPI>,
+		data: {} as ITransfersPrepare,
 	};
 };
 

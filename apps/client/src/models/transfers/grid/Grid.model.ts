@@ -20,7 +20,6 @@ const actions = (self: Instance<typeof GridModel>) => {
 
 		removeItem(i: string) {
 			self.all.delete(i);
-			console.log("all!");
 		},
 
 		update(items: Layout[]) {

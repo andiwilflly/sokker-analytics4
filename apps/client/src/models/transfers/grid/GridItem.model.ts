@@ -1,6 +1,5 @@
 import { GRID_ITEM_MIN_HEIGHT, GRID_ITEM_MIN_WIDTH } from "@/CONSTANTS.ts";
 import CoreModel from "@/models/Core.model.ts";
-import { TransferStatBlockModel } from "@/models/transfers/Transfers.model";
 import GridModel from "@/models/transfers/grid/Grid.model";
 import store from "@/store";
 import { chartTypes } from "@shared/schema/charts.schema";
@@ -20,7 +19,7 @@ const GridItemModel = types.compose(
 		chartType: types.optional(types.enumeration(chartTypes), "bar"),
 
 		// selectedX is one of keys in TransfersPrepare
-		selectedX: types.enumeration(["country", "height", "weekday", "count"]),
+		selectedX: types.enumeration(["country", "height", "weekday", "week", "count"]),
 
 		// selectedY is an array of keys of TransferStatBlockValues
 		selectedY: types.array(types.enumeration(["count", "percent", "price_max", "price_avg", "price_min"])),
@@ -48,7 +47,7 @@ const actions = (self: Instance<typeof GridItemModel>) => {
 const views = (self: Instance<typeof GridItemModel>) => {
 	return {
 		getChartData<T>(): T {
-			const transferStatBlock = store.transfers.data[self.selectedX] as Instance<typeof TransferStatBlockModel>;
+			const transferStatBlock = store.transfers.data[self.selectedX] as ITransferStatBlock;
 			switch (self.chartType) {
 				case "pie":
 					return transferStatBlock.labels.map((name, i) => ({
@@ -85,11 +84,13 @@ const views = (self: Instance<typeof GridItemModel>) => {
 
 		get xLabelsTypes() {
 			const transfersPrepare = Object.keys(store.transfers.data) as (keyof ITransfersPrepare)[];
+
+			console.log(1111, store.transfers.data, { transfersPrepare });
 			return transfersPrepare.filter(xLabelsType => xLabelsType !== "count");
 		},
 
 		get yLabelsTypes(): (keyof ITransferStatBlockValues)[] {
-			const transferStatBlock = store.transfers.data[self.selectedX] as Instance<typeof TransferStatBlockModel>;
+			const transferStatBlock = store.transfers.data[self.selectedX] as ITransferStatBlock;
 			return Object.keys(transferStatBlock?.values || {}) as (keyof ITransferStatBlockValues)[];
 		},
 
