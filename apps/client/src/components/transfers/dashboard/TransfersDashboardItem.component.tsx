@@ -41,9 +41,9 @@ class TransfersDashboardItem extends React.Component<IProps> {
 				<div className=":grid-title flex justify-between">
 					<div className=":grid-draggable-handler overflow-hidden text-ellipsis whitespace-nowrap">
 						<T>Transfers per</T>
-						&nbsp;<span className="text-green-900">{this.item.selectedX}</span>
+						&nbsp;<span className="text-green-400">{this.item.selectedX}</span>
 						&nbsp;<T>for</T>
-						&nbsp;<span className="text-blue-700">{this.item.selectedY.join(", ")}</span>
+						&nbsp;<span className="text-blue-300">{this.item.selectedY.join(", ")}</span>
 					</div>
 
 					<div className="flex mr-1">
@@ -59,7 +59,7 @@ class TransfersDashboardItem extends React.Component<IProps> {
 						</button>
 
 						<button onClick={() => store.transfers.grid.removeItem(this.props.i)} className="cursor-pointer text-white">
-							<CircleX className="text-red-700" size={18} />
+							<CircleX className="text-red-400" size={18} />
 						</button>
 					</div>
 				</div>

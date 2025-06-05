@@ -7,6 +7,7 @@ interface IProps {
 	height: number;
 	chartData: ILineChartData;
 	reactionString: string;
+	isChartsConnect: boolean;
 	formatY?: (value: number, seriesIndex: number) => number | string;
 }
 
@@ -22,9 +23,11 @@ export default class LineChart extends React.Component<IProps> {
 		if (this.$chart.current) {
 			this.chartInstance = echarts.init(this.$chart.current);
 
-			// Sync cursor lines
-			this.chartInstance.group = this.props.chartData.xAxisData.join("");
-			echarts.connect(this.props.chartData.xAxisData.join(""));
+			if (this.props.isChartsConnect) {
+				// Sync cursor lines
+				this.chartInstance.group = this.props.chartData.xAxisData.join("");
+				echarts.connect(this.props.chartData.xAxisData.join(""));
+			}
 
 			this.update();
 			window.addEventListener("resize", this.onResize);

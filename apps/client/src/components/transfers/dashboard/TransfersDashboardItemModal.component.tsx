@@ -35,7 +35,7 @@ class TransfersDashboardItemModal extends React.Component<IProps> {
 					{/* Modal content */}
 					<div className="flex flex-wrap content-start gap-2 overflow-y-auto h-[calc(90vh-9rem)]">
 						<div className=":bordered p-2 mb-2">
-							<ChartTypeRenderer i={this.props.i} width={400} height={200} />
+							<ChartTypeRenderer isChartsConnect={false} i={this.props.i} width={400} height={200} />
 						</div>
 						<div>
 							<Select

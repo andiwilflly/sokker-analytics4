@@ -12,9 +12,14 @@ interface IProps {
 	i: string;
 	width: number;
 	height: number;
+	isChartsConnect: boolean;
 }
 
 class ChartTypeRenderer extends React.Component<IProps> {
+	static defaultProps = {
+		isChartsConnect: true,
+	};
+
 	get item(): Instance<typeof GridItemModel> {
 		return store.transfers.grid.all.get(this.props.i)!;
 	}
@@ -35,6 +40,7 @@ class ChartTypeRenderer extends React.Component<IProps> {
 				return (
 					<LazyLineChart
 						width={this.props.width}
+						isChartsConnect={this.props.isChartsConnect}
 						height={this.props.height}
 						chartData={this.item.getChartData<ILineChartData>()}
 						reactionString={store.isLoading + this.item.chartType + this.item.selectedY.join() + this.item.selectedX}

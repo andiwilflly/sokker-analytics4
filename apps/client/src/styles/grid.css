@@ -4,11 +4,10 @@
 	/*padding: 1px;*/
 }
 .\:grid-title {
-	padding: 5px 0;
 	font-size: 11px;
 	text-transform: uppercase;
 	margin: 0 -10px 10px -10px;
-	background: var(--purple);
+	background: var(--purple-dark);
 	color: white;
 	border-top-left-radius: 9px;
 	border-top-right-radius: 9px;
@@ -36,4 +35,5 @@
 .\:grid-draggable-handler {
 	cursor: move;
 	width: 100%;
+	padding: 5px 0;
 }

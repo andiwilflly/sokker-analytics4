@@ -118,6 +118,10 @@ class TransfersFilters extends React.Component<IProps> {
 					<div className="mt-4">
 						<TransfersCountriesFilter />
 					</div>
+
+					<div>
+						<T>Extended filters</T>
+					</div>
 				</div>
 			</div>
 		);
