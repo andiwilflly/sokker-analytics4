@@ -1,18 +1,14 @@
-import { Transfers } from "@shared/scripts/flatbuffer/transfer";
+import { ITransfer } from "@shared/schema/transfers.schema";
 
-export default function transfersTimeRange(
-	transfersList: Transfers.TransferList,
-	transfersCount: number,
-): { fromMs: number; toMs: number } {
-	let fromMs: number = Infinity;
-	let toMs: number = -Infinity;
-	for (let i = 0; i < transfersCount; i++) {
-		const t = transfersList.transfers(i);
+export default function transfersTimeRange(transfers: ITransfer[]): {
+	fromMs: number;
+	toMs: number;
+} {
+	let fromMs = Infinity;
+	let toMs = -Infinity;
 
-		if (!t) continue;
-
-		const tt = Number(t.tt());
-
+	for (const t of transfers) {
+		const tt = t.transfer_time_ms;
 		fromMs = Math.min(fromMs, tt);
 		toMs = Math.max(toMs, tt);
 	}

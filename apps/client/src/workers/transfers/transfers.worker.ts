@@ -2,8 +2,10 @@ import filterTransfers from "@shared/methods/transfers/transfers.filter.method.t
 import transfersNormalize from "@shared/methods/transfers/transfers.normalize.method.ts";
 import transfersPrepare from "@shared/methods/transfers/transfers.prepare.method.ts"; // Import the generated FlatBuffer code
 import transfersTimeRange from "@shared/methods/transfers/transfers.timerange.method.ts";
+import { transfersToJSON } from "@shared/methods/transfers/transfers.toJSON.method.ts";
 import type { IFilters } from "@shared/schema/filters.schema.ts";
 import type { IResponse } from "@shared/schema/response.schema.ts";
+import type { ITransfer } from "@shared/schema/transfers.schema";
 import { type IWorkerAPIInitResponse, type TWorkerProgress } from "@shared/schema/worker.schema.ts";
 import { Transfers } from "@shared/scripts/flatbuffer/transfer.ts";
 import axios, { type AxiosProgressEvent, type AxiosRequestConfig, type AxiosResponse } from "axios";
@@ -16,14 +18,14 @@ class TransfersDB {
 	transfersFromMs!: number;
 	transfersToMs!: number;
 	transfersDBVersion!: number;
-	transfersList!: Transfers.TransferList;
+	transfersList!: ITransfer[];
 
 	async init(): Promise<IResponse<IWorkerAPIInitResponse>> {
 		try {
 			await this.fetchDBVersion();
 			await this.fetchTransfers();
 
-			const { fromMs, toMs } = transfersTimeRange(this.transfersList, this.transfersCount);
+			const { fromMs, toMs } = transfersTimeRange(this.transfersList);
 			this.transfersFromMs = fromMs;
 			this.transfersToMs = toMs;
 
@@ -74,8 +76,9 @@ class TransfersDB {
 				import.meta.env.MODE === "development" ? new Uint8Array(response.data) : pako.ungzip(new Uint8Array(response.data));
 
 			const transfersBuffer: ByteBuffer = new ByteBuffer(decompressedBuffer);
-			this.transfersList = Transfers.TransferList.getRootAsTransferList(transfersBuffer);
-			this.transfersCount = this.transfersList.transfersLength();
+			const binaryTransfers = Transfers.TransferList.getRootAsTransferList(transfersBuffer);
+			this.transfersList = transfersNormalize(transfersToJSON(binaryTransfers, binaryTransfers.transfersLength()));
+			this.transfersCount = this.transfersList.length;
 
 			console.log("✅ transfersDB | Fetch transfers:", this.transfersCount);
 			console.timeEnd("✅ transfersDB | Decompress transfers");
@@ -98,15 +101,15 @@ class TransfersAPI {
 	public async filter(filters: IFilters): Promise<IResponse<ITransfersPrepare>> {
 		try {
 			console.time("✅ transfersDB | filterTransfers");
-			const filteredTransfers = filterTransfers(transfersDB.transfersList, transfersDB.transfersCount, filters);
+			const filteredTransfers = filterTransfers(transfersDB.transfersList, filters);
 			console.timeEnd("✅ transfersDB | filterTransfers");
 
-			console.time("✅ transfersDB | transfersNormalize");
-			const normalizedTransfers = transfersNormalize(filteredTransfers);
-			console.timeEnd("✅ transfersDB | transfersNormalize");
+			// console.time("✅ transfersDB | transfersNormalize");
+			// const normalizedTransfers = transfersNormalize(filteredTransfers);
+			// console.timeEnd("✅ transfersDB | transfersNormalize");
 
 			console.time("✅ transfersDB | transfersPrepare");
-			const transfersData = transfersPrepare(normalizedTransfers);
+			const transfersData = transfersPrepare(filteredTransfers);
 			console.timeEnd("✅ transfersDB | transfersPrepare");
 
 			return {
