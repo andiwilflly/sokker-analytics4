@@ -1,10 +1,8 @@
-- TODO: Search for countries in countries modal
 - TODO: We need ability to see what transfers we show, like click on chart -> show table,
   because sometimes data is confused, so we need to see table
 - TODO: We need normalize transfers once, not ach time
 - TODO: Server is not working, start w.o. Docker
 - TODO: Initial load screen is not done
-- TODO: TransfersPrepareModel convert to volatile as TYPE
 - TODO: get rid of 'reactionString'
 - TODO: global styles for button.css, table.css, input.css
 - TODO: Get latest .db

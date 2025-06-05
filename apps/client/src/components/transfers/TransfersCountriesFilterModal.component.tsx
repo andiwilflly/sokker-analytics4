@@ -25,7 +25,7 @@ class TransfersCountriesFilterModal extends React.Component<IProps> {
 	}
 
 	get countriesFiltered(): TCountry[] {
-		return this.query.length > 2 ? this.fuse.search(this.query).map(({ item }) => item) : countries.slice();
+		return this.query.length > 1 ? this.fuse.search(this.query).map(({ item }) => item) : countries.slice();
 	}
 
 	setQuery = (e: any) => {
@@ -65,6 +65,7 @@ class TransfersCountriesFilterModal extends React.Component<IProps> {
 
 						<input
 							type="search"
+							autoFocus
 							placeholder={_t("Search countries")}
 							value={this.query}
 							className="mb-3"
@@ -72,7 +73,7 @@ class TransfersCountriesFilterModal extends React.Component<IProps> {
 						/>
 
 						{/* Modal content */}
-						<div className="flex flex-wrap content-start gap-2 overflow-y-auto h-[calc(90vh-9rem)]">
+						<div className="flex flex-wrap content-start gap-2 overflow-y-auto h-[calc(90vh-12rem)]">
 							<div
 								style={{
 									backgroundColor: this.props.selectedCountries.length ? "transparent" : "#8f8fea",

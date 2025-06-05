@@ -58,6 +58,7 @@ export default class LineChart extends React.Component<IProps> {
 			animation: false,
 			tooltip: {
 				trigger: "axis",
+				appendToBody: true,
 				formatter: (params: any) => {
 					const sorted = params.toSorted((a: any, b: any) => b.data - a.data);
 
@@ -80,7 +81,7 @@ export default class LineChart extends React.Component<IProps> {
 				left: 0,
 				right: 0, //gridRight,
 				bottom: 0,
-				top: 0,
+				top: 5,
 				containLabel: true,
 			},
 			xAxis: {
