@@ -53,7 +53,8 @@ const views = (self: Instance<typeof GridItemModel>) => {
 				case "pie":
 					return transferStatBlock.labels.map((name, i) => ({
 						name,
-						value: transferStatBlock.values.count[i],
+						// @ts-ignore // TODO: fix
+						value: transferStatBlock.values[self.selectedY[0] || "count"][i],
 					})) as T;
 				case "line":
 				case "bar":
@@ -94,7 +95,8 @@ const views = (self: Instance<typeof GridItemModel>) => {
 		},
 
 		formatY(value: number, seriesIndex: number): string {
-			const dataType = this.getChartData<ILineChartData>()!.series[seriesIndex].dataType;
+			// @ts-ignore
+			const dataType = self.getChartData<ILineChartData>()!.series[seriesIndex].dataType;
 			switch (dataType) {
 				case "price_avg":
 				case "price_min":

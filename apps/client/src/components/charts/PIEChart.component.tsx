@@ -5,8 +5,10 @@ import * as echarts from "echarts";
 import React from "react";
 
 interface IProps {
-	title: string;
 	chartData: TPIEChartData;
+	reactionString: string;
+	width: number;
+	height: number;
 }
 
 export default class PIEChart extends React.Component<IProps> {
@@ -21,7 +23,10 @@ export default class PIEChart extends React.Component<IProps> {
 	}
 
 	componentDidUpdate(prevProps: IProps) {
-		if (JSON.stringify(prevProps) !== JSON.stringify(this.props)) this.update();
+		if (prevProps.width !== this.props.width || prevProps.height !== this.props.height) {
+			if (this.chartInstance) this.chartInstance.resize(); // resize to new dimensions
+		}
+		if (prevProps.reactionString !== this.props.reactionString) this.update();
 	}
 
 	componentWillUnmount() {
@@ -38,10 +43,6 @@ export default class PIEChart extends React.Component<IProps> {
 
 		this.chartInstance?.setOption({
 			animation: false,
-			title: {
-				text: this.props.title,
-				left: "center",
-			},
 			tooltip: {
 				trigger: "item",
 			},
@@ -49,7 +50,7 @@ export default class PIEChart extends React.Component<IProps> {
 				{
 					name: "Age Group",
 					type: "pie",
-					radius: "50%",
+					radius: "60%",
 					data: this.props.chartData,
 					emphasis: {
 						itemStyle: {
@@ -66,7 +67,7 @@ export default class PIEChart extends React.Component<IProps> {
 	render() {
 		return (
 			<>
-				<div ref={this.$chart} className="w-full h-full" />
+				<div ref={this.$chart} style={{ width: this.props.width, height: this.props.height }} />
 			</>
 		);
 	}

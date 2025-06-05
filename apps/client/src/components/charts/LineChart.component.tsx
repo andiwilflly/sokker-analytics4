@@ -106,13 +106,6 @@ export default class LineChart extends React.Component<IProps> {
 				},
 			},
 			series: this.props.chartData.series,
-			// toolbox: {
-			// 	feature: {
-			// 		magicType: { type: ["line", "bar"] },
-			// 	},
-			// 	right: 20,
-			// 	top: 20,
-			// },
 		});
 	};
 

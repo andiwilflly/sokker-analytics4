@@ -5,26 +5,29 @@ import SetupApp from "@/components/SetupApp.component.tsx";
 import Sidebar from "@/components/Sidebar.component.tsx";
 import store from "@/store.ts";
 import { observer } from "mobx-react";
+import React from "react";
 
-function App() {
-	return (
-		<>
-			{store.IS_APP_READY ? (
-				<div className="min-h-screen flex flex-col">
-					<Header />
-					<main className="h-full w-full flex">
-						<Sidebar />
-						<Router />
-					</main>
-					<Footer />
-				</div>
-			) : (
-				<SetupApp />
-			)}
+class App extends React.Component {
+	render() {
+		return (
+			<>
+				{store.IS_APP_READY ? (
+					<div className="min-h-screen flex flex-col">
+						<Header />
+						<main className="h-full w-full flex">
+							<Sidebar />
+							<Router />
+						</main>
+						<Footer />
+					</div>
+				) : (
+					<SetupApp />
+				)}
 
-			<div id="modal-container" />
-		</>
-	);
+				<div id="modal-container" />
+			</>
+		);
+	}
 }
 
 export default observer(App);

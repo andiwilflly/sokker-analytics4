@@ -4,7 +4,6 @@ import i18n from "@/translations/i18n.ts";
 import { type TCurrency, type TLang } from "@shared/schema/basic.schema.ts";
 import { type IWorkerAPI, type TWorkerProgress } from "@shared/schema/worker.schema.js";
 import countries, { currencyMapping } from "@shared/utils/countries.util.js";
-import { formatPriceUAH } from "@shared/utils/formatPrice.utils.js";
 import * as Comlink from "comlink";
 import { reaction, toJS } from "mobx";
 import { type Instance, addDisposer, types } from "mobx-state-tree";
