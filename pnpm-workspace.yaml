@@ -9,6 +9,6 @@ ignoredBuiltDependencies:
   - esbuild
   - protobufjs
   - rxdb
-  - sqlite3
 onlyBuiltDependencies:
+  - sqlite3
   - better-sqlite3

@@ -3,13 +3,10 @@
 	"version": "1.0.0",
 	"private": true,
 	"packageManager": "pnpm@10.11.1",
-	"workspaces": [
-		"apps/*",
-		"packages/*"
-	],
+	"workspaces": ["apps/*", "packages/*"],
 	"scripts": {
-		"heroku-build": "pnpm --filter @shared run build && pnpm --filter @server run build",
-		"build": "pnpm -r run build",
+		"heroku-build": "pnpm --filter @shared... build && pnpm --filter @server... build",
+		"build": "pnpm run heroku-build",
 		"client:dev": "pnpm --filter @client dev",
 		"client:build": "pnpm --filter @client build",
 		"client:deploy": "pnpm --filter @client run deploy",

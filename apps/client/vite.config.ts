@@ -44,7 +44,6 @@ export default defineConfig(({ mode }) => {
 					manualChunks: {
 						mobx: ["mobx", "mobx-state-tree"],
 						react: ["react", "react-dom"],
-						zod: ["zod"],
 					},
 				},
 			},
