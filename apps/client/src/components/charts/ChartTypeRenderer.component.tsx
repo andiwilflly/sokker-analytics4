@@ -31,7 +31,7 @@ class ChartTypeRenderer extends React.Component<IProps> {
 					<PIEChartLazy
 						width={this.props.width}
 						height={this.props.height}
-						reactionString={store.isLoading + this.item.chartType + this.item.selectedY.join() + this.item.selectedX}
+						key={store.isLoading + this.item.chartType + this.item.selectedY.join() + this.item.selectedX}
 						chartData={this.item.getChartData<TPIEChartData>()}
 					/>
 				);
@@ -43,7 +43,7 @@ class ChartTypeRenderer extends React.Component<IProps> {
 						isChartsConnect={this.props.isChartsConnect}
 						height={this.props.height}
 						chartData={this.item.getChartData<ILineChartData>()}
-						reactionString={store.isLoading + this.item.chartType + this.item.selectedY.join() + this.item.selectedX}
+						key={store.isLoading + this.item.chartType + this.item.selectedY.join() + this.item.selectedX}
 						formatY={this.item.formatY}
 					/>
 				);

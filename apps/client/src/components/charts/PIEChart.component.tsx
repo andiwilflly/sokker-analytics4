@@ -6,7 +6,6 @@ import React from "react";
 
 interface IProps {
 	chartData: TPIEChartData;
-	reactionString: string;
 	width: number;
 	height: number;
 }
@@ -26,7 +25,6 @@ export default class PIEChart extends React.Component<IProps> {
 		if (prevProps.width !== this.props.width || prevProps.height !== this.props.height) {
 			if (this.chartInstance) this.chartInstance.resize(); // resize to new dimensions
 		}
-		if (prevProps.reactionString !== this.props.reactionString) this.update();
 	}
 
 	componentWillUnmount() {

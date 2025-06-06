@@ -1,0 +1,31 @@
+table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 13px; /* Set font size */
+	background-color: #fff; /* White background for better contrast */
+}
+
+th {
+	background-color: #8f8fea; /* Light gray background for header */
+	color: white; /* Dark text color */
+	font-size: 14px;
+	font-weight: 500; /* Slightly bold headers */
+	text-align: left; /* Align header text to the left */
+	padding: 5px 10px;
+	border-bottom: 1px solid #f0f0f0; /* Border under header */
+}
+
+td {
+	padding: 5px 10px;
+	border-bottom: 1px solid #f0f0f0; /* Border under each row */
+	color: rgba(0, 0, 0, 0.65); /* Lighter text for data */
+	white-space: nowrap;
+}
+
+tr:hover {
+	background-color: #fafafa; /* Light hover effect on rows */
+}
+
+tr:nth-child(even) {
+	background-color: #f9f9f9; /* Alternating row colors for better readability */
+}

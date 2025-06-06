@@ -92,6 +92,8 @@ class TransfersDB {
 const transfersDB = new TransfersDB();
 
 class TransfersAPI {
+	private filteredTransfers: ITransfer[] = [];
+
 	public async init(): Promise<IResponse<IWorkerAPIInitResponse>> {
 		const { data, error } = await transfersDB.init();
 		if (error) return { error };
@@ -101,11 +103,11 @@ class TransfersAPI {
 	public async filter(filters: IFilters): Promise<IResponse<ITransfersPrepare>> {
 		try {
 			console.time("✅ transfersDB | filterTransfers");
-			const filteredTransfers = filterTransfers(transfersDB.transfersList, filters);
+			this.filteredTransfers = filterTransfers(transfersDB.transfersList, filters);
 			console.timeEnd("✅ transfersDB | filterTransfers");
 
 			console.time("✅ transfersDB | transfersPrepare");
-			const transfersData = transfersPrepare(filteredTransfers);
+			const transfersData = transfersPrepare(this.filteredTransfers);
 			console.timeEnd("✅ transfersDB | transfersPrepare");
 
 			return {
@@ -116,6 +118,24 @@ class TransfersAPI {
 				error: e.toString(),
 			};
 		}
+	}
+
+	public async transfers({ page, perPage }: { page: number; perPage: number }): Promise<
+		IResponse<{
+			transfers: ITransfer[];
+			total: number;
+		}>
+	> {
+		const start = page * perPage;
+		const end = start + perPage;
+		const paginatedTransfers = this.filteredTransfers.slice(start, end);
+
+		return {
+			data: {
+				transfers: paginatedTransfers,
+				total: this.filteredTransfers.length,
+			},
+		};
 	}
 }
 

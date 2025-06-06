@@ -6,7 +6,6 @@ interface IProps {
 	width: number;
 	height: number;
 	chartData: ILineChartData;
-	reactionString: string;
 	isChartsConnect: boolean;
 	formatY?: (value: number, seriesIndex: number) => number | string;
 }
@@ -38,7 +37,6 @@ export default class LineChart extends React.Component<IProps> {
 		if (prevProps.width !== this.props.width || prevProps.height !== this.props.height) {
 			if (this.chartInstance) this.chartInstance.resize(); // resize to new dimensions
 		}
-		if (prevProps.reactionString !== this.props.reactionString) this.update();
 	}
 
 	componentWillUnmount() {

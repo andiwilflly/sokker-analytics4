@@ -3,7 +3,7 @@ import T from "@/components/T.component.tsx";
 import ChartTypeRenderer from "@/components/charts/ChartTypeRenderer.component";
 import TransfersDashboardItemModal from "@/components/transfers/dashboard/TransfersDashboardItemModal.component.tsx";
 import store from "@/store";
-import { BookOpenCheck, CircleX, Settings } from "lucide-react";
+import { CircleX, Settings } from "lucide-react";
 import { makeObservable, observable, runInAction } from "mobx";
 import { observer } from "mobx-react";
 import React from "react";
@@ -47,9 +47,6 @@ class TransfersDashboardItem extends React.Component<IProps> {
 					</div>
 
 					<div className="flex mr-1">
-						<button>
-							<BookOpenCheck className="cursor-pointer text-white mr-2" size={17} />
-						</button>
 						<button
 							onClick={() => {
 								runInAction(() => (this.isEditModalOpen = true));

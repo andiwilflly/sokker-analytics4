@@ -4,6 +4,8 @@
 @import "./grid.css";
 @import "./button.css";
 @import "./input.css";
+@import "./table.css";
+@import "./pagination.css";
 
 :root {
 	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
