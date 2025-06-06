@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
 import React from "react";
 
-const TransfersDashboardGrid = React.lazy(() => import("@/components/transfers/dashboard/TransfersDashboardGrid.component.tsx"));
+const TransfersDashboardGrid = React.lazy(() => import("@/components/transfers/dashboard/TransfersDashboardGrid.component"));
 
 interface IProps {}
 

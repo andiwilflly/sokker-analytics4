@@ -1,5 +1,5 @@
-import T from "@/components/T.component.tsx";
-import TransfersTable from "@/components/transfers/TransfersTable.component.tsx";
+import T from "@/components/T.component";
+import TransfersTable from "@/components/transfers/TransfersTable.component";
 import { action, makeObservable, observable } from "mobx";
 import { observer } from "mobx-react";
 import React from "react";
@@ -12,7 +12,7 @@ interface IProps {}
 class HomePage extends React.Component<IProps> {
 	static defaultProps = {};
 
-	activeTab: 0 | 1 = 1;
+	activeTab: 0 | 1 = 0;
 
 	constructor(props: IProps) {
 		super(props);
@@ -66,7 +66,7 @@ class HomePage extends React.Component<IProps> {
 				</div>
 
 				{/* Content */}
-				<div className="mt-2 relative w-full" style={{ height: "calc(100vh - 147px)" }}>
+				<div className="mt-2 relative w-full" style={{ height: this.activeTab === 1 ? "calc(100vh - 147px)" : "inherit" }}>
 					{this.renderTab(0, <LazyTransfersDashboard />)}
 					{this.renderTab(1, <AutoSizer>{({ width, height }) => <TransfersTable width={width} height={height} />}</AutoSizer>)}
 				</div>

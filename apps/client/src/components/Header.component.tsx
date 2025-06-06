@@ -1,4 +1,4 @@
-import LangSelector from "@/components/parts/LangSelector.component.tsx";
+import LangSelector from "@/components/parts/LangSelector.component";
 import { observer } from "mobx-react";
 import React from "react";
 

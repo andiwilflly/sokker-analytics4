@@ -24,5 +24,6 @@
   "Name": "Name",
   "Country": "Country",
   "Age": "Age",
-  "Transfer Date": "Transfer Date"
+  "Transfer Date": "Transfer Date",
+  "Price": "Price"
 }

@@ -1,6 +1,6 @@
-import T, { _t } from "@/components/T.component.tsx";
+import T, { _t } from "@/components/T.component";
 import store from "@/store";
-import { type TCountry } from "@shared/schema/basic.schema.ts";
+import { type TCountry } from "@shared/schema/basic.schema";
 import countries from "@shared/utils/countries.util";
 import Fuse from "fuse.js";
 import { action, makeObservable, observable } from "mobx";

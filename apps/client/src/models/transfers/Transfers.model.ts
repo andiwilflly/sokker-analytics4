@@ -1,8 +1,8 @@
-import CoreModel from "@/models/Core.model.ts";
-import FiltersModel from "@/models/transfers/Filters.model.ts";
-import GridModel from "@/models/transfers/grid/Grid.model.ts";
+import CoreModel from "@/models/Core.model";
+import FiltersModel from "@/models/transfers/Filters.model";
+import GridModel from "@/models/transfers/grid/Grid.model";
 import TransfersWorker from "@/workers/transfers/transfers.worker.ts?worker";
-import type { IWorkerAPI } from "@shared/schema/worker.schema.ts";
+import type { IWorkerAPI } from "@shared/schema/worker.schema";
 import type { Remote } from "comlink";
 import { types } from "mobx-state-tree";
 

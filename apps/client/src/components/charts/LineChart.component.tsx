@@ -1,5 +1,5 @@
 "use client";
-import echarts from "@/lib/echarts.ts";
+import echarts from "@/lib/echarts";
 import React from "react";
 
 interface IProps {

@@ -1,5 +1,5 @@
-import CoreModel from "@/models/Core.model.ts";
-import { type IFilters } from "@shared/schema/filters.schema.ts";
+import CoreModel from "@/models/Core.model";
+import { type IFilters } from "@shared/schema/filters.schema";
 import { type Instance, type SnapshotIn, applySnapshot, getSnapshot, isAlive, types } from "mobx-state-tree";
 
 const FiltersModel = types.compose(

@@ -1,10 +1,10 @@
-import T from "@/components/T.component.tsx";
-import TransfersCountriesFilterModal from "@/components/transfers/TransfersCountriesFilterModal.component.tsx";
+import T from "@/components/T.component";
+import TransfersCountriesFilterModal from "@/components/transfers/TransfersCountriesFilterModal.component";
 import store from "@/store";
 import { action, makeObservable, observable } from "mobx";
 import { observer } from "mobx-react";
 import React from "react";
-import ReactDOM from "react-dom";
+import { createPortal } from "react-dom";
 
 interface IProps {}
 
@@ -37,7 +37,7 @@ class TransfersCountriesFilter extends React.Component<IProps> {
 				</button>
 
 				{this.isModalOpen &&
-					ReactDOM.createPortal(
+					createPortal(
 						<TransfersCountriesFilterModal onClose={this.handleToggleModal} selectedCountries={this.selectedCountries} />,
 						window.document.getElementById("modal-container")!,
 					)}

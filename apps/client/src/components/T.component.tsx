@@ -1,5 +1,5 @@
 import store from "@/store";
-import { t } from "@/translations/i18n.ts";
+import { t } from "@/translations/i18n";
 import { observer } from "mobx-react-lite";
 
 const T = observer(({ children }: { children: string }) => {

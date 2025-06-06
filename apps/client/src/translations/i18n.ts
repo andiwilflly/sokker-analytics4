@@ -1,4 +1,4 @@
-import type { TLang } from "@shared/schema/basic.schema.ts";
+import type { TLang } from "@shared/schema/basic.schema";
 import countries from "@shared/utils/countries.util";
 import rosetta, { type Rosetta } from "rosetta";
 

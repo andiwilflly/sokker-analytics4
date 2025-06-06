@@ -1,13 +1,13 @@
-import filterTransfers from "@shared/methods/transfers/transfers.filter.method.ts";
-import transfersNormalize from "@shared/methods/transfers/transfers.normalize.method.ts";
-import transfersPrepare from "@shared/methods/transfers/transfers.prepare.method.ts"; // Import the generated FlatBuffer code
-import transfersTimeRange from "@shared/methods/transfers/transfers.timerange.method.ts";
-import { transfersToJSON } from "@shared/methods/transfers/transfers.toJSON.method.ts";
-import type { IFilters } from "@shared/schema/filters.schema.ts";
-import type { IResponse } from "@shared/schema/response.schema.ts";
+import filterTransfers from "@shared/methods/transfers/transfers.filter.method";
+import transfersNormalize from "@shared/methods/transfers/transfers.normalize.method";
+import transfersPrepare from "@shared/methods/transfers/transfers.prepare.method"; // Import the generated FlatBuffer code
+import transfersTimeRange from "@shared/methods/transfers/transfers.timerange.method";
+import { transfersToJSON } from "@shared/methods/transfers/transfers.toJSON.method";
+import type { IFilters } from "@shared/schema/filters.schema";
+import type { IResponse } from "@shared/schema/response.schema";
 import type { ITransfer } from "@shared/schema/transfers.schema";
-import { type IWorkerAPIInitResponse, type TWorkerProgress } from "@shared/schema/worker.schema.ts";
-import { Transfers } from "@shared/scripts/flatbuffer/transfer.ts";
+import { type IWorkerAPIInitResponse, type TWorkerProgress } from "@shared/schema/worker.schema";
+import { Transfers } from "@shared/scripts/flatbuffer/transfer";
 import axios, { type AxiosProgressEvent, type AxiosRequestConfig, type AxiosResponse } from "axios";
 import * as Comlink from "comlink";
 import { ByteBuffer } from "flatbuffers";

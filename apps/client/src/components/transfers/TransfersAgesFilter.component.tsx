@@ -1,4 +1,4 @@
-import T from "@/components/T.component.tsx";
+import T from "@/components/T.component";
 import store from "@/store";
 import { makeObservable } from "mobx";
 import { observer } from "mobx-react";

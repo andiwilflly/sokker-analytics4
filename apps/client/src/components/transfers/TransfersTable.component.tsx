@@ -1,9 +1,9 @@
-import PreLoader from "@/components/PreLoader.component.tsx";
-import { _t } from "@/components/T.component.tsx";
-import store from "@/store.ts";
-import { type TSortBy, type TSortOrder } from "@shared/schema/basic.schema.ts";
-import type { ITransfer } from "@shared/schema/transfers.schema.ts";
-import countries, { currencyMapping } from "@shared/utils/countries.util.ts";
+import PreLoader from "@/components/PreLoader.component";
+import { _t } from "@/components/T.component";
+import store from "@/store";
+import { type TSortBy, type TSortOrder } from "@shared/schema/basic.schema";
+import type { ITransfer } from "@shared/schema/transfers.schema";
+import countries, { currencyMapping } from "@shared/utils/countries.util";
 import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react";
 import { type IReactionDisposer, makeObservable, observable, reaction, runInAction } from "mobx";
 import { observer } from "mobx-react";
@@ -124,9 +124,9 @@ class TransfersTable extends React.Component<IProps> {
 				<table>
 					<tbody>
 						<tr>
-							{this.renderTableHead({ width: 170, name: _t("Name"), sortBy: "name" })}
+							{this.renderTableHead({ width: 200, name: _t("Name"), sortBy: "name" })}
 							{this.renderTableHead({ width: 150, name: _t("Price"), sortBy: "price" })}
-							{this.renderTableHead({ width: 100, name: _t("Country"), sortBy: "country" })}
+							{this.renderTableHead({ width: 200, name: _t("Country"), sortBy: "country" })}
 							{this.renderTableHead({ width: 70, name: _t("Age"), sortBy: "age" })}
 							{this.renderTableHead({ width: "100%", name: _t("Transfer Date"), sortBy: "transfer_time_ms", isLast: true })}
 						</tr>

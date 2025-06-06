@@ -1,13 +1,13 @@
-import PreLoader from "@/components/PreLoader.component.tsx";
-import T from "@/components/T.component.tsx";
+import PreLoader from "@/components/PreLoader.component";
+import T from "@/components/T.component";
 import ChartTypeRenderer from "@/components/charts/ChartTypeRenderer.component";
-import TransfersDashboardItemModal from "@/components/transfers/dashboard/TransfersDashboardItemModal.component.tsx";
+import TransfersDashboardItemModal from "@/components/transfers/dashboard/TransfersDashboardItemModal.component";
 import store from "@/store";
 import { CircleX, Settings } from "lucide-react";
 import { makeObservable, observable, runInAction } from "mobx";
 import { observer } from "mobx-react";
 import React from "react";
-import ReactDOM from "react-dom";
+import { createPortal } from "react-dom";
 
 interface IProps {
 	i: string;
@@ -74,7 +74,7 @@ class TransfersDashboardItem extends React.Component<IProps> {
 				) : null}
 
 				{this.isEditModalOpen &&
-					ReactDOM.createPortal(
+					createPortal(
 						<TransfersDashboardItemModal i={this.props.i} onClose={() => runInAction(() => (this.isEditModalOpen = false))} />,
 						window.document.getElementById("modal-container")!,
 					)}

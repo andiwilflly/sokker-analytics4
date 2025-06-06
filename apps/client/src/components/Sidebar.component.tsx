@@ -1,4 +1,4 @@
-import TransfersFilters from "@/components/transfers/TransfersFilters.component.tsx";
+import TransfersFilters from "@/components/transfers/TransfersFilters.component";
 import { observer } from "mobx-react";
 import React from "react";
 

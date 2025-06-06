@@ -1,5 +1,5 @@
-import { GRID_ITEM_MIN_HEIGHT, GRID_ITEM_MIN_WIDTH } from "@/CONSTANTS.ts";
-import CoreModel from "@/models/Core.model.ts";
+import { GRID_ITEM_MIN_HEIGHT, GRID_ITEM_MIN_WIDTH } from "@/CONSTANTS";
+import CoreModel from "@/models/Core.model";
 import GridModel from "@/models/transfers/grid/Grid.model";
 import store from "@/store";
 import { chartTypes } from "@shared/schema/charts.schema";
