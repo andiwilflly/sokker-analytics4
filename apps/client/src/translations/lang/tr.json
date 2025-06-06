@@ -20,5 +20,9 @@
     "Transfers": "Transfers",
     "per": "per",
     "Dashboard": "Gösterge paneli",
-    "Players list": "Oyuncular Listesi"
+    "Players list": "Oyuncular Listesi",
+    "Name": "Name",
+    "Country": "Country",
+    "Age": "Age",
+    "Transfer Date": "Transfer Date"
 }

@@ -20,5 +20,9 @@
     "Transfers": "Transfers",
     "per": "per",
     "Dashboard": "Műszerfal",
-    "Players list": "A játékosok listája"
+    "Players list": "A játékosok listája",
+    "Name": "Name",
+    "Country": "Country",
+    "Age": "Age",
+    "Transfer Date": "Transfer Date"
 }

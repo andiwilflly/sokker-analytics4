@@ -12,6 +12,7 @@ th {
 	font-weight: 500; /* Slightly bold headers */
 	text-align: left; /* Align header text to the left */
 	padding: 5px 10px;
+    white-space: nowrap;
 	border-bottom: 1px solid #f0f0f0; /* Border under header */
 }
 

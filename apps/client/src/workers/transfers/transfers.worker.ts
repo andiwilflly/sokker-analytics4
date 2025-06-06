@@ -120,7 +120,12 @@ class TransfersAPI {
 		}
 	}
 
-	public async transfers({ page, perPage }: { page: number; perPage: number }): Promise<
+	public async transfers({
+		page,
+		perPage,
+		sortBy,
+		sortOrder,
+	}: { page: number; perPage: number; sortBy: keyof ITransfer; sortOrder: "DESC" | "ASC" }): Promise<
 		IResponse<{
 			transfers: ITransfer[];
 			total: number;
@@ -128,7 +133,15 @@ class TransfersAPI {
 	> {
 		const start = page * perPage;
 		const end = start + perPage;
-		const paginatedTransfers = this.filteredTransfers.slice(start, end);
+		const sortedTransfers: ITransfer[] = this.filteredTransfers.toSorted((a, b) => {
+			const aa: string | number = a[sortBy];
+			const bb: string | number = b[sortBy];
+			if (typeof bb === "string" && typeof aa === "string") return sortOrder === "ASC" ? aa.localeCompare(bb) : bb.localeCompare(aa);
+			if (typeof aa === "number" && typeof bb === "number") return sortOrder === "ASC" ? aa - bb : bb - aa;
+			return 0; // fallback if types are mismatched
+		});
+
+		const paginatedTransfers = sortedTransfers.slice(start, end);
 
 		return {
 			data: {

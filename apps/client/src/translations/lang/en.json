@@ -20,5 +20,9 @@
   "Transfers": "Transfers",
   "per": "per",
   "Dashboard": "Dashboard",
-  "Players list": "Players list"
+  "Players list": "Players list",
+  "Name": "Name",
+  "Country": "Country",
+  "Age": "Age",
+  "Transfer Date": "Transfer Date"
 }

@@ -20,5 +20,9 @@
     "Transfers": "Transfers",
     "per": "per",
     "Dashboard": "Taolenn",
-    "Players list": "Listenn ar c'hoarierien"
+    "Players list": "Listenn ar c'hoarierien",
+    "Name": "Name",
+    "Country": "Country",
+    "Age": "Age",
+    "Transfer Date": "Transfer Date"
 }

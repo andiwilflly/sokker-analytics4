@@ -8,10 +8,13 @@
 
 .\:pagination li {
 	cursor: pointer;
-	padding: 3px 7px;
 	border-radius: 0.25rem;
 	border: 1px solid #ccc;
 	color: #333;
+	a {
+		padding: 3px 7px;
+		display: block;
+	}
 }
 
 .\:pagination li:hover {

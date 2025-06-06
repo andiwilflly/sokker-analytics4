@@ -1,7 +1,10 @@
 import PreLoader from "@/components/PreLoader.component.tsx";
+import { _t } from "@/components/T.component.tsx";
 import store from "@/store.ts";
+import { type TSortBy, type TSortOrder } from "@shared/schema/basic.schema.ts";
 import type { ITransfer } from "@shared/schema/transfers.schema.ts";
-import { ArrowUp } from "lucide-react";
+import countries, { currencyMapping } from "@shared/utils/countries.util.ts";
+import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react";
 import { type IReactionDisposer, makeObservable, observable, reaction, runInAction } from "mobx";
 import { observer } from "mobx-react";
 import React from "react";
@@ -19,7 +22,10 @@ class TransfersTable extends React.Component<IProps> {
 	transfers: ITransfer[] = [];
 	pagination = {
 		isLoading: false,
-		page: 1,
+		page: 0,
+		sortBy: "name" as TSortBy,
+		sortOrder: "ASC" as TSortOrder,
+		pagesCount: 0,
 	};
 
 	constructor(props: IProps) {
@@ -36,41 +42,74 @@ class TransfersTable extends React.Component<IProps> {
 
 	componentDidMount() {
 		this["@reaction on store.isLoading"] = reaction(
-			() => `${store.isLoading}|${this.pagination.page}`,
+			() => `${store.isLoading}|${this.pagination.page}|${this.pagination.sortBy}|${this.pagination.sortOrder}`,
 			async () => {
 				if (store.isLoading) return;
-				runInAction(() => (this.pagination.isLoading = true));
-				const { data } = await store.transfers.worker.transfers({ page: this.pagination.page, perPage: this.rowsMaxCount });
-				if (data) runInAction(() => (this.transfers = data.transfers));
-				runInAction(() => (this.pagination.isLoading = false));
+				this.getTransfers();
 			},
 			{ name: "@reaction on store.isLoading", fireImmediately: true },
 		);
+	}
+
+	componentDidUpdate(prevProps: IProps) {
+		if (this.props.height !== prevProps.height) this.getTransfers();
 	}
 
 	componentWillUnmount() {
 		this["@reaction on store.isLoading"]();
 	}
 
+	async getTransfers() {
+		runInAction(() => (this.pagination.isLoading = true));
+		const { data } = await store.transfers.worker.transfers({
+			page: this.pagination.page,
+			perPage: this.rowsMaxCount,
+			sortBy: this.pagination.sortBy,
+			sortOrder: this.pagination.sortOrder,
+		});
+		if (data)
+			runInAction(() => {
+				this.transfers = data.transfers;
+				this.pagination.pagesCount = Math.ceil(data.total / this.rowsMaxCount);
+			});
+		runInAction(() => (this.pagination.isLoading = false));
+	}
+
 	renderTableHead({
 		width,
 		name,
 		isLast,
-		isSortable,
+		sortBy,
 	}: {
 		width: number | string;
 		name: React.ReactNode;
 		isLast?: boolean;
-		isSortable?: boolean;
+		sortBy?: TSortBy;
 	}) {
+		const isActiveSort = sortBy === this.pagination.sortBy;
 		return (
-			<th>
-				<div
-					style={{ minWidth: width, width }}
-					className={`${isLast ? "" : "border-r border-gray-300"} pr-4 flex justify-between items-center`}>
+			<th style={{ minWidth: width, width }}>
+				<div className={`${isLast ? "" : "border-r border-gray-300"} pr-4 flex justify-between items-center`}>
 					<span>{name}</span>
-					{isSortable ? (
-						<ArrowUp className="cursor-pointer ml-2 text-white border border-gray-300 rounded-full p-1 hover:bg-purple-300" />
+					{sortBy ? (
+						isActiveSort ? (
+							this.pagination.sortOrder === "ASC" ? (
+								<ArrowUp
+									onClick={() => runInAction(() => (this.pagination.sortOrder = "DESC"))}
+									className={`cursor-pointer ml-2  border ${isActiveSort ? "text-orange-700 border-orange-700" : "text-white border-gray-300"} rounded-full p-1 hover:bg-purple-300`}
+								/>
+							) : (
+								<ArrowDown
+									onClick={() => runInAction(() => (this.pagination.sortOrder = "ASC"))}
+									className={`cursor-pointer ml-2  border ${isActiveSort ? "text-orange-700 border-orange-700" : "text-white border-gray-300"} rounded-full p-1 hover:bg-purple-300`}
+								/>
+							)
+						) : (
+							<ArrowDownUp
+								onClick={() => runInAction(() => (this.pagination.sortBy = sortBy!))}
+								className="cursor-pointer ml-2 text-white border border-gray-300 rounded-full p-1 hover:bg-purple-300"
+							/>
+						)
 					) : null}
 				</div>
 			</th>
@@ -78,26 +117,41 @@ class TransfersTable extends React.Component<IProps> {
 	}
 
 	render() {
-		console.log(this.rowsMaxCount);
 		return (
-			<div className="relative overflow-hidden :bordered" style={{ width: this.props.width, height: this.props.height }}>
+			<div
+				className="relative overflow-y-hidden overflow-x-auto :bordered"
+				style={{ width: this.props.width, height: this.props.height }}>
 				<table>
-					<thead>
-						<tr>
-							{this.renderTableHead({ width: 100, name: "ID", isSortable: true })}
-							{this.renderTableHead({ width: 170, name: "Name", isSortable: true })}
-							{this.renderTableHead({ width: 100, name: "Country", isSortable: true })}
-							{this.renderTableHead({ width: "100%", name: "Age", isSortable: true, isLast: true })}
-						</tr>
-					</thead>
 					<tbody>
+						<tr>
+							{this.renderTableHead({ width: 170, name: _t("Name"), sortBy: "name" })}
+							{this.renderTableHead({ width: 150, name: _t("Price"), sortBy: "price" })}
+							{this.renderTableHead({ width: 100, name: _t("Country"), sortBy: "country" })}
+							{this.renderTableHead({ width: 70, name: _t("Age"), sortBy: "age" })}
+							{this.renderTableHead({ width: "100%", name: _t("Transfer Date"), sortBy: "transfer_time_ms", isLast: true })}
+						</tr>
 						{this.transfers.map(transfer => {
+							const country = countries.find(country => country.code === transfer.country);
 							return (
 								<tr key={transfer.id}>
-									<td>{transfer.id}</td>
-									<td>{transfer.name}</td>
-									<td>{transfer.country}</td>
+									<td>
+										<a href={`https://sokker.org/player/PID/${transfer.pid}`} target="_blank">
+											{transfer.name}
+										</a>
+									</td>
+									<td>
+										{Intl.NumberFormat(currencyMapping[store.currencyCountry.countryCode].locale, {
+											style: "currency",
+											currency: store.currency,
+											minimumFractionDigits: 0,
+											maximumFractionDigits: 0,
+										}).format(transfer.price / store.currencyCountry.rate)}
+									</td>
+									<td>
+										{country!.icon} {country!.name}
+									</td>
 									<td>{transfer.age}</td>
+									<td>{new Date(transfer.transfer_time_ms).toLocaleString()}</td>
 								</tr>
 							);
 						})}
@@ -105,7 +159,7 @@ class TransfersTable extends React.Component<IProps> {
 				</table>
 
 				<ReactPaginate
-					pageCount={45}
+					pageCount={this.pagination.pagesCount}
 					pageRangeDisplayed={3}
 					marginPagesDisplayed={1}
 					onPageChange={({ selected }) => runInAction(() => (this.pagination.page = selected))}
