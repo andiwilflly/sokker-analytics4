@@ -5,8 +5,7 @@
 	"packageManager": "pnpm@10.11.1",
 	"workspaces": ["apps/*", "packages/*"],
 	"scripts": {
-		"heroku-build": "pnpm --filter @shared... build && pnpm --filter @server... build",
-		"build": "pnpm run heroku-build",
+		"build": "tsc --build packages/shared apps/server",
 		"client:dev": "pnpm --filter @client dev",
 		"client:build": "pnpm --filter @client build",
 		"client:deploy": "pnpm --filter @client run deploy",

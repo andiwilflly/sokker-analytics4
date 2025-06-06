@@ -10,7 +10,9 @@
 		"resolveJsonModule": true,
 		"baseUrl": ".",
 		"paths": {
-			"@shared/*": ["packages/shared/src/*"]
+			"@shared/*": ["packages/shared/dist/*"]
 		}
-	}
+	},
+	"files": [],
+	"references": [{ "path": "./packages/shared" }, { "path": "./apps/server" }]
 }
