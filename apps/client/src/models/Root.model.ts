@@ -118,7 +118,7 @@ const actions = (self: Instance<typeof RootModel>) => {
 
 			addDisposer(
 				self,
-				reaction(() => JSON.stringify(self.transfers.filters.all), this.prepareTransfers, { delay: 700 }),
+				reaction(() => JSON.stringify(self.transfers.filters.all), this.prepareTransfers, { delay: 300 }),
 			);
 		},
 	};

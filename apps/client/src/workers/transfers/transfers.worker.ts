@@ -104,10 +104,6 @@ class TransfersAPI {
 			const filteredTransfers = filterTransfers(transfersDB.transfersList, filters);
 			console.timeEnd("✅ transfersDB | filterTransfers");
 
-			// console.time("✅ transfersDB | transfersNormalize");
-			// const normalizedTransfers = transfersNormalize(filteredTransfers);
-			// console.timeEnd("✅ transfersDB | transfersNormalize");
-
 			console.time("✅ transfersDB | transfersPrepare");
 			const transfersData = transfersPrepare(filteredTransfers);
 			console.timeEnd("✅ transfersDB | transfersPrepare");
