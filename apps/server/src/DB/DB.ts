@@ -1,9 +1,9 @@
 import path from "node:path";
 import { IFilters } from "@shared/schema/filters.schema";
 import { ITransferShortNames } from "@shared/schema/transfers.schema";
-import earliestTransferQuery from "apps/server/src/DB/query/earliestTransfer.query";
-import transfersQuery from "apps/server/src/DB/query/transfersQuery";
-import logger from "apps/server/src/logger";
+import earliestTransferQuery from "./query/earliestTransfer.query.js";
+import transfersQuery from "./query/transfersQuery.js";
+import logger from "../logger.js";
 import BetterSqlite3 from "better-sqlite3";
 
 class DB {
