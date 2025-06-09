@@ -1,1 +1,1 @@
-web: cd apps/server && node dist/index.js 
+web: cd apps/server && pnpm start 
