@@ -1,5 +1,5 @@
-import jsonArrayOfNumbers from "@shared/schema/helpers/jsonArrayOfNumbers.schema.helper";
 import { z } from "zod";
+import jsonArrayOfNumbers from "../schema/helpers/jsonArrayOfNumbers.schema.helper";
 
 const FiltersSchema = z
 	.object({

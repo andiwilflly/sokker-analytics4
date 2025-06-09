@@ -1,5 +1,5 @@
-import { type ITransfer } from "@shared/schema/transfers.schema";
-import countries, { currencyMapping } from "@shared/utils/countries.util";
+import { type ITransfer } from "../schema/transfers.schema";
+import countries, { currencyMapping } from "../utils/countries.util";
 
 export type TSortBy = keyof ITransfer;
 export type TSortOrder = "ASC" | "DESC";

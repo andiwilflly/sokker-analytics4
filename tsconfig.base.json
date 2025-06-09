@@ -1,8 +1,8 @@
 {
 	"compilerOptions": {
-		"target": "ESNext",
-		"module": "ESNext",
-		"moduleResolution": "Node",
+		"target": "ES2022",
+		"module": "Node16",
+		"moduleResolution": "Node16",
 		"strict": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
@@ -10,9 +10,11 @@
 		"resolveJsonModule": true,
 		"baseUrl": ".",
 		"paths": {
-			"@shared/*": ["packages/shared/dist/*"]
-		}
-	},
-	"files": [],
-	"references": [{ "path": "./packages/shared" }, { "path": "./apps/server" }]
+			"@shared/*": ["packages/shared/src/*"]
+		},
+		"declaration": true,
+		"sourceMap": true,
+		"allowJs": true,
+		"removeComments": true
+	}
 }

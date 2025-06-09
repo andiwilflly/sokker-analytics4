@@ -1,4 +1,4 @@
-import { ITransfer } from "@shared/schema/transfers.schema";
+import { ITransfer } from "../../../schema/transfers.schema";
 
 const weeks: number[] = Array.from({ length: 16 }, (_, i) => i + 1);
 

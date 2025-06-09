@@ -1,5 +1,5 @@
-import { ITransfer } from "@shared/schema/transfers.schema";
-import countriesUtil from "@shared/utils/countries.util";
+import { ITransfer } from "../../../schema/transfers.schema";
+import countriesUtil from "../../../utils/countries.util";
 
 export default function transfersPrepareByCountry(transfers: ITransfer[]): ITransferStatBlock {
 	const countryMap = new Map<

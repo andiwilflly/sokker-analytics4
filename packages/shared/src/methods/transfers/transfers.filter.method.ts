@@ -1,5 +1,5 @@
-import { type IFilters } from "@shared/schema/filters.schema";
-import { type ITransfer } from "@shared/schema/transfers.schema";
+import { type IFilters } from "../../schema/filters.schema";
+import { type ITransfer } from "../../schema/transfers.schema";
 
 export default function filterTransfers(transfers: ITransfer[], filters: IFilters): ITransfer[] {
 	const ageSet = new Set(filters.selectedAges);

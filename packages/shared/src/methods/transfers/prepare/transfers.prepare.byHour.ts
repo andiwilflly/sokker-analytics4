@@ -1,4 +1,4 @@
-import { ITransfer } from "@shared/schema/transfers.schema";
+import { ITransfer } from "../../../schema/transfers.schema";
 
 const hours: number[] = Array.from({ length: 24 }, (_, i) => (i + 6) % 24); // 6 to 23, then 0 to 5
 

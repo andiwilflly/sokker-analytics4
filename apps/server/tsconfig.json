@@ -3,8 +3,13 @@
 	"compilerOptions": {
 		"composite": true,
 		"outDir": "dist",
-		"strict": true
+		"rootDir": "src",
+		"strict": true,
+		"noEmitOnError": true,
+		"lib": ["ES2022"],
+		"types": ["node"]
 	},
-	"include": ["src"],
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist"],
 	"references": [{ "path": "../../packages/shared" }]
 }

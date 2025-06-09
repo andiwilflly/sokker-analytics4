@@ -1,4 +1,4 @@
-import { ITransfer } from "@shared/schema/transfers.schema";
+import { ITransfer } from "../../../schema/transfers.schema";
 
 const weekdays: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 

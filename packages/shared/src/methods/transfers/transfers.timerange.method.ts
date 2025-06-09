@@ -1,4 +1,4 @@
-import { ITransfer } from "@shared/schema/transfers.schema";
+import { ITransfer } from "../../schema/transfers.schema";
 
 export default function transfersTimeRange(transfers: ITransfer[]): {
 	fromMs: number;
