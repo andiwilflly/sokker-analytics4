@@ -2,10 +2,11 @@
 	"name": "sokker-db-analytics4",
 	"version": "1.0.0",
 	"private": true,
+	"type": "module",
 	"packageManager": "pnpm@10.11.1",
 	"workspaces": ["apps/*", "packages/*"],
 	"scripts": {
-		"build": "tsc --build packages/shared apps/server",
+		"build": "pnpm --filter @shared build && pnpm --filter @server build",
 		"client:dev": "pnpm --filter @client dev",
 		"client:build": "pnpm --filter @client build",
 		"client:deploy": "pnpm --filter @client run deploy",
