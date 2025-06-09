@@ -1,7 +1,7 @@
 import FiltersSchema, { IFilters } from "@shared/schema/filters.schema";
 import { IResponse } from "@shared/schema/response.schema";
 import { ITransferShortNames } from "@shared/schema/transfers.schema";
-import db from "apps/server/src/DB/DB";
+import db from "../../DB/DB.js";
 import { Elysia } from "elysia";
 
 export default (app: Elysia, route: string) => {
