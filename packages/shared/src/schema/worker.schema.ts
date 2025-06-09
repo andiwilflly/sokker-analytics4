@@ -1,7 +1,7 @@
-import { TSortBy, TSortOrder } from "../schema/basic.schema";
-import { IFilters } from "../schema/filters.schema";
-import { IResponse } from "../schema/response.schema";
-import { ITransfer } from "../schema/transfers.schema";
+import { TSortBy, TSortOrder } from "./basic.schema.js";
+import { IFilters } from "./filters.schema.js";
+import { IResponse } from "./response.schema.js";
+import { ITransfer } from "./transfers.schema.js";
 
 export type TWorkerProgress = { total: number; loaded: number; progress: number };
 

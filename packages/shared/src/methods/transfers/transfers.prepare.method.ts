@@ -1,10 +1,10 @@
-import transfersPrepareByAge from "../../methods/transfers/prepare/transfers.prepare.byAge";
-import transfersPrepareByCountry from "../../methods/transfers/prepare/transfers.prepare.byCountry";
-import transfersPrepareByHeight from "../../methods/transfers/prepare/transfers.prepare.byHeight";
-import transfersPrepareByHour from "../../methods/transfers/prepare/transfers.prepare.byHour";
-import transfersPrepareByWeek from "../../methods/transfers/prepare/transfers.prepare.byWeek";
-import transfersPrepareByWeekday from "../../methods/transfers/prepare/transfers.prepare.byWeekday";
-import { ITransfer } from "../../schema/transfers.schema";
+import transfersPrepareByAge from "./prepare/transfers.prepare.byAge.js";
+import transfersPrepareByCountry from "./prepare/transfers.prepare.byCountry.js";
+import transfersPrepareByHeight from "./prepare/transfers.prepare.byHeight.js";
+import transfersPrepareByHour from "./prepare/transfers.prepare.byHour.js";
+import transfersPrepareByWeek from "./prepare/transfers.prepare.byWeek.js";
+import transfersPrepareByWeekday from "./prepare/transfers.prepare.byWeekday.js";
+import { ITransfer } from "../../schema/transfers.schema.js";
 
 export default function transfersPrepare(transfers: ITransfer[]): ITransfersPrepare {
 	return {

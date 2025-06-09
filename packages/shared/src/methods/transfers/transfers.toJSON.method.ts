@@ -1,5 +1,5 @@
-import type { ITransferShortNames } from "../../schema/transfers.schema";
-import { Transfers } from "../../scripts/flatbuffer/transfer";
+import type { ITransferShortNames } from "../../schema/transfers.schema.js";
+import { Transfers } from "../../scripts/flatbuffer/transfer.js";
 
 export function transfersToJSON(transfersList: Transfers.TransferList, transfersCount: number): ITransferShortNames[] {
 	if (!transfersList) return [];

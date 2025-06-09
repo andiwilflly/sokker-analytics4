@@ -1,6 +1,6 @@
 import path from "node:path";
-import { IFilters } from "@shared/schema/filters.schema";
-import { ITransferShortNames } from "@shared/schema/transfers.schema";
+import { IFilters } from "@shared/schema/filters.schema.js";
+import { ITransferShortNames } from "@shared/schema/transfers.schema.js";
 import earliestTransferQuery from "./query/earliestTransfer.query.js";
 import transfersQuery from "./query/transfersQuery.js";
 import logger from "../logger.js";

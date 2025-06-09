@@ -1,4 +1,4 @@
-import db from "apps/server/src/DB/DB";
+import db from "../DB/DB.js";
 import { Elysia } from "elysia";
 
 export default (app: Elysia, route: string) => {

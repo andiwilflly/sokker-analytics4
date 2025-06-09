@@ -1,5 +1,5 @@
-import { ITransfer, ITransferShortNames } from "../../schema/transfers.schema";
-import transferNamesMapping from "../transferNamesMapping";
+import { ITransfer, ITransferShortNames } from "../../schema/transfers.schema.js";
+import transferNamesMapping from "../transferNamesMapping.js";
 
 export default function transfersNormalize(transfers: ITransferShortNames[]): ITransfer[] {
 	const transferShortNames = Object.keys(transferNamesMapping) as (keyof ITransferShortNames)[];
