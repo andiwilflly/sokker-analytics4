@@ -140,12 +140,14 @@ class TransfersTable extends React.Component<IProps> {
 										</a>
 									</td>
 									<td>
-										{Intl.NumberFormat(currencyMapping[store.currencyCountry.countryCode].locale, {
-											style: "currency",
-											currency: store.currency,
-											minimumFractionDigits: 0,
-											maximumFractionDigits: 0,
-										}).format(transfer.price / store.currencyCountry.rate)}
+										<span className="text-green-600">
+											{Intl.NumberFormat(currencyMapping[store.currencyCountry.countryCode].locale, {
+												style: "currency",
+												currency: store.currency,
+												minimumFractionDigits: 0,
+												maximumFractionDigits: 0,
+											}).format(transfer.price / store.currencyCountry.rate)}
+										</span>
 									</td>
 									<td>
 										{country!.icon} {country!.name}
