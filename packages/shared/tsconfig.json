@@ -4,7 +4,10 @@
 		"composite": true,
 		"declaration": true,
 		"declarationMap": true,
-		"outDir": "dist"
+		"outDir": "dist",
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"target": "ESNext"
 	},
 	"include": ["src"]
 }
