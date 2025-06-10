@@ -7,6 +7,8 @@ export default function searchTransfers(transfers: ITransfer[], search: ISearch)
 		// Filter by age
 		const [minAge, maxAge] = search.age;
 		if (transfer.age < minAge || transfer.age > maxAge) return false;
+		if (transfer.transfer_time_ms < search.fromMs) return false;
+		if (transfer.transfer_time_ms > search.toMs) return false;
 
 		// Filter by skills
 		const skillFilters: (keyof ISearch)[] = ["stamina", "keeper", "pace", "defender", "technique", "playmaker", "passing", "striker"];
@@ -25,13 +27,18 @@ export default function searchTransfers(transfers: ITransfer[], search: ISearch)
 	const normalizeText = (text: string) =>
 		text
 			.normalize("NFD")
-			.replace(/[\u0300-\u036f]/g, "")
+			.replace(/[\u0300-\u036f]/g, "") // remove diacritics
+			.replace(/ç/g, "c")
+			.replace(/ñ/g, "n")
+			.replace(/ß/g, "ss")
+			.replace(/ø/g, "o")
+			.replace(/đ/g, "d")
 			.toLowerCase();
 
 	transfers = search.name?.trim()
 		? new Fuse(transfers, {
 				keys: ["name"],
-				threshold: 0.3,
+				threshold: 0.2,
 				ignoreLocation: true,
 				getFn: (obj, path) => {
 					const raw = Fuse.config.getFn(obj, path); // default getter

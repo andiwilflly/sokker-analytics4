@@ -2,7 +2,7 @@ import T, { _t } from "@/components/T.component.tsx";
 import Slider from "@/components/elements/Slider.component.tsx";
 import store from "@/store.ts";
 import SearchSchema, { type ISearch } from "@shared/schema/advancedSearch.schema.ts";
-import { action, makeObservable, observable, runInAction, toJS } from "mobx";
+import { action, makeObservable, observable, runInAction } from "mobx";
 import { observer } from "mobx-react";
 import { getSnapshot } from "mobx-state-tree";
 import React from "react";
@@ -82,24 +82,7 @@ class TransfersAdvancedSearch extends React.Component<IProps> {
 	render() {
 		return (
 			<form onSubmit={this.onSubmit}>
-				<div className="text-nowrap text-xs mb-1">
-					<T>Select transfer period</T>
-				</div>
-				<div className="text-nowrap text-xs text-green-600 mb-1" style={{ fontSize: "10px" }}>
-					({new Date(this.form.fromMs).toLocaleString()}
-					&nbsp;-&nbsp;
-					{new Date(this.form.toMs).toLocaleString()})
-				</div>
-
-				<Slider
-					values={[this.form.fromMs, this.form.toMs]}
-					step={1000}
-					min={store.transfers.fromMs}
-					max={store.transfers.toMs}
-					onChange={this.onPeriodChange}
-				/>
-
-				<div className="mb-2">
+				<div>
 					<span className="text-xs text-nowrap text-gray-600">Name</span>
 					<input
 						value={this.form.name}
@@ -109,10 +92,34 @@ class TransfersAdvancedSearch extends React.Component<IProps> {
 					/>
 				</div>
 
-				<div className="grid grid-cols-2 gap-4">
-					<div>{this.renderItem("age", <T>Age</T>, 16, 40)}</div>
-					<div />
+				<hr className="m-3 text-gray-300" />
 
+				<div>
+					<div className="text-nowrap text-gray-600 text-xs mb-1">
+						<T>Select transfer period</T>
+					</div>
+					<div className="text-nowrap text-xs text-green-600 mb-1" style={{ fontSize: "10px" }}>
+						({new Date(this.form.fromMs).toLocaleString()}
+						&nbsp;-&nbsp;
+						{new Date(this.form.toMs).toLocaleString()})
+					</div>
+
+					<Slider
+						values={[this.form.fromMs, this.form.toMs]}
+						step={1000}
+						min={store.transfers.fromMs}
+						max={store.transfers.toMs}
+						onChange={this.onPeriodChange}
+					/>
+				</div>
+
+				<hr className="m-3 text-gray-300" />
+
+				<div>{this.renderItem("age", <T>Age</T>, 16, 40)}</div>
+
+				<hr className="m-3 text-gray-300" />
+
+				<div className="grid grid-cols-2 gap-4">
 					<div>{this.renderItem("stamina", <T>Stamina</T>, 0, 11)}</div>
 					<div>{this.renderItem("keeper", <T>Keeper</T>, 0, 18)}</div>
 

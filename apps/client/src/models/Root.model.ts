@@ -53,8 +53,8 @@ const actions = (self: Instance<typeof RootModel>) => {
 			if (self.transfers.filters.toMs === 0) self.transfers.filters.update({ toMs: data!.toMs });
 
 			// Search
-			if (self.transfers.filters.fromMs === 0) self.transfers.search.update({ fromMs: data!.fromMs });
-			if (self.transfers.filters.toMs === 0) self.transfers.search.update({ toMs: data!.toMs });
+			if (self.transfers.search.fromMs === 0) self.transfers.search.update({ fromMs: data!.fromMs });
+			if (self.transfers.search.toMs === 0) self.transfers.search.update({ toMs: data!.toMs });
 
 			// Transfers
 			self.transfers.update({ fromMs: data!.fromMs, toMs: data!.toMs });
