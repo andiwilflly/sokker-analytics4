@@ -16,7 +16,6 @@
     "Add new widget to analyze transfers data": "Új widget hozzáadása az átvitel adatainak elemzéséhez",
     "Search countries": "Keresési országok",
     "Choose chart type": "Válassza a CAST TYPE lehetőséget",
-    "Extended filters": "Extended filters",
     "Transfers": "Transfers",
     "per": "per",
     "Dashboard": "Műszerfal",
@@ -25,5 +24,8 @@
     "Country": "Country",
     "Age": "Age",
     "Transfer Date": "Transfer Date",
-    "Price": "Price"
+    "Price": "Price",
+    "Filters": "Szűrők",
+    "Advanced search": "Fejlett keresés",
+    "Search": "Search"
 }

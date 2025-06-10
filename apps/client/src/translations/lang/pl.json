@@ -16,7 +16,6 @@
     "Add new widget to analyze transfers data": "Add new widget to analyze transfers data",
     "Search countries": "Szukaj krajów",
     "Choose chart type": "Wybierz typ wykresu",
-    "Extended filters": "Extended filters",
     "Transfers": "Transfers",
     "per": "per",
     "Dashboard": "Panel",
@@ -25,5 +24,8 @@
     "Country": "Country",
     "Age": "Age",
     "Transfer Date": "Transfer Date",
-    "Price": "Price"
+    "Price": "Price",
+    "Filters": "Filtry",
+    "Advanced search": "Zaawansowane wyszukiwanie",
+    "Search": "Search"
 }

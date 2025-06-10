@@ -6,6 +6,7 @@ input {
 	border-radius: 6px;
 	font-size: 14px;
 	outline: none;
+	width: 100%;
 	transition: border-color 0.2s, box-shadow 0.2s;
 }
 

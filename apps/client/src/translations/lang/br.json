@@ -16,7 +16,6 @@
     "Add new widget to analyze transfers data": "Ouzhpennañ un ivinell nevez evit analyseiñ roadennoù ar treuzkas",
     "Search countries": "Broioù klask",
     "Choose chart type": "Dibab ar seurt grafik",
-    "Extended filters": "Extended filters",
     "Transfers": "Transfers",
     "per": "per",
     "Dashboard": "Taolenn",
@@ -25,5 +24,8 @@
     "Country": "Country",
     "Age": "Age",
     "Transfer Date": "Transfer Date",
-    "Price": "Price"
+    "Price": "Price",
+    "Filters": "Siloù",
+    "Advanced search": "Klask araokaet",
+    "Search": "Search"
 }

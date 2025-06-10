@@ -64,66 +64,56 @@ class TransfersFilters extends React.Component<IProps> {
 
 	render() {
 		return (
-			<div className="filters p-2">
-				<div className=":bordered sticky p-3 top-[54px]">
-					<div className="text-gray-500 text-xs mb-2">
-						<T>Transfers found</T>:&nbsp;<span className="text-red-600">{store.transfers.data.count.toLocaleString()}</span>
-					</div>
-
-					<div className="text-nowrap mb-1">
-						<T>Select transfer period</T>
-					</div>
-					<div className="text-nowrap text-green-600 mb-1" style={{ fontSize: "10px" }}>
-						({new Date(this.form.fromMs).toLocaleString()}
-						&nbsp;-&nbsp;
-						{new Date(this.form.toMs).toLocaleString()})
-					</div>
-
-					<Slider
-						values={[this.form.fromMs, this.form.toMs]}
-						step={1000}
-						min={store.transfers.fromMs}
-						max={store.transfers.toMs}
-						onChange={this.onPeriodChange}
-					/>
-
-					<div className="text-nowrap mb-1 mt-5">
-						<T>Transfers price</T>
-					</div>
-					<div className="text-nowrap text-green-600 mb-1" style={{ fontSize: "10px" }}>
-						({store.formatPrice(this.form.minPrice)} - {store.formatPrice(this.form.maxPrice)})
-					</div>
-
-					<Slider
-						values={[this.form.minPrice, this.form.maxPrice]}
-						step={1000}
-						min={0}
-						max={46875000}
-						onChange={this.onPriceChange}
-					/>
-
-					<div className="text-nowrap mb-1 mt-5">
-						<T>Sum skill</T>{" "}
-						<span className="text-green-600">
-							({this.form.minSS} - {this.form.maxSS})
-						</span>
-					</div>
-
-					<Slider values={[this.form.minSS, this.form.maxSS]} min={0} max={100} step={1} onChange={this.onSSChange} />
-
-					<div className="mt-4">
-						<TransfersAgesFilter />
-					</div>
-
-					<div className="mt-4">
-						<TransfersCountriesFilter />
-					</div>
-
-					<div>
-						<T>Extended filters</T>
-					</div>
+			<>
+				<div className="text-nowrap mb-1">
+					<T>Select transfer period</T>
 				</div>
-			</div>
+				<div className="text-nowrap text-green-600 mb-1" style={{ fontSize: "10px" }}>
+					({new Date(this.form.fromMs).toLocaleString()}
+					&nbsp;-&nbsp;
+					{new Date(this.form.toMs).toLocaleString()})
+				</div>
+
+				<Slider
+					values={[this.form.fromMs, this.form.toMs]}
+					step={1000}
+					min={store.transfers.fromMs}
+					max={store.transfers.toMs}
+					onChange={this.onPeriodChange}
+				/>
+
+				<div className="text-nowrap mb-1 mt-5">
+					<T>Transfers price</T>
+				</div>
+				<div className="text-nowrap text-green-600 mb-1" style={{ fontSize: "10px" }}>
+					({store.formatPrice(this.form.minPrice)} - {store.formatPrice(this.form.maxPrice)})
+				</div>
+
+				<Slider
+					values={[this.form.minPrice, this.form.maxPrice]}
+					step={1000}
+					min={0}
+					max={46875000}
+					onChange={this.onPriceChange}
+				/>
+
+				<div className="text-nowrap mb-1 mt-5">
+					<T>Sum skill</T>{" "}
+					<span className="text-green-600">
+						({this.form.minSS} - {this.form.maxSS})
+					</span>
+				</div>
+
+				<Slider values={[this.form.minSS, this.form.maxSS]} min={0} max={100} step={1} onChange={this.onSSChange} />
+
+				<div className="mt-4">
+					<TransfersAgesFilter />
+				</div>
+
+				<div className="mt-4">
+					<TransfersCountriesFilter />
+				</div>
+			</>
 		);
 	}
 }

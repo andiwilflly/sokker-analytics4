@@ -5,6 +5,7 @@ const store: Instance<typeof RootModel> = RootModel.create({
 	transfers: {
 		grid: {},
 		filters: {},
+		search: {},
 	},
 });
 

@@ -16,7 +16,6 @@
     "Add new widget to analyze transfers data": "Transfer verilerini analiz etmek için yeni widget ekle",
     "Search countries": "Arama Ülkeleri",
     "Choose chart type": "Grafik Türünü Seçin",
-    "Extended filters": "Extended filters",
     "Transfers": "Transfers",
     "per": "per",
     "Dashboard": "Gösterge paneli",
@@ -25,5 +24,8 @@
     "Country": "Country",
     "Age": "Age",
     "Transfer Date": "Transfer Date",
-    "Price": "Price"
+    "Price": "Price",
+    "Filters": "Filtreler",
+    "Advanced search": "Gelişmiş Arama",
+    "Search": "Search"
 }

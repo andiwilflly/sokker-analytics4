@@ -5,7 +5,6 @@ import { GRID_ITEM_MIN_HEIGHT } from "@/CONSTANTS";
 import T from "@/components/T.component";
 import TransfersDashboardItem from "@/components/transfers/dashboard/TransfersDashboardItem.component";
 import store from "@/store";
-import { toJS } from "mobx";
 import { observer } from "mobx-react";
 import React from "react";
 import AutoSizer from "react-virtualized-auto-sizer";
@@ -17,12 +16,10 @@ interface IProps {}
 class TransfersDashboardGrid extends React.Component<IProps> {
 	onLayoutChange = (newItems: Layout[]) => {
 		const sortedItems = newItems.toSorted((a, b) => a.y - b.y);
-		console.log(sortedItems, toJS(store.transfers.grid.layout), "???");
 		store.transfers.grid.update(sortedItems);
 	};
 
 	onAddNewWidget = () => {
-		console.log("1111");
 		store.transfers.grid.createItem({
 			i: store.transfers.grid.generateId(),
 			w: 12,
@@ -32,7 +29,6 @@ class TransfersDashboardGrid extends React.Component<IProps> {
 			selectedX: "country",
 			selectedY: ["price_max", "price_min", "price_avg"],
 		});
-		console.log("1111 end");
 	};
 
 	render() {

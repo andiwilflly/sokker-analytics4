@@ -16,7 +16,6 @@
     "Add new widget to analyze transfers data": "Agregue un nuevo widget para analizar los datos de las transferencias",
     "Search countries": "Búsqueda de países",
     "Choose chart type": "Elija Tipo de gráfico",
-    "Extended filters": "Filtros extendidos",
     "Transfers": "Transferencias",
     "per": "por",
     "Dashboard": "Panel",
@@ -25,5 +24,8 @@
     "Country": "Country",
     "Age": "Age",
     "Transfer Date": "Transfer Date",
-    "Price": "Price"
+    "Price": "Price",
+    "Filters": "Filtros",
+    "Advanced search": "Búsqueda avanzada",
+    "Search": "Search"
 }
