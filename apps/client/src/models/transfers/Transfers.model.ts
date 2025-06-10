@@ -5,7 +5,7 @@ import GridModel from "@/models/transfers/grid/Grid.model";
 import TransfersWorker from "@/workers/transfers/transfers.worker.ts?worker";
 import type { IWorkerAPI } from "@shared/schema/worker.schema";
 import type { Remote } from "comlink";
-import { types } from "mobx-state-tree";
+import { type Instance, isAlive, types } from "mobx-state-tree";
 
 const TransfersModel = types.compose(
 	"TransfersModel",
@@ -22,8 +22,33 @@ const TransfersModel = types.compose(
 	}),
 );
 
-const actions = () => {
-	return {};
+const actions = (self: Instance<typeof TransfersModel>) => {
+	return {
+		update(updates: Partial<Instance<typeof TransfersModel>>) {
+			if (!isAlive(self)) return;
+
+			for (const key in updates) {
+				const typedKey = key as keyof Instance<typeof TransfersModel>;
+				if (updates[typedKey] !== undefined && key in self) {
+					(self as any)[key] = updates[typedKey];
+				}
+			}
+
+			// Save LS
+			window.localStorage.setItem("transfers:isAdvancedSearch", JSON.stringify(self.isAdvancedSearch));
+		},
+
+		// Hooks
+		afterCreate() {
+			try {
+				self.update({
+					isAdvancedSearch: JSON.parse(window.localStorage.getItem("transfers:isAdvancedSearch") || ""),
+				});
+			} catch (e) {
+				console.warn(e);
+			}
+		},
+	};
 };
 
 const views = () => {

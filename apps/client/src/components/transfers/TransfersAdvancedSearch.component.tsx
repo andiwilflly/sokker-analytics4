@@ -1,8 +1,10 @@
-import T from "@/components/T.component.tsx";
+import T, { _t } from "@/components/T.component.tsx";
 import Slider from "@/components/elements/Slider.component.tsx";
+import store from "@/store.ts";
 import SearchSchema, { type ISearch } from "@shared/schema/advancedSearch.schema.ts";
 import { makeObservable, observable, runInAction } from "mobx";
 import { observer } from "mobx-react";
+import { getSnapshot } from "mobx-state-tree";
 import React from "react";
 
 interface IProps {}
@@ -26,13 +28,25 @@ class TransfersAdvancedSearch extends React.Component<IProps> {
 		makeObservable(this, {
 			form: observable,
 		});
+
+		runInAction(() => {
+			// Set initial search values
+			const search = getSnapshot(store.transfers.search);
+			Object.keys(search).forEach(filterName => {
+				const key = filterName as keyof typeof search;
+				if (search[key]) this.form[key] = search[key] as any;
+			});
+		});
+		store.searchTransfers();
 	}
 
-	onSubmit = () => {
+	onSubmit = (e: any) => {
+		e?.preventDefault();
 		const { error, data } = SearchSchema.safeParse(this.form);
 		if (error) console.error("Validation errors:", error.flatten().fieldErrors);
 
-		console.log(data);
+		store.transfers.search.update(data as ISearch);
+		store.searchTransfers();
 	};
 
 	renderItem(name: keyof ISearch, label: React.ReactNode, min: number, max: number) {
@@ -58,16 +72,20 @@ class TransfersAdvancedSearch extends React.Component<IProps> {
 
 	render() {
 		return (
-			<>
-				<div className="grid grid-cols-2 gap-4">
-					<div className="w-full">
-						<label className="text-sm" htmlFor="name">
-							Name
-						</label>
-						<input id="name" name="name" type="text" />
-					</div>
+			<form onSubmit={this.onSubmit}>
+				<div className="mb-2">
+					<span className="text-xs text-nowrap text-gray-600">Name</span>
+					<input
+						value={this.form.name}
+						placeholder={_t("Search players by name")}
+						onChange={(e: any) => runInAction(() => (this.form.name = e.target.value))}
+						type="search"
+					/>
+				</div>
 
+				<div className="grid grid-cols-2 gap-4">
 					<div>{this.renderItem("age", <T>Age</T>, 16, 40)}</div>
+					<div />
 
 					<div>{this.renderItem("stamina", <T>Stamina</T>, 0, 11)}</div>
 					<div>{this.renderItem("keeper", <T>Keeper</T>, 0, 18)}</div>
@@ -81,11 +99,14 @@ class TransfersAdvancedSearch extends React.Component<IProps> {
 					<div>{this.renderItem("passing", <T>Passing</T>, 0, 18)}</div>
 					<div>{this.renderItem("striker", <T>Striker</T>, 0, 18)}</div>
 
-					<button onClick={this.onSubmit} className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-1 px-4 rounded">
+					<div />
+					<button
+						onClick={this.onSubmit}
+						className="cursor-pointer bg-green-600 hover:bg-green-500 text-white  py-1 px-4 rounded">
 						<T>Search</T>
 					</button>
 				</div>
-			</>
+			</form>
 		);
 	}
 }

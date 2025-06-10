@@ -3,10 +3,7 @@ import { type ISearch } from "@shared/schema/advancedSearch.schema";
 import { type Instance, type SnapshotIn, applySnapshot, getSnapshot, isAlive, types } from "mobx-state-tree";
 
 const SkillType = (min: number, max: number) => {
-	return types.union(
-		types.literal("ALL"),
-		types.refinement(types.number, val => val >= min && val <= max),
-	);
+	return types.refinement(types.number, val => val >= min && val <= max);
 };
 
 const SearchModel = types.compose(
@@ -48,9 +45,11 @@ const actions = (self: Instance<typeof SearchModel>) => {
 
 		// Hooks
 		afterCreate() {
+			console.log("AFTER CREATE ");
 			try {
-				const filtersLS = JSON.parse(window.localStorage.getItem("transfers:search") || "") as SnapshotIn<typeof SearchModel>;
-				applySnapshot(self, filtersLS);
+				const searchLS = JSON.parse(window.localStorage.getItem("transfers:search") || "") as SnapshotIn<typeof SearchModel>;
+				console.log("searchLS:", searchLS);
+				applySnapshot(self, searchLS);
 			} catch (e) {
 				console.warn(e);
 			}

@@ -6,7 +6,7 @@ import { type IWorkerAPI, type TWorkerProgress } from "@shared/schema/worker.sch
 import countries, { currencyMapping } from "@shared/utils/countries.util";
 import * as Comlink from "comlink";
 import { reaction, toJS } from "mobx";
-import { type Instance, addDisposer, types } from "mobx-state-tree";
+import { type Instance, addDisposer, getSnapshot, types } from "mobx-state-tree";
 
 const RootModel = types.compose(
 	"RootModel",
@@ -54,7 +54,7 @@ const actions = (self: Instance<typeof RootModel>) => {
 
 			// Transfers
 			self.transfers.update({ fromMs: data!.fromMs, toMs: data!.toMs });
-			await this.prepareTransfers(); // Use this inside other actions to call sibling actions.
+			self.transfers.isAdvancedSearch ? await this.searchTransfers() : await this.filterTransfers(); // Use this inside other actions to call sibling actions.
 
 			// Set lang/currency
 			const lang = window.localStorage.getItem("app:lang") || self.lang;
@@ -90,9 +90,22 @@ const actions = (self: Instance<typeof RootModel>) => {
 			window.localStorage.setItem("app:currency", currency);
 		},
 
-		async prepareTransfers() {
+		async filterTransfers() {
 			self.update({ isLoading: true });
 			const transfersPrepare = await self.transfers.worker.filter(toJS(self.transfers.filters.all));
+			if (transfersPrepare.error) {
+				console.log("❌ APP | filter error: ", transfersPrepare.error);
+				self.update({ isLoading: false });
+				return;
+			}
+
+			self.transfers.update({ data: transfersPrepare.data });
+			self.update({ isLoading: false });
+		},
+
+		async searchTransfers() {
+			self.update({ isLoading: true });
+			const transfersPrepare = await self.transfers.worker.search(getSnapshot(self.transfers.search));
 			if (transfersPrepare.error) {
 				console.log("❌ APP | filter error: ", transfersPrepare.error);
 				self.update({ isLoading: false });
@@ -118,7 +131,7 @@ const actions = (self: Instance<typeof RootModel>) => {
 
 			addDisposer(
 				self,
-				reaction(() => JSON.stringify(self.transfers.filters.all), this.prepareTransfers, { delay: 300 }),
+				reaction(() => JSON.stringify(self.transfers.filters.all), this.filterTransfers, { delay: 300 }),
 			);
 		},
 	};

@@ -1,8 +1,10 @@
 import filterTransfers from "@shared/methods/transfers/transfers.filter.method";
 import transfersNormalize from "@shared/methods/transfers/transfers.normalize.method";
 import transfersPrepare from "@shared/methods/transfers/transfers.prepare.method"; // Import the generated FlatBuffer code
+import searchTransfers from "@shared/methods/transfers/transfers.search.method";
 import transfersTimeRange from "@shared/methods/transfers/transfers.timerange.method";
 import { transfersToJSON } from "@shared/methods/transfers/transfers.toJSON.method";
+import type { ISearch } from "@shared/schema/advancedSearch.schema.ts";
 import type { IFilters } from "@shared/schema/filters.schema";
 import type { IResponse } from "@shared/schema/response.schema";
 import type { ITransfer } from "@shared/schema/transfers.schema";
@@ -48,6 +50,7 @@ class TransfersDB {
 		try {
 			const url = `/transfers.bin.gz?v=${this.transfersDBVersion}`;
 
+			console.time("✅ transfersDB | Fetch transfers success");
 			const headRes = await axios.head(url);
 			const compressRatio = import.meta.env.MODE === "development" ? 2.4721612205247574 : 1;
 			const totalLength = parseInt(headRes.headers["content-length"] || "0", 10) * compressRatio;
@@ -109,6 +112,26 @@ class TransfersAPI {
 			console.time("✅ transfersDB | transfersPrepare");
 			const transfersData = transfersPrepare(this.filteredTransfers);
 			console.timeEnd("✅ transfersDB | transfersPrepare");
+
+			return {
+				data: transfersData,
+			};
+		} catch (e: any) {
+			return {
+				error: e.toString(),
+			};
+		}
+	}
+
+	public async search(search: ISearch): Promise<IResponse<ITransfersPrepare>> {
+		try {
+			console.time("✅ transfersDB | searchTransfers");
+			this.filteredTransfers = searchTransfers(transfersDB.transfersList, search);
+			console.timeEnd("✅ transfersDB | searchTransfers");
+
+			console.time("✅ transfersDB | searchTransfers");
+			const transfersData = transfersPrepare(this.filteredTransfers);
+			console.timeEnd("✅ transfersDB | searchTransfers");
 
 			return {
 				data: transfersData,

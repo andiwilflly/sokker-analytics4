@@ -1,3 +1,4 @@
+import { ISearch } from "@shared/schema/advancedSearch.schema";
 import { TSortBy, TSortOrder } from "./basic.schema.js";
 import { IFilters } from "./filters.schema.js";
 import { IResponse } from "./response.schema.js";
@@ -12,6 +13,7 @@ export interface IWorkerAPIInitResponse {
 export interface IWorkerAPI {
 	init: () => Promise<IResponse<IWorkerAPIInitResponse>>;
 	filter: (filters: IFilters) => Promise<IResponse<ITransfersPrepare>>;
+	search: (filters: ISearch) => Promise<IResponse<ITransfersPrepare>>;
 	transfers: ({ page, perPage, sortBy, sortOrder }: { page: number; perPage: number; sortBy: TSortBy; sortOrder: TSortOrder }) => Promise<
 		IResponse<{
 			transfers: ITransfer[];

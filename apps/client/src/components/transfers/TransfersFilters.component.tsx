@@ -39,6 +39,8 @@ class TransfersFilters extends React.Component<IProps> {
 				if (filters[key]) this.form[key] = filters[key] as any;
 			});
 		});
+
+		store.filterTransfers();
 	}
 
 	onPeriodChange = (values: number | number[]) => {

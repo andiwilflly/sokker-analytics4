@@ -220,6 +220,9 @@ importers:
       flatbuffers:
         specifier: ^25.2.10
         version: 25.2.10
+      fuse.js:
+        specifier: ^7.1.0
+        version: 7.1.0
       zod:
         specifier: ^3.25.42
         version: 3.25.56

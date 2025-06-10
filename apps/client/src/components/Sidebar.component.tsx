@@ -1,3 +1,4 @@
+import PreLoader from "@/components/PreLoader.component.tsx";
 import T from "@/components/T.component.tsx";
 import TransfersAdvancedSearch from "@/components/transfers/TransfersAdvancedSearch.component";
 import TransfersFilters from "@/components/transfers/TransfersFilters.component";
@@ -13,7 +14,7 @@ class Sidebar extends React.Component<IProps> {
 	render() {
 		return (
 			<>
-				<div className="filters p-2">
+				<div className="filters p-2 relative">
 					<div className=":bordered sticky p-3 top-[54px]">
 						<div className="flex flex-col h-full w-full pt-2 pr-2">
 							<div className="flex mb-2">
@@ -23,7 +24,9 @@ class Sidebar extends React.Component<IProps> {
 											? "border-violet-500 text-violet-600"
 											: "text-gray-500 hover:text-gray-700 border-transparent"
 									}`}
-									onClick={() => store.transfers.update({ isAdvancedSearch: false })}>
+									onClick={() => {
+										store.transfers.update({ isAdvancedSearch: false });
+									}}>
 									<T>Filters</T>
 								</button>
 								<button
@@ -45,6 +48,12 @@ class Sidebar extends React.Component<IProps> {
 							{store.transfers.isAdvancedSearch ? <TransfersAdvancedSearch /> : <TransfersFilters />}
 						</div>
 					</div>
+
+					{store.isLoading ? (
+						<div className="absolute inset-0 flex items-center justify-center">
+							<PreLoader />
+						</div>
+					) : null}
 				</div>
 			</>
 		);
