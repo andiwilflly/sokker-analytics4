@@ -37,7 +37,7 @@ class TransfersTable extends React.Component<IProps> {
 	}
 
 	get rowsMaxCount(): number {
-		return Math.ceil(this.props.height / this.rowHeight) - 3;
+		return Math.floor((this.props.height - 35 - 35) / this.rowHeight);
 	}
 
 	componentDidMount() {

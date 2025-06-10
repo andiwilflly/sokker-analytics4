@@ -21,6 +21,7 @@ declare global {
 		week: ITransferStatBlock;
 		hour: ITransferStatBlock;
 		age: ITransferStatBlock;
+		season: ITransferStatBlock;
 		count: number;
 	}
 

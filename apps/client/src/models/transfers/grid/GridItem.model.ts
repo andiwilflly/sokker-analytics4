@@ -19,7 +19,7 @@ const GridItemModel = types.compose(
 		chartType: types.optional(types.enumeration(chartTypes), "bar"),
 
 		// selectedX is one of keys in TransfersPrepare
-		selectedX: types.enumeration(["country", "height", "weekday", "week", "hour", "age", "count"]),
+		selectedX: types.enumeration(["country", "height", "weekday", "week", "hour", "age", "season"]),
 
 		// selectedY is an array of keys of TransferStatBlockValues
 		selectedY: types.array(types.enumeration(["count", "percent", "price_max", "price_avg", "price_min"])),
