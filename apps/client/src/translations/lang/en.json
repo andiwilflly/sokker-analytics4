@@ -27,5 +27,13 @@
   "Price": "Price",
   "Filters": "Filters",
   "Advanced search": "Advanced search",
-  "Search": "Search"
+  "Search": "Search",
+  "Stamina": "Stamina",
+  "Keeper": "Keeper",
+  "Pace": "Pace",
+  "Defender": "Defender",
+  "Technique": "Technique",
+  "Playmaker": "Playmaker",
+  "Passing": "Passing",
+  "Striker": "Striker"
 }

@@ -27,5 +27,13 @@
     "Price": "Price",
     "Filters": "Filtreler",
     "Advanced search": "Gelişmiş Arama",
-    "Search": "Search"
+    "Search": "Search",
+    "Stamina": "Dayanıklılık",
+    "Keeper": "Kaleci",
+    "Pace": "Adımlamak",
+    "Defender": "Savunmacı",
+    "Technique": "Teknik",
+    "Playmaker": "Oyun kurucu",
+    "Passing": "Geçme",
+    "Striker": "Forvet"
 }

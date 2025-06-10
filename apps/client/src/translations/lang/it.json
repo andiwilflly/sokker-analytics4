@@ -27,5 +27,13 @@
     "Price": "Price",
     "Filters": "Filtri",
     "Advanced search": "Ricerca avanzata",
-    "Search": "Search"
+    "Search": "Search",
+    "Stamina": "Resistenza",
+    "Keeper": "Custode",
+    "Pace": "Ritmo",
+    "Defender": "Difensore",
+    "Technique": "Tecnica",
+    "Playmaker": "Playmaker",
+    "Passing": "Passaggio",
+    "Striker": "Attaccante"
 }

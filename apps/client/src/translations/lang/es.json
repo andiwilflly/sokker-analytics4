@@ -27,5 +27,13 @@
     "Price": "Price",
     "Filters": "Filtros",
     "Advanced search": "Búsqueda avanzada",
-    "Search": "Search"
+    "Search": "Search",
+    "Stamina": "Aguante",
+    "Keeper": "Guardián",
+    "Pace": "Paso",
+    "Defender": "Defensor",
+    "Technique": "Técnica",
+    "Playmaker": "Jugador",
+    "Passing": "Paso",
+    "Striker": "Huelguista"
 }

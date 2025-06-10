@@ -2,28 +2,27 @@ import CoreModel from "@/models/Core.model";
 import { type ISearch } from "@shared/schema/advancedSearch.schema";
 import { type Instance, type SnapshotIn, applySnapshot, getSnapshot, isAlive, types } from "mobx-state-tree";
 
-const SkillType = types.union(
-	types.literal("ALL"),
-	types.refinement(types.number, val => val >= 0 && val <= 18),
-);
+const SkillType = (min: number, max: number) => {
+	return types.union(
+		types.literal("ALL"),
+		types.refinement(types.number, val => val >= min && val <= max),
+	);
+};
 
 const SearchModel = types.compose(
 	"SearchModel",
 	CoreModel,
 	types.model({
-		name: types.optional(types.string, "ALL"),
-		age: types.optional(
-			types.refinement(types.number, value => value === 0 || (value >= 16 && value <= 40)),
-			0,
-		),
-		stamina: types.optional(types.string, "ALL"),
-		keeper: types.optional(SkillType, "ALL"),
-		pace: types.optional(SkillType, "ALL"),
-		defender: types.optional(SkillType, "ALL"),
-		technique: types.optional(SkillType, "ALL"),
-		playmaker: types.optional(SkillType, "ALL"),
-		passing: types.optional(SkillType, "ALL"),
-		striker: types.optional(SkillType, "ALL"),
+		name: types.optional(types.string, ""),
+		age: types.array(SkillType(16, 40)),
+		stamina: types.array(SkillType(0, 11)),
+		keeper: types.array(SkillType(0, 18)),
+		pace: types.array(SkillType(0, 18)),
+		defender: types.array(SkillType(0, 18)),
+		technique: types.array(SkillType(0, 18)),
+		playmaker: types.array(SkillType(0, 18)),
+		passing: types.array(SkillType(0, 18)),
+		striker: types.array(SkillType(0, 18)),
 	}),
 );
 

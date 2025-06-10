@@ -27,5 +27,13 @@
     "Price": "Price",
     "Filters": "Szűrők",
     "Advanced search": "Fejlett keresés",
-    "Search": "Search"
+    "Search": "Search",
+    "Stamina": "Kitartás",
+    "Keeper": "Tartó",
+    "Pace": "Ütem",
+    "Defender": "Védő",
+    "Technique": "Technika",
+    "Playmaker": "Játékvezető",
+    "Passing": "Múló",
+    "Striker": "Csatár"
 }
