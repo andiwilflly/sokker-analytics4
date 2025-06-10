@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-const SkillSchema = z.union([z.literal("ALL"), z.coerce.number().int().min(0).max(18)]);
-
 // Reusable helper for ranged number arrays
 const NumberArrayInRange = (min: number, max: number) =>
 	z
@@ -13,6 +11,8 @@ const NumberArrayInRange = (min: number, max: number) =>
 
 const SearchSchema = z.object({
 	name: z.coerce.string().default(""),
+	fromMs: z.coerce.number().default(0),
+	toMs: z.coerce.number().default(0),
 	age: NumberArrayInRange(16, 40),
 	stamina: NumberArrayInRange(0, 11),
 	keeper: NumberArrayInRange(0, 18),

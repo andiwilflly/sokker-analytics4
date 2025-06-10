@@ -2,7 +2,7 @@ import T, { _t } from "@/components/T.component.tsx";
 import Slider from "@/components/elements/Slider.component.tsx";
 import store from "@/store.ts";
 import SearchSchema, { type ISearch } from "@shared/schema/advancedSearch.schema.ts";
-import { makeObservable, observable, runInAction } from "mobx";
+import { action, makeObservable, observable, runInAction, toJS } from "mobx";
 import { observer } from "mobx-react";
 import { getSnapshot } from "mobx-state-tree";
 import React from "react";
@@ -12,6 +12,8 @@ interface IProps {}
 class TransfersAdvancedSearch extends React.Component<IProps> {
 	form: ISearch = {
 		name: "",
+		fromMs: 0,
+		toMs: 0,
 		age: [16, 40],
 		stamina: [0, 11],
 		keeper: [0, 18],
@@ -27,6 +29,7 @@ class TransfersAdvancedSearch extends React.Component<IProps> {
 		super(props);
 		makeObservable(this, {
 			form: observable,
+			onPeriodChange: action,
 		});
 
 		runInAction(() => {
@@ -34,7 +37,7 @@ class TransfersAdvancedSearch extends React.Component<IProps> {
 			const search = getSnapshot(store.transfers.search);
 			Object.keys(search).forEach(filterName => {
 				const key = filterName as keyof typeof search;
-				if (search[key]) this.form[key] = search[key] as any;
+				if (search[key]) this.form[key] = search[key] as never;
 			});
 		});
 		store.searchTransfers();
@@ -47,6 +50,12 @@ class TransfersAdvancedSearch extends React.Component<IProps> {
 
 		store.transfers.search.update(data as ISearch);
 		store.searchTransfers();
+	};
+
+	onPeriodChange = (values: number | number[]) => {
+		const [fromMs, toMs] = values as [number, number];
+		this.form.fromMs = fromMs;
+		this.form.toMs = toMs;
 	};
 
 	renderItem(name: keyof ISearch, label: React.ReactNode, min: number, max: number) {
@@ -63,7 +72,7 @@ class TransfersAdvancedSearch extends React.Component<IProps> {
 					max={max}
 					onChange={changes => {
 						const [min, max] = changes as number[];
-						runInAction(() => (this.form[name] = [min, max] as any));
+						runInAction(() => (this.form[name] = [min, max] as never));
 					}}
 				/>
 			</div>
@@ -73,6 +82,23 @@ class TransfersAdvancedSearch extends React.Component<IProps> {
 	render() {
 		return (
 			<form onSubmit={this.onSubmit}>
+				<div className="text-nowrap text-xs mb-1">
+					<T>Select transfer period</T>
+				</div>
+				<div className="text-nowrap text-xs text-green-600 mb-1" style={{ fontSize: "10px" }}>
+					({new Date(this.form.fromMs).toLocaleString()}
+					&nbsp;-&nbsp;
+					{new Date(this.form.toMs).toLocaleString()})
+				</div>
+
+				<Slider
+					values={[this.form.fromMs, this.form.toMs]}
+					step={1000}
+					min={store.transfers.fromMs}
+					max={store.transfers.toMs}
+					onChange={this.onPeriodChange}
+				/>
+
 				<div className="mb-2">
 					<span className="text-xs text-nowrap text-gray-600">Name</span>
 					<input
