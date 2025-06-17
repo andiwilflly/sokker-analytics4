@@ -49,7 +49,7 @@ export default function searchTransfers(transfers: ITransfer[], search: ISearch)
 				},
 			})
 				.search(search.name)
-				.map(result => result.item)
+				.map((result: any) => result.item)
 		: transfers;
 
 	return transfers;
