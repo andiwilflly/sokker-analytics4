@@ -1,6 +1,6 @@
-import FiltersSchema, { IFilters } from "@shared/schema/filters.schema.js";
-import { IResponse } from "@shared/schema/response.schema.js";
-import { ITransferShortNames } from "@shared/schema/transfers.schema.js";
+import FiltersSchema, { IFilters } from "../../schema/filters.schema.js";
+import { IResponse } from "../../schema/response.schema.js";
+import { ITransferShortNames } from "../../schema/transfers.schema.js";
 import db from "../../DB/DB.js";
 import { Elysia } from "elysia";
 

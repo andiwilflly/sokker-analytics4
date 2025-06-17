@@ -1,15 +1,15 @@
-import filterTransfers from "@shared/methods/transfers/transfers.filter.method";
-import transfersNormalize from "@shared/methods/transfers/transfers.normalize.method";
-import transfersPrepare from "@shared/methods/transfers/transfers.prepare.method"; // Import the generated FlatBuffer code
-import searchTransfers from "@shared/methods/transfers/transfers.search.method";
-import transfersTimeRange from "@shared/methods/transfers/transfers.timerange.method";
-import { transfersToJSON } from "@shared/methods/transfers/transfers.toJSON.method";
-import type { ISearch } from "@shared/schema/advancedSearch.schema.ts";
-import type { IFilters } from "@shared/schema/filters.schema";
-import type { IResponse } from "@shared/schema/response.schema";
-import type { ITransfer } from "@shared/schema/transfers.schema";
-import { type IWorkerAPIInitResponse, type TWorkerProgress } from "@shared/schema/worker.schema";
-import { Transfers } from "@shared/scripts/flatbuffer/transfer";
+import filterTransfers from "@server/methods/transfers/transfers.filter.method";
+import transfersNormalize from "@server/methods/transfers/transfers.normalize.method";
+import transfersPrepare from "@server/methods/transfers/transfers.prepare.method"; // Import the generated FlatBuffer code
+import searchTransfers from "@server/methods/transfers/transfers.search.method";
+import transfersTimeRange from "@server/methods/transfers/transfers.timerange.method";
+import { transfersToJSON } from "@server/methods/transfers/transfers.toJSON.method";
+import type { ISearch } from "@server/schema/advancedSearch.schema.ts";
+import type { IFilters } from "@server/schema/filters.schema";
+import type { IResponse } from "@server/schema/response.schema";
+import type { ITransfer } from "@server/schema/transfers.schema";
+import { type IWorkerAPIInitResponse, type TWorkerProgress } from "@server/schema/worker.schema";
+import { Transfers } from "@server/scripts/flatbuffer/transfer";
 import axios, { type AxiosProgressEvent, type AxiosRequestConfig, type AxiosResponse } from "axios";
 import * as Comlink from "comlink";
 import { ByteBuffer } from "flatbuffers";

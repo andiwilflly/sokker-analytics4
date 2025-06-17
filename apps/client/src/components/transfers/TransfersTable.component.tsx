@@ -1,9 +1,9 @@
 import PreLoader from "@/components/PreLoader.component";
 import { _t } from "@/components/T.component";
 import store from "@/store";
-import { type TSortBy, type TSortOrder } from "@shared/schema/basic.schema";
-import type { ITransfer } from "@shared/schema/transfers.schema";
-import countries, { currencyMapping } from "@shared/utils/countries.util";
+import { type TSortBy, type TSortOrder } from "@server/schema/basic.schema";
+import type { ITransfer } from "@server/schema/transfers.schema";
+import countries, { currencyMapping } from "@server/utils/countries.util";
 import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react";
 import { type IReactionDisposer, makeObservable, observable, reaction, runInAction } from "mobx";
 import { observer } from "mobx-react";

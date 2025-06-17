@@ -2,9 +2,9 @@ import { GRID_ITEM_MIN_HEIGHT, GRID_ITEM_MIN_WIDTH } from "@/CONSTANTS";
 import CoreModel from "@/models/Core.model";
 import GridModel from "@/models/transfers/grid/Grid.model";
 import store from "@/store";
-import { chartTypes } from "@shared/schema/charts.schema";
-import type { IFilters } from "@shared/schema/filters.schema";
-import { currencyMapping } from "@shared/utils/countries.util";
+import { chartTypes } from "@server/schema/charts.schema";
+import type { IFilters } from "@server/schema/filters.schema";
+import { currencyMapping } from "@server/utils/countries.util";
 import { type Instance, getParentOfType, getSnapshot, isAlive, types } from "mobx-state-tree";
 
 const GridItemModel = types.compose(

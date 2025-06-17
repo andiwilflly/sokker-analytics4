@@ -3,7 +3,7 @@ import FiltersModel from "@/models/transfers/Filters.model";
 import SearchModel from "@/models/transfers/Search.model.ts";
 import GridModel from "@/models/transfers/grid/Grid.model";
 import TransfersWorker from "@/workers/transfers/transfers.worker.ts?worker";
-import type { IWorkerAPI } from "@shared/schema/worker.schema";
+import type { IWorkerAPI } from "@server/schema/worker.schema";
 import type { Remote } from "comlink";
 import { type Instance, isAlive, types } from "mobx-state-tree";
 

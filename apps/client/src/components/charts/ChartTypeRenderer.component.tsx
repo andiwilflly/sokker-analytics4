@@ -1,6 +1,6 @@
 import type GridItemModel from "@/models/transfers/grid/GridItem.model";
 import store from "@/store";
-import type { TPIEChartData } from "@shared/schema/charts.schema";
+import type { TPIEChartData } from "@server/schema/charts.schema";
 import { observer } from "mobx-react";
 import type { Instance } from "mobx-state-tree";
 import React from "react";

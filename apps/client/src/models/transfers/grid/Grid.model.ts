@@ -1,6 +1,6 @@
 import CoreModel from "@/models/Core.model";
 import GridItemModel from "@/models/transfers/grid/GridItem.model";
-import { chartTypes } from "@shared/schema/charts.schema";
+import { chartTypes } from "@server/schema/charts.schema";
 import { type Instance, type SnapshotIn, applySnapshot, getSnapshot, types } from "mobx-state-tree";
 import type { Layout } from "react-grid-layout";
 

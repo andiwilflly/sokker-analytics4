@@ -1,7 +1,7 @@
 import T, { _t } from "@/components/T.component.tsx";
 import Slider from "@/components/elements/Slider.component.tsx";
 import store from "@/store.ts";
-import SearchSchema, { type ISearch } from "@shared/schema/advancedSearch.schema.ts";
+import SearchSchema, { type ISearch } from "@server/schema/advancedSearch.schema.ts";
 import { action, makeObservable, observable, runInAction } from "mobx";
 import { observer } from "mobx-react";
 import { getSnapshot } from "mobx-state-tree";

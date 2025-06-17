@@ -1,9 +1,9 @@
 import CoreModel from "@/models/Core.model";
 import TransfersModel from "@/models/transfers/Transfers.model";
 import i18n from "@/translations/i18n";
-import { type TCurrency, type TLang } from "@shared/schema/basic.schema";
-import { type IWorkerAPI, type TWorkerProgress } from "@shared/schema/worker.schema";
-import countries, { currencyMapping } from "@shared/utils/countries.util";
+import { type TCurrency, type TLang } from "@server/schema/basic.schema";
+import { type IWorkerAPI, type TWorkerProgress } from "@server/schema/worker.schema";
+import countries, { currencyMapping } from "@server/utils/countries.util";
 import * as Comlink from "comlink";
 import { reaction, toJS } from "mobx";
 import { type Instance, addDisposer, getSnapshot, types } from "mobx-state-tree";

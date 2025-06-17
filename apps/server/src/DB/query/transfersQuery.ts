@@ -1,5 +1,5 @@
-import { IFilters } from "@shared/schema/filters.schema";
-import { ITransferShortNames } from "@shared/schema/transfers.schema";
+import { IFilters } from "../../schema/filters.schema.js";
+import { ITransferShortNames } from "../../schema/transfers.schema.js";
 
 export default function transfersQuery({
 	filters,

@@ -1,5 +1,5 @@
-import { type ISearch } from "@shared/schema/advancedSearch.schema";
-import { type ITransfer } from "@shared/schema/transfers.schema";
+import { type ISearch } from "../../schema/advancedSearch.schema.js";
+import { type ITransfer } from "../../schema/transfers.schema.js";
 import Fuse from "fuse.js";
 
 export default function searchTransfers(transfers: ITransfer[], search: ISearch): ITransfer[] {

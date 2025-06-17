@@ -1,5 +1,5 @@
 "use client";
-import { type TPIEChartData } from "@shared/schema/charts.schema";
+import { type TPIEChartData } from "@server/schema/charts.schema";
 // @ts-ignore
 import * as echarts from "echarts";
 import React from "react";

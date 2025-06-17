@@ -1,5 +1,5 @@
 import CoreModel from "@/models/Core.model";
-import { type ISearch } from "@shared/schema/advancedSearch.schema";
+import { type ISearch } from "@server/schema/advancedSearch.schema";
 import { type Instance, type SnapshotIn, applySnapshot, getSnapshot, isAlive, types } from "mobx-state-tree";
 
 const SkillType = (min: number, max: number) => {

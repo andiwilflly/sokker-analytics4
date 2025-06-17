@@ -10,7 +10,6 @@
 		"resolveJsonModule": true,
 		"baseUrl": ".",
 		"paths": {
-			"@shared/*": ["packages/shared/src/*"]
 		},
 		"declaration": true,
 		"sourceMap": true,

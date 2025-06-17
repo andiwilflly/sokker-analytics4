@@ -1,24 +1,29 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { node } from "@elysiajs/node";
-import logger from "./logger.js";
 import { Elysia } from "elysia";
 import { glob } from "glob";
+import logger from "./logger.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const ROUTES_DIR = path.resolve(__dirname, "api"); // 'dist/api'
 const app = new Elysia({ adapter: node() });
 
-// Find all compiled JS route files
-const files = await glob(`${ROUTES_DIR}/**/*.js`); // Note: looking for .js files in dist
+// Use .ts in dev, .js in prod
+const isDev = process.env.NODE_ENV !== "production";
+const ROUTES_DIR = path.resolve(__dirname, "api");
+const ext = isDev ? "ts" : "js";
+let files = await glob(`${ROUTES_DIR}/**/*.${ext}`);
+files = files.filter(f => !f.endsWith(".d.ts"));
+
+console.log("____files -_____", isDev, files, `${ROUTES_DIR}/**/*.${ext}`);
 
 for (const file of files) {
 	// Compute route path from file path
 	let routePath = file
 		.replace(ROUTES_DIR, "")
-		.replace(/\.js$/, "")
+		.replace(new RegExp(`\\.${ext}$`), "")
 		.replace(/\/index$/, "")
 		.replace(/\[([^\]]+)]/g, ":$1");
 

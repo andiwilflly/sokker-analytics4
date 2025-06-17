@@ -3,7 +3,6 @@
   "references": [
     { "path": "apps/client" },
     { "path": "apps/server" },
-    { "path": "packages/shared" }
   ],
   "extends": "./tsconfig.base.json"
 }

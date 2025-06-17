@@ -1,7 +1,7 @@
 import T, { _t } from "@/components/T.component";
 import store from "@/store";
-import { type TCountry } from "@shared/schema/basic.schema";
-import countries from "@shared/utils/countries.util";
+import { type TCountry } from "@server/schema/basic.schema";
+import countries from "@server/utils/countries.util";
 import Fuse from "fuse.js";
 import { action, makeObservable, observable } from "mobx";
 import { observer } from "mobx-react";

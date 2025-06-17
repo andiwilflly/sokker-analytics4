@@ -1,4 +1,4 @@
-import { ISearch } from "@shared/schema/advancedSearch.schema";
+import { ISearch } from "./advancedSearch.schema.js";
 import { TSortBy, TSortOrder } from "./basic.schema.js";
 import { IFilters } from "./filters.schema.js";
 import { IResponse } from "./response.schema.js";
