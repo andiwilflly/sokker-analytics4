@@ -25,7 +25,7 @@ class TransfersDashboardGrid extends React.Component<IProps> {
 			w: 12,
 			h: GRID_ITEM_MIN_HEIGHT,
 			x: Infinity,
-			chartType: "line",
+			chartType: "bar",
 			selectedX: "country",
 			selectedY: ["price_max", "price_min", "price_avg"],
 		});
