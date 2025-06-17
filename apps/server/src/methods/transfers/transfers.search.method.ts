@@ -1,6 +1,6 @@
+import Fuse from "fuse.js";
 import { type ISearch } from "../../schema/advancedSearch.schema.js";
 import { type ITransfer } from "../../schema/transfers.schema.js";
-import Fuse from "fuse.js";
 
 export default function searchTransfers(transfers: ITransfer[], search: ISearch): ITransfer[] {
 	transfers = transfers.filter(transfer => {
@@ -40,7 +40,7 @@ export default function searchTransfers(transfers: ITransfer[], search: ISearch)
 				keys: ["name"],
 				threshold: 0.2,
 				ignoreLocation: true,
-				getFn: (obj, path) => {
+				getFn: (obj: any, path: string | string[]) => {
 					const raw = Fuse.config.getFn(obj, path); // default getter
 					if (typeof raw === "string") {
 						return normalizeText(raw);

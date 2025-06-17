@@ -30,6 +30,8 @@
 		"vite-tsconfig-paths": "^5.1.4"
 	},
 	"dependencies": {
+		"flatbuffers": "^25.2.10",
+		"fuse.js": "^7.1.0",
 		"zod": "^3.25.67"
 	}
 }
